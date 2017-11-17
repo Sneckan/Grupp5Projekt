@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Grupp5Projekt
 {
-    public class Admin
+    public class Admin : User
     {
         //Propertys
         public string Name { get; set; }
         public string Password { get; set; }
-        public string Mail { get; set; }
+        public string Email { get; set; }
         public string User { get; set; }
 
         //Constructor
-        public Admin(string name, string password, string mail)
+        public Admin(string name, string password, string email)
         {
             Name = name;
             Password = password;
-            Mail = mail;
+            Email = email;
         }
 
         //AddUser
-        public void AddUser(string name, string password, string mail)
+        public void AddUser(string name, string password, string email)
         {
             Console.WriteLine("Insert name: ");
             Name = Console.ReadLine();
@@ -32,7 +32,7 @@ namespace Grupp5Projekt
             Password = Console.ReadLine();
 
             Console.WriteLine("Insert e-mail adress: ");
-            Mail = Console.ReadLine();
+            Email = Console.ReadLine();
 
             var addUserList = new List<Registry>();
             var listSize = new Registry(50);

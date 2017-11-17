@@ -13,7 +13,7 @@ namespace UnitTest
             user.AddUser();
             Assert.AreEqual("Kalle", user.Name);
             Assert.AreEqual("password", user.Password);
-            Assert.AreEqual("mail", user.Mail);
+            Assert.AreEqual("mail", user.Email);
         }
     }
 }

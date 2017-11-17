@@ -12,7 +12,14 @@ namespace Grupp5Projekt
         public string Email { get; set; }
         public string Password { get; set; }
         public enum Privilege { admin, student, teacher }
-        public Privilege privilege { get; set; }
+        public Privilege MyPrivilege { get; set; }
 
+        public User(string name, string email, string password, Privilege myPrivilege)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+            MyPrivilege = myPrivilege;
+        }
     }
 }

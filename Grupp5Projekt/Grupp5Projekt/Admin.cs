@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace Grupp5Projekt
 {
-<<<<<<< HEAD
-  class Admin
-  {
-  }
-=======
     public class Admin : User
     {
         //Propertys
@@ -60,5 +55,4 @@ namespace Grupp5Projekt
 
         //}
     }
->>>>>>> origin/cuongjen
 }

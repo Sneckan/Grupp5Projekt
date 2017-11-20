@@ -15,8 +15,6 @@ namespace Grupp5Projekt
       Dictionary<Room, DateTime> temp = new Dictionary<Room, DateTime>();
       temp.Add(room, time);
       timeTable.Add(course, temp);
-
-      
     }
 
   }

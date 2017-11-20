@@ -10,7 +10,7 @@ namespace Grupp5Projekt
   {
     static void Main(string[] args)
     {
-      List<User> users = new List<User>;
+      List<User> users = new List<User>();
 
       Admin admin = new Admin("admin", "admin", "password", User.Privilege.admin);
       Teacher teacher = new Teacher("teacher", "teacher", "password", User.Privilege.teacher);
@@ -53,7 +53,7 @@ namespace Grupp5Projekt
         Console.WriteLine("User not found");
       }
 
-
+      Console.ReadLine();
     }
   }
 }

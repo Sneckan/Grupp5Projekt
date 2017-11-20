@@ -35,10 +35,11 @@ namespace Grupp5Projekt
       
       Console.WriteLine("Insert e-mail adress: ");
       Email = Console.ReadLine();
-      
+      /*
       var addUserList = new List<Registry>();
       var listSize = new Registry(50);
       list.Add(AddUser(Name, Password, Mail));
+      */
     }
     
     //public void RemoveUser()

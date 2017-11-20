@@ -14,7 +14,7 @@ namespace Grupp5Projekt
       privilege)
     {
         
-        }
+    }
     public List<Course> courses = new List<Course>();
 
     public void AddStudentToCourse(Student student,Course course)
@@ -22,6 +22,8 @@ namespace Grupp5Projekt
 
       courses[courses.IndexOf(course)].Students.Add(student);
     }
+<<<<<<< HEAD
+=======
 
     public void AddCourseToTeacher(Course course)
     {
@@ -29,5 +31,6 @@ namespace Grupp5Projekt
     }
     
 
+>>>>>>> b2a403f4316acc94818bd4d947b9f62ca43b7d24
   }
 }

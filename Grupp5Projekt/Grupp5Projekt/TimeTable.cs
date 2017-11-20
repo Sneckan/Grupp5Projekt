@@ -17,8 +17,6 @@ namespace Grupp5Projekt
         { room, time }
       };
       timeTable.Add(course, temp);
-
-      
     }
 
   }

@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Grupp5Projekt
 {
-    public class Room
+  public class Room
+  {
+    public string Name { get; set; }
+    public Timetable TimeTable { get; set; }
+    int MaxCapacity = 0;
+
+    public Room(string name)
     {
-        public string Name { get; set; }
-        int MaxCapacity = 0;
-
-        public Room(string name)
-        {
-            Name = name;
-            MaxCapacity = 35;
-        }
-
+        Name = name;
+        MaxCapacity = 35;
     }
+  }
 }

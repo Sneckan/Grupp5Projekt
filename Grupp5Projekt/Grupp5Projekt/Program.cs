@@ -14,11 +14,20 @@ namespace Grupp5Projekt
 
       Admin admin = new Admin("admin", "admin", "password", User.Privilege.admin);
       Teacher teacher = new Teacher("teacher", "teacher", "password", User.Privilege.teacher);
+      Teacher teacher2 = new Teacher("jens", "teacher", "password", User.Privilege.teacher);
       Student student = new Student("student", "student", "password", User.Privilege.student);
+      Course course = new Course("Matematik", teacher, DateTime.Now, DateTime.Now, 180);
+      Course course2 = new Course("Svenska", teacher, DateTime.Now, DateTime.Now, 180);
 
       users.Add(admin);
       users.Add(teacher);
       users.Add(student);
+
+      teacher.AddCourseToTeacher(course);
+      teacher.AddCourseToTeacher(course2);
+      teacher2.AddCourseToTeacher(course);
+      Console.WriteLine(teacher.ShowTeachersCourses());
+      Console.ReadLine();
 
       bool foundUser = false;
       int pos = 0;

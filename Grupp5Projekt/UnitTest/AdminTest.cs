@@ -7,13 +7,10 @@ namespace UnitTest
   public class AdminTests
   {
     [Test]
-    public void AddUserShouldAddNamePasswordAndMail()
+    public void CheckIfAdminIsCreatedCorrectly()
     {
-      var user = new Admin("Kalle", "password", "mail");
-      user.AddUser();
-      Assert.AreEqual("Kalle", user.Name);
-      Assert.AreEqual("password", user.Password);
-      Assert.AreEqual("mail", user.Email);
+      Admin admin = new Admin("temp", "temp@temp.se", "temp", User.Privilege.admin);
+      Assert.AreEqual("temp", admin.Name);
     }
   }
 }

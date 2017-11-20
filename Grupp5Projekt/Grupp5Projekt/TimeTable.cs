@@ -12,8 +12,10 @@ namespace Grupp5Projekt
 
     public TimeTable(Course course,Room room,DateTime time)
     {
-      Dictionary<Room, DateTime> temp = new Dictionary<Room, DateTime>();
-      temp.Add(room, time);
+      Dictionary<Room, DateTime> temp = new Dictionary<Room, DateTime>
+      {
+        { room, time }
+      };
       timeTable.Add(course, temp);
     }
 

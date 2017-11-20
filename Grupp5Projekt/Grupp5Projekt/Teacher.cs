@@ -17,10 +17,20 @@ namespace Grupp5Projekt
     }
     public List<Course> courses = new List<Course>();
 
-    public void addStudentToCourse(Student student,Course course)
+    public void AddStudentToCourse(Student student,Course course)
     {
 
       courses[courses.IndexOf(course)].Students.Add(student);
     }
+<<<<<<< HEAD
+=======
+
+    public void AddCourseToTeacher(Course course)
+    {
+      courses.Add(course);
+    }
+    
+
+>>>>>>> b2a403f4316acc94818bd4d947b9f62ca43b7d24
   }
 }

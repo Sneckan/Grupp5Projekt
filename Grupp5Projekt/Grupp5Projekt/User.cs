@@ -13,6 +13,7 @@ namespace Grupp5Projekt
         public string Email { get; set; }
         public string Password { get; set; }
         public enum Privilege { admin, student, teacher }
+<<<<<<< HEAD
         public Privilege privilege { get; set; }
         
         //  Constructor for Users.
@@ -23,5 +24,16 @@ namespace Grupp5Projekt
         this.Password = password;
         this.privilege = privilege;
       }
+=======
+        public Privilege MyPrivilege { get; set; }
+
+        public User(string name, string email, string password, Privilege myPrivilege)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+            MyPrivilege = myPrivilege;
+        }
+>>>>>>> origin/paulasbranch
     }
 }

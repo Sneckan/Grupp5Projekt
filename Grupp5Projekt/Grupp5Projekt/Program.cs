@@ -10,7 +10,7 @@ namespace Grupp5Projekt
   {
     static void Main(string[] args)
     {
-    
+
     }
   }
 }

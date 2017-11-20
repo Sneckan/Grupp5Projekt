@@ -47,11 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="TeacherTest.cs" />
-=======
-    <Compile Include="UnitTestRoom.cs" />
->>>>>>> origin/paulasbranch
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

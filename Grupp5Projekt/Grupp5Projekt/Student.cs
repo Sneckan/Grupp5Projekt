@@ -10,10 +10,7 @@ namespace Grupp5Projekt
   {
     public Student(string name, string email, string password, Privilege myPrivilege) : base(name, email, password, myPrivilege)
     {
-      Name = name;
-      Email = email;
-      Password = password;
-      MyPrivilege = myPrivilege;
+      
     }
   }
 }

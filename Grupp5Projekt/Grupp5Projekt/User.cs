@@ -15,13 +15,13 @@ namespace Grupp5Projekt
         public enum Privilege { admin, student, teacher }
         public Privilege privilege { get; set; }
         
-        //  Constructor for Users.
-      public User(string name, string email, string password, Privilege privilege)
-      {
-        this.Name = name;
-        this.Email = email;
-        this.Password = password;
-        this.privilege = privilege;
-      }
+         //  Constructor for Users.
+         public User(string name, string email, string password, Privilege privilege)
+         {
+         this.Name = name;
+         this.Email = email;
+         this.Password = password;
+         this.privilege = privilege;
+         }
     }
 }

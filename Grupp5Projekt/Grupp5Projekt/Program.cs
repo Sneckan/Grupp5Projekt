@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Grupp5Projekt
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-
-        }
+    
     }
+  }
 }

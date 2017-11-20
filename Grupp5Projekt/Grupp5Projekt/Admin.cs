@@ -9,17 +9,19 @@ namespace Grupp5Projekt
   public class Admin : User
   {
     //Propertys
-    public string Name { get; set; }
-    public string Password { get; set; }
-    public string Email { get; set; }
-    public string User { get; set; }
+    
+    public List<User> Users { get; set; }
+
     
     //Constructor
-    public Admin(string name, string password, string email)
+    public Admin(string name, string email, string password,User.Privilege privilege):base(name,email,password,privilege)
     {
-      Name = name;
-      Password = password;
-      Email = email;
+      Users = new List<User>();
+    }
+
+    public Admin(string name,string email,string password,User.Privilege privilege,List<User> users):base(name,email,password,privilege)
+    {
+      Users = users;
     }
     
     //AddUser

@@ -20,37 +20,48 @@ namespace Grupp5Projekt
       users.Add(teacher);
       users.Add(student);
 
+      
       bool foundUser = false;
-      int pos = 0;
-      int i = 0;
-      string login = Console.ReadLine();
-      while(!foundUser&&i<users.Count())
+      bool foundPassword = false;
+      while (!foundUser)
       {
-        if(login==users[i].Email)
+        int pos = 0;
+        int i = 0;
+        string login = Console.ReadLine();
+        while (!foundUser && i < users.Count())
         {
-          pos = i;
-          foundUser = true;
+          if (login == users[i].Email)
+          {
+            pos = i;
+            foundUser = true;
+          }
+          i++;
         }
-        i++;
-      }
+        
 
-      if(foundUser)
-      {
-        string password = Console.ReadLine();
-        if (password == users[pos].Password)
+        if (foundUser)
         {
-          Console.WriteLine("You are logged in!");
+          while (!foundPassword)
+          {
+            string password = Console.ReadLine();
+              if (password == users[pos].Password)
+              {
+                Console.WriteLine("You are logged in!");
+                foundPassword = true;
+              }
+              else
+              {
+                Console.WriteLine("Wrong password, try again");
+              }
+          }
+          
+
         }
+
         else
         {
-          Console.WriteLine("Wrong password");
+          Console.WriteLine("User not found, try again");
         }
-
-      }
-
-      else
-      {
-        Console.WriteLine("User not found");
       }
 
       Console.ReadLine();

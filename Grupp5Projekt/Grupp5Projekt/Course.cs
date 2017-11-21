@@ -25,5 +25,5 @@ namespace Grupp5Projekt
             Hours = hours;
         }
     }
+  }
 
-}

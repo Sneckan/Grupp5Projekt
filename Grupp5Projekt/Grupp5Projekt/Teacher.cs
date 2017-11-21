@@ -7,26 +7,33 @@ using System.Threading.Tasks;
 namespace Grupp5Projekt
 {
   public class Teacher : User
-  {
-    //  constructor for teacher
-    
-    public Teacher(string name, string email, string password, Privilege privilege) : base(name, email, password,
-      privilege)
+  {  
+    public Teacher(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
     {
         
     }
-    public List<Course> courses = new List<Course>();
-
-    public void AddStudentToCourse(Student student,Course course)
-    {
-
-      courses[courses.IndexOf(course)].Students.Add(student);
-    }
+    public List<Course> Courses = new List<Course>();
 
     public void AddCourseToTeacher(Course course)
     {
-      courses.Add(course);
+      Courses.Add(course);
     }
- 
+
+    public void AddStudentToCourse(Student student,Course course)
+    {
+      Courses[Courses.IndexOf(course)].Students.Add(student);
+    }
+
+    public string ShowTeachersCourses()
+    {
+      string temp = "";
+      for (int i = 0; i < Courses.Count; i++)
+      {
+        temp += Courses[i].Name + "\n";
+      }
+
+      return temp;
+    }
+
   }
 }

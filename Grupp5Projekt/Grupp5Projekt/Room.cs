@@ -9,7 +9,6 @@ namespace Grupp5Projekt
   public class Room
   {
     public string Name { get; set; }
-   // public Timetable TimeTable { get; set; }
     int MaxCapacity = 0;
 
     public Room(string name)

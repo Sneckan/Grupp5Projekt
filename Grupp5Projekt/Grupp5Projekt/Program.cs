@@ -14,54 +14,52 @@ namespace Grupp5Projekt
 
       Admin admin = new Admin("admin", "admin", "password", User.Privilege.admin);
       Teacher teacher = new Teacher("teacher", "teacher", "password", User.Privilege.teacher);
+      Teacher teacher2 = new Teacher("jens", "teacher", "password", User.Privilege.teacher);
       Student student = new Student("student", "student", "password", User.Privilege.student);
+      Course course = new Course("Matematik", teacher, DateTime.Now, DateTime.Now, 180);
+      Course course2 = new Course("Svenska", teacher, DateTime.Now, DateTime.Now, 180);
 
       users.Add(admin);
       users.Add(teacher);
       users.Add(student);
 
-      
+      teacher.AddCourseToTeacher(course);
+      teacher.AddCourseToTeacher(course2);
+      teacher2.AddCourseToTeacher(course);
+      Console.WriteLine(teacher.ShowTeachersCourses());
+      Console.ReadLine();
+
       bool foundUser = false;
-      bool foundPassword = false;
-      while (!foundUser)
+      int pos = 0;
+      int i = 0;
+      string login = Console.ReadLine();
+      while(!foundUser&&i<users.Count())
       {
-        int pos = 0;
-        int i = 0;
-        string login = Console.ReadLine();
-        while (!foundUser && i < users.Count())
+        if(login==users[i].Email)
         {
-          if (login == users[i].Email)
-          {
-            pos = i;
-            foundUser = true;
-          }
-          i++;
+          pos = i;
+          foundUser = true;
         }
-        
+        i++;
+      }
 
-        if (foundUser)
+      if(foundUser)
+      {
+        string password = Console.ReadLine();
+        if (password == users[pos].Password)
         {
-          while (!foundPassword)
-          {
-            string password = Console.ReadLine();
-              if (password == users[pos].Password)
-              {
-                Console.WriteLine("You are logged in!");
-                foundPassword = true;
-              }
-              else
-              {
-                Console.WriteLine("Wrong password, try again");
-              }
-          }
-          
-
+          Console.WriteLine("You are logged in!");
         }
-
         else
         {
-          Console.WriteLine("User not found, try again");
+          Console.WriteLine("Wrong password");
         }
+
+      }
+
+      else
+      {
+        Console.WriteLine("User not found");
       }
 
       Console.ReadLine();

@@ -24,6 +24,8 @@ namespace Grupp5Projekt
             EndDate = endDate;
             Hours = hours;
         }
+       
     }
+
   }
 

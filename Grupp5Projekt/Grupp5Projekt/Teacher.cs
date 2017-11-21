@@ -24,7 +24,7 @@ namespace Grupp5Projekt
       Courses[Courses.IndexOf(course)].Students.Add(student);
     }
 
-    public string ShowTeachersCourses()
+    public string ShowCourses()
     {
       string temp = "";
       for (int i = 0; i < Courses.Count; i++)
@@ -32,6 +32,32 @@ namespace Grupp5Projekt
         temp += Courses[i].Name + "\n";
       }
 
+      return temp;
+    }
+
+    public string ShowFinishedCourses()
+    {
+      string temp = "";
+      foreach (var course in Courses)
+      {
+        if (course.EndDate < DateTime.Today)
+        {
+          temp += course.Name + "\n";          
+        }
+      }
+        return temp;
+    }
+
+    public string ShowOngoingCourses()
+    {
+      string temp = "";
+      foreach (var course in Courses)
+      {
+        if (course.EndDate > DateTime.Today)
+        {
+          temp += course.Name + "\n";
+        }
+      }
       return temp;
     }
 

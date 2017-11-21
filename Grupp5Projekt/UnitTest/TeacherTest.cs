@@ -60,5 +60,21 @@ namespace UnitTest
     }
 
 
+
+    [Test]
+    public void AddLessonToList()
+    {
+      Teacher teacher = new Teacher("temp", "temp", "temp", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Room room = new Room("temp");
+      Course course = new Course("temp", teacher, DateTime.Now, DateTime.Now, 0);
+      Lesson lesson = new Lesson(course, time, time, room);
+      teacher.AddLesson(lesson);
+
+      Assert.AreEqual(teacher.lessons.Count, 1);
+
+
+
+    }
   }
 }

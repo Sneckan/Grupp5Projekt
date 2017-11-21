@@ -7,12 +7,22 @@ using System.Threading.Tasks;
 namespace Grupp5Projekt
 {
   public class Teacher : User
-  {  
+  {
+
+    public List<Course> Courses;
+    public List<Lesson> lessons;
+
     public Teacher(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
     {
-        
+      Courses = new List<Course>();
+      lessons = new List<Lesson>();
     }
-    public List<Course> Courses = new List<Course>();
+
+    //adds a lesson to lesson list
+    public void AddLesson(Lesson lesson)
+    {
+      lessons.Add(lesson);
+    }
 
     public void AddCourseToTeacher(Course course)
     {

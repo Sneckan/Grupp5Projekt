@@ -11,17 +11,26 @@ namespace Grupp5Projekt
     //Propertys
     
     public List<User> Users { get; set; }
+    public List<Lesson> Lessons { get; set; }
 
     
     //Constructor
     public Admin(string name, string email, string password,User.Privilege privilege):base(name,email,password,privilege)
     {
       Users = new List<User>();
+      Lessons = new List<Lesson>();
     }
 
-    public Admin(string name,string email,string password,User.Privilege privilege,List<User> users):base(name,email,password,privilege)
+    //Constructor with existing lists from registry
+    public Admin(string name,string email,string password,User.Privilege privilege,List<User> users,List<Lesson> lessons):base(name,email,password,privilege)
     {
       Users = users;
+      Lessons = lessons;
+    }
+
+    public void AddLesson(Lesson lesson)
+    {
+      Lessons.Add(lesson);
     }
     
     //AddUser

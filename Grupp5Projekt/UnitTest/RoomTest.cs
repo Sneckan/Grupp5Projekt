@@ -1,21 +1,16 @@
 ﻿using System;
-using Grupp5Projekt;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using NUnit.Framework;
+using Grupp5Projekt;
 
 namespace UnitTest
 {
   [TestFixture]
-  class TeacherTest
+  class RoomTest
   {
-    [Test]
-    public void CheckIfTeachersAreCreatedCorrectly()
-    {
-      User.Privilege privilege = User.Privilege.teacher;
-      Teacher teacher = new Teacher("Temp Tempsson", "temp@temp.se", "temp123", privilege);
-
-      Assert.AreEqual("Temp Tempsson", teacher.Name);
-    }
-
     [Test]
     public void AddLessonToList()
     {
@@ -24,12 +19,9 @@ namespace UnitTest
       Room room = new Room("temp");
       Course course = new Course("temp", teacher, DateTime.Now, DateTime.Now, 0);
       Lesson lesson = new Lesson(course, time, time, room);
-      teacher.AddLesson(lesson);
+      room.AddLesson(lesson);
 
-      Assert.AreEqual(teacher.lessons.Count, 1);
-
-
-
+      Assert.AreEqual(room.lessons.Count, 1);
     }
   }
 }

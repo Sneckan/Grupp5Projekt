@@ -29,5 +29,16 @@ namespace UnitTest
       Assert.AreEqual(admin.Lessons.Count, 1);
 
     }
+    [Test]
+    public void AddTeacherTest()
+    {
+      Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
+      Teacher teacher = new Teacher("temp", "temp", "temp", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Room room = new Room("temp");
+      Course course = new Course("temp", teacher, DateTime.Now, DateTime.Now, 0);
+      Lesson lesson = new Lesson(course, time, time, room);
+      admin.AddLesson(lesson);
+    }
   }
 }

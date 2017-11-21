@@ -33,22 +33,20 @@ namespace Grupp5Projekt
       Lessons.Add(lesson);
     }
     
-    //AddUser
-    public void AddUser(string name, string password, string email)
+    //Add User to list methods
+    public void AddTeacher(string name,string email,string passsword)
     {
-      Console.WriteLine("Insert name: ");
-      Name = Console.ReadLine();
-      
-      Console.WriteLine("Insert password: ");
-      Password = Console.ReadLine();
-      
-      Console.WriteLine("Insert e-mail adress: ");
-      Email = Console.ReadLine();
-      /*
-      var addUserList = new List<Registry>();
-      var listSize = new Registry(50);
-      list.Add(AddUser(Name, Password, Mail));
-      */
+      Users.Add(new Teacher(name, email, passsword, User.Privilege.teacher));
+    }
+
+    public void AddStudent(string name,string email,string password)
+    {
+      Users.Add(new Student(name, email, password, User.Privilege.student));
+    }
+
+    public void AddAdmin(string name,string email,string password)
+    {
+      Users.Add(new Admin(name, email, password, User.Privilege.admin));
     }
     
     //public void RemoveUser()

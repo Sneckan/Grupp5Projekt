@@ -13,12 +13,12 @@ namespace Grupp5Projekt
         public List<Room> Rooms { get; set; }
 
         //Constructor
-        public Register(string rName, string rEmail, string rPassword, User.Privilege rPrivilege)
+        public Register(string rName, string rEmail, string rPassword)
         {
             Users = new List<User>();
         }
 
-        public Register(string rName, string rEmail, string rPassword, User.Privilege rPrivilege, List<User> users)
+        public Register(string rName, string rEmail, string rPassword, List<User> users)
         {
             Users = users;
         }
@@ -44,25 +44,25 @@ namespace Grupp5Projekt
         }
 
         //Add Admin
-        public void AddAdminUser(string rName, string rPassword, string rEmail, User.Privilege rPrivilege)
+        public void AddAdminUser(string rName, string rPassword, string rEmail)
         {
-            Users.Add(new Admin(rName, rPassword, rEmail, rPrivilege));
+            Users.Add(new Admin(rName, rPassword, rEmail, User.Privilege.admin));
         }
 
         //Remove Admin
 
         //Add Teacher
-        public void AddTeacherUser(string rName, string rPassword, string rEmail, User.Privilege rPrivilege)
+        public void AddTeacherUser(string rName, string rPassword, string rEmail)
         {
-            Users.Add(new Teacher(rName, rPassword, rEmail, rPrivilege));
+            Users.Add(new Teacher(rName, rPassword, rEmail, User.Privilege.teacher));
         }
 
         //Remove Teacher
 
         //Add Student
-        public void AddStudentUser(string rName, string rPassword, string rEmail, User.Privilege rPrivilege)
+        public void AddStudentUser(string rName, string rPassword, string rEmail)
         {
-            Users.Add(new Student(rName, rPassword, rEmail, rPrivilege));
+            Users.Add(new Student(rName, rPassword, rEmail, User.Privilege.student));
         }
 
         //Remove Student

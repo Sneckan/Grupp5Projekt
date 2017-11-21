@@ -11,35 +11,42 @@ namespace Grupp5Projekt
     //Propertys
     
     public List<User> Users { get; set; }
+    public List<Lesson> Lessons { get; set; }
 
     
     //Constructor
     public Admin(string name, string email, string password,User.Privilege privilege):base(name,email,password,privilege)
     {
       Users = new List<User>();
+      Lessons = new List<Lesson>();
     }
 
-    public Admin(string name,string email,string password,User.Privilege privilege,List<User> users):base(name,email,password,privilege)
+    //Constructor with existing lists from registry
+    public Admin(string name,string email,string password,User.Privilege privilege,List<User> users,List<Lesson> lessons):base(name,email,password,privilege)
     {
       Users = users;
+      Lessons = lessons;
+    }
+
+    public void AddLesson(Lesson lesson)
+    {
+      Lessons.Add(lesson);
     }
     
-    //AddUser
-    public void AddUser(string name, string password, string email)
+    //Add User to list methods
+    public void AddTeacher(string name,string email,string passsword)
     {
-      Console.WriteLine("Insert name: ");
-      Name = Console.ReadLine();
-      
-      Console.WriteLine("Insert password: ");
-      Password = Console.ReadLine();
-      
-      Console.WriteLine("Insert e-mail adress: ");
-      Email = Console.ReadLine();
-      /*
-      var addUserList = new List<Register>();
-      var listSize = new Register(50);
-      list.Add(AddUser(Name, Password, Mail));
-      */
+      Users.Add(new Teacher(name, email, passsword, User.Privilege.teacher));
+    }
+
+    public void AddStudent(string name,string email,string password)
+    {
+      Users.Add(new Student(name, email, password, User.Privilege.student));
+    }
+
+    public void AddAdmin(string name,string email,string password)
+    {
+      Users.Add(new Admin(name, email, password, User.Privilege.admin));
     }
     
     //public void RemoveUser()
@@ -47,10 +54,10 @@ namespace Grupp5Projekt
     //    Console.WriteLine("Remove user number: ");
     //    User = Console.ReadLine();
     
-    //    var list = new list<Register>();
-    //    var listSize = new Register(50);
+    //    var list = new list<Registry>();
+    //    var listSize = new Registry(50);
     //    list.Add(2);
-    //    list.Add(new Register(2));
+    //    list.Add(new Registry(2));
     
     //    var index = list.IndexOf(2);
     //    list.Remove(2);

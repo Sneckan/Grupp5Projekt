@@ -7,12 +7,22 @@ using System.Threading.Tasks;
 namespace Grupp5Projekt
 {
   public class Teacher : User
-  {  
+  {
+
+    public List<Course> Courses;
+    public List<Lesson> lessons;
+
     public Teacher(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
     {
-        
+      Courses = new List<Course>();
+      lessons = new List<Lesson>();
     }
-    public List<Course> Courses = new List<Course>();
+
+    //adds a lesson to lesson list
+    public void AddLesson(Lesson lesson)
+    {
+      lessons.Add(lesson);
+    }
 
     public void AddCourseToTeacher(Course course)
     {
@@ -24,7 +34,7 @@ namespace Grupp5Projekt
       Courses[Courses.IndexOf(course)].Students.Add(student);
     }
 
-    public string ShowTeachersCourses()
+    public string ShowCourses()
     {
       string temp = "";
       for (int i = 0; i < Courses.Count; i++)
@@ -32,6 +42,32 @@ namespace Grupp5Projekt
         temp += Courses[i].Name + "\n";
       }
 
+      return temp;
+    }
+
+    public string ShowFinishedCourses()
+    {
+      string temp = "";
+      foreach (var course in Courses)
+      {
+        if (course.EndDate < DateTime.Today)
+        {
+          temp += course.Name + "\n";          
+        }
+      }
+        return temp;
+    }
+
+    public string ShowOngoingCourses()
+    {
+      string temp = "";
+      foreach (var course in Courses)
+      {
+        if (course.EndDate > DateTime.Today)
+        {
+          temp += course.Name + "\n";
+        }
+      }
       return temp;
     }
 

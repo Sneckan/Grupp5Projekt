@@ -36,8 +36,8 @@ namespace Grupp5Projekt
       Console.WriteLine("Insert e-mail adress: ");
       Email = Console.ReadLine();
       /*
-      var addUserList = new List<Registry>();
-      var listSize = new Registry(50);
+      var addUserList = new List<Register>();
+      var listSize = new Register(50);
       list.Add(AddUser(Name, Password, Mail));
       */
     }
@@ -47,10 +47,10 @@ namespace Grupp5Projekt
     //    Console.WriteLine("Remove user number: ");
     //    User = Console.ReadLine();
     
-    //    var list = new list<Registry>();
-    //    var listSize = new Registry(50);
+    //    var list = new list<Register>();
+    //    var listSize = new Register(50);
     //    list.Add(2);
-    //    list.Add(new Registry(2));
+    //    list.Add(new Register(2));
     
     //    var index = list.IndexOf(2);
     //    list.Remove(2);

@@ -24,6 +24,8 @@ namespace Grupp5Projekt
       users.Add(teacher2);
       users.Add(student);
 
+
+
       teacher.AddCourseToTeacher(course);
       teacher.AddCourseToTeacher(course2);
       teacher2.AddCourseToTeacher(course);

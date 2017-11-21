@@ -16,6 +16,7 @@ namespace UnitTest
       Assert.AreEqual("Steve Steveson", student.Name);
     }
 
+    
     [Test]
     public void AddLessonToList()
     {

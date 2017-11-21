@@ -25,6 +25,7 @@ namespace UnitTest
       Assert.AreEqual(teacher.Courses.Contains(course2), true);
     }
 
+
     [Test]
     public void ShowFinishedCoursesForTeacher()
     {
@@ -60,7 +61,6 @@ namespace UnitTest
     }
 
 
-
     [Test]
     public void AddLessonToList()
     {
@@ -72,9 +72,6 @@ namespace UnitTest
       teacher.AddLesson(lesson);
 
       Assert.AreEqual(teacher.lessons.Count, 1);
-
-
-
     }
   }
 }

@@ -8,45 +8,45 @@ namespace Grupp5Projekt
 {
   public class Register
   {
+    //Propertys
     public List<User> Users { get; set; }
     public List<Course> Courses { get; set; }
     public List<Room> Rooms { get; set; }
 
-    //Constructor for Users
-    public Register(string rName, string rEmail, string rPassword)
+    //Constructor with no parameters
+    public Register()
     {
       Users = new List<User>();
-    }
-
-    public Register(string rName, string rEmail, string rPassword, List<User> users)
-    {
-      Users = users;
-    }
-
-    //Constructor for Courses
-    public Register(string rName, Teacher rTeacher, DateTime rStartDate, DateTime rEndDate, int rHours)
-    {
       Courses = new List<Course>();
-    }
-
-    public Register(string rName, Teacher rTeacher, DateTime rStartDate, DateTime rEndDate, int rHours, List<Course> course)
-    {
-      Courses = course;
-    }
-
-    //Constructor for Rooms
-    public Register(string rName)
-    {
       Rooms = new List<Room>();
     }
 
-    public Register(string rName, List<Room> rooms)
+    //Constructor with parameter Users
+    public Register(List<User> users)
     {
+      Users = users;
+      Courses = new List<Course>();
+      Rooms = new List<Room>();
+    }
+
+    //Constructor with parameter Courses
+    public Register(List<Course> course)
+    {
+      Users = new List<User>();
+      Courses = course;
+      Rooms = new List<Room>();
+    }
+
+    //Constructor with parameter Rooms
+    public Register(List<Room> rooms)
+    {
+      Users = new List<User>();
+      Courses = new List<Course>();
       Rooms = rooms;
     }
 
     //Methods
-    //Add Admin
+    //Add Admin to list
     public void AddAdminUser(string rName, string rPassword, string rEmail)
     {
       Users.Add(new Admin(rName, rPassword, rEmail, User.Privilege.admin));
@@ -57,9 +57,13 @@ namespace Grupp5Projekt
       Users.Add(admin);
     }
 
-    //Remove Admin
+    //Remove Admin from list
+    public void RemoveAdminUser(Admin admin)
+    {
+      Users.Remove(admin);
+    }
 
-    //Add Teacher
+    //Add Teacher to list
     public void AddTeacherUser(string rName, string rPassword, string rEmail)
     {
       Users.Add(new Teacher(rName, rPassword, rEmail, User.Privilege.teacher));
@@ -70,8 +74,11 @@ namespace Grupp5Projekt
       Users.Add(teacher);
     }
 
-
-    //Remove Teacher
+    //Remove Teacher from list
+    public void RemoveTeacherUser(Teacher teacher)
+    {
+      Users.Remove(teacher);
+    }
 
     //Add Student
     public void AddStudentUser(string rName, string rPassword, string rEmail)
@@ -84,7 +91,11 @@ namespace Grupp5Projekt
       Users.Add(student);
     }
 
-    //Remove Student
+    //Remove Admin from list
+    public void RemoveStudentUser(Student student)
+    {
+      Users.Remove(student);
+    }
 
     //Add Course
     public void AddCourse(string rName, Teacher rTeacher, DateTime rStartDate, DateTime rEndDate, int rHours)

@@ -138,6 +138,10 @@ namespace Grupp5Projekt
     }
 
     //Remove Course
+    public void RemoveCourse(Course course)
+    {
+      Courses.Remove(course);
+    }
 
     //Add Room
     public void AddRoom(string rName)
@@ -151,6 +155,10 @@ namespace Grupp5Projekt
     }
 
     //Remove Room
+    public void RemoveRoom(Room room)
+    {
+      Rooms.Remove(room);
+    }
 
 
     

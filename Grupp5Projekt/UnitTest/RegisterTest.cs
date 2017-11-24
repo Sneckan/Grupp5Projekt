@@ -61,25 +61,63 @@ namespace UnitTest
       Assert.AreEqual(register.Rooms.Count, 1);
     }
 
-    //[Test]
-    //public void RemoveRoomFromRegistry()
-    //{
-    //}
+    [Test]
+    public void RemoveRoomFromRegistry()
+    {
+      Register register = new Register();
+      Room room = new Room("Room1", 5);
 
-    //[Test]
-    //public void RemoveAdminFromRegistry()
-    //{
-    //}
+      register.AddRoom(room);
+      register.RemoveRoom(room);
 
-    //[Test]
-    //public void RemoveStudentFromRegistry()
-    //{
-    //}
+      Assert.AreEqual(register.Rooms.Count, 0);
+    }
 
-    //[Test]
-    //public void RemoveTeacherFromRegistry()
-    //{
-    //}
+    [Test]
+    public void RemoveAdminFromRegistry()
+    {
+      Register register = new Register();
+      Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
+
+      register.AddAdminUser(admin);
+      register.RemoveAdminUser(admin);
+
+      Assert.AreEqual(register.Users.Count, 0);
+    }
+
+    [Test]
+    public void AdminSuicideRegistry()
+    {
+      Register register = new Register();
+      Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
+
+      register.AddAdminUser(admin);
+      register.LogIn(admin);
+
+      register.RemoveAdminUser(admin);
+
+      Assert.AreEqual(register.Users.Count, 1);
+    }
+
+    [Test]
+    public void RemoveStudentFromRegistry()
+    {
+      Register register = new Register();
+      register.AddStudentUser("Name", "Password", "Email");
+      register.RemoveStudentUser(register.Users[0]);
+
+      Assert.AreEqual(register.Users.Count, 0);
+    }
+
+    [Test]
+    public void RemoveTeacherFromRegistry()
+    {
+      Register register = new Register();
+      register.AddTeacherUser("Name", "Password", "Email");
+      register.RemoveTeacherUser(register.Users[0]);
+
+      Assert.AreEqual(register.Users.Count, 0);
+    }
 
     [Test]
     public void LogInTest()
@@ -97,7 +135,14 @@ namespace UnitTest
     [Test]
     public void SearchUserWithEmail()
     {
+      Register register = new Register();
+      Admin admin = new Admin("temp", "temp", "password", User.Privilege.admin);
+      Teacher teacher = new Teacher("temp", "temp2", "password", User.Privilege.teacher);
 
+      register.AddAdminUser(admin);
+      register.AddTeacherUser(teacher);
+
+      Assert.AreEqual(register.SearchUserWithEmail("temp"), 0);
     }
   }
 }

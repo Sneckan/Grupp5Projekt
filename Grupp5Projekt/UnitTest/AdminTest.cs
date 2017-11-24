@@ -36,8 +36,8 @@ namespace UnitTest
       Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
       admin.AddTeacher("temp", "temp", "temp");
 
-      Assert.AreEqual(admin.Users.Count, 1);
-      Assert.AreEqual(admin.Users[0].MyPrivilege, User.Privilege.teacher);
+      Assert.AreEqual(admin.Users.Count, 2);
+      Assert.AreEqual(admin.Users[1].MyPrivilege, User.Privilege.teacher);
     }
 
     [Test]
@@ -46,8 +46,8 @@ namespace UnitTest
       Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
       admin.AddStudent("temp", "temp", "temp");
 
-      Assert.AreEqual(admin.Users.Count, 1);
-      Assert.AreEqual(admin.Users[0].MyPrivilege, User.Privilege.student);
+      Assert.AreEqual(admin.Users.Count, 2);
+      Assert.AreEqual(admin.Users[1].MyPrivilege, User.Privilege.student);
     }
 
     [Test]
@@ -56,7 +56,7 @@ namespace UnitTest
       Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
       admin.AddAdmin("temp", "temp", "temp");
 
-      Assert.AreEqual(admin.Users.Count, 1);
+      Assert.AreEqual(admin.Users.Count, 2);
       Assert.AreEqual(admin.Users[0].MyPrivilege, User.Privilege.admin);
     }
 
@@ -68,9 +68,9 @@ namespace UnitTest
       admin.AddTeacher("temp", "temp", "temp");
 
       //pondering Rasmus
-      admin.RemoveTeacher((Teacher)admin.Users[0]);
+      admin.RemoveTeacher((Teacher)admin.Users[1]);
 
-      Assert.AreEqual(admin.Users.Count, 0);
+      Assert.AreEqual(admin.Users.Count, 1);
     }
 
     [Test]
@@ -80,9 +80,9 @@ namespace UnitTest
       admin.AddStudent("temp", "temp", "temp");
 
       //Pondering Rasmus
-      admin.RemoveStudent((Student)admin.Users[0]);
+      admin.RemoveStudent((Student)admin.Users[1]);
 
-      Assert.AreEqual(admin.Users.Count, 0);
+      Assert.AreEqual(admin.Users.Count, 1);
     }
 
     [Test]
@@ -91,8 +91,8 @@ namespace UnitTest
       Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
       admin.AddAdmin("temp", "temp", "temp");
 
-      admin.RemoveAdmin((Admin)admin.Users[0]);
-      Assert.AreEqual(admin.Users.Count, 0);
+      admin.RemoveAdmin((Admin)admin.Users[1]);
+      Assert.AreEqual(admin.Users.Count, 1);
     }
 
     [Test]
@@ -104,7 +104,7 @@ namespace UnitTest
 
       admin.RemoveAdmin(admin);
 
-      Assert.AreEqual(admin.Users.Count, 1);
+      Assert.AreEqual(admin.Users.Count, 2);
     }
 
   }

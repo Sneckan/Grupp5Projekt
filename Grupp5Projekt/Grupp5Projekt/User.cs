@@ -22,5 +22,6 @@ namespace Grupp5Projekt
       Password = password;
       MyPrivilege = myPrivilege;
     }
+
   }
 }

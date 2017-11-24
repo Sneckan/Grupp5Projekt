@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Grupp5Projekt
     public List<User> Users { get; set; }
     public List<Course> Courses { get; set; }
     public List<Room> Rooms { get; set; }
+    public List<Lesson> Lessons { get; set; }
+    public User LoggedUser;
 
     //Constructor with no parameters
     public Register()
@@ -19,6 +22,7 @@ namespace Grupp5Projekt
       Users = new List<User>();
       Courses = new List<Course>();
       Rooms = new List<Room>();
+      Lessons = new List<Lesson>();
     }
 
     //Constructor with parameter Users
@@ -27,6 +31,7 @@ namespace Grupp5Projekt
       Users = users;
       Courses = new List<Course>();
       Rooms = new List<Room>();
+      Lessons = new List<Lesson>();
     }
 
     //Constructor with parameter Courses
@@ -35,6 +40,8 @@ namespace Grupp5Projekt
       Users = new List<User>();
       Courses = course;
       Rooms = new List<Room>();
+      Lessons = new List<Lesson>();
+
     }
 
     //Constructor with parameter Rooms
@@ -43,14 +50,24 @@ namespace Grupp5Projekt
       Users = new List<User>();
       Courses = new List<Course>();
       Rooms = rooms;
+      Lessons = new List<Lesson>();
+    }
+
+    public Register(List<Lesson> lessons)
+    {
+      Users = new List<User>();
+      Courses = new List<Course>();
+      Rooms = new List<Room>();
+      Lessons = lessons;
     }
 
     //Constructor with all parameter
-    public Register(List<User> Users,List<Course> Courses,List<Room> Rooms)
+    public Register(List<User> Users,List<Course> Courses,List<Room> Rooms,List<Lesson> Lessons)
     {
       this.Users = Users;
       this.Courses = Courses;
       this.Rooms = Rooms;
+      this.Lessons = Lessons;
     }
 
     //Methods
@@ -68,7 +85,11 @@ namespace Grupp5Projekt
     //Remove Admin from list
     public void RemoveAdminUser(Admin admin)
     {
-      Users.Remove(admin);
+      if(admin!=LoggedUser)
+      {
+        Users.Remove(admin);
+      }
+      
     }
 
     //Add Teacher to list
@@ -99,7 +120,7 @@ namespace Grupp5Projekt
       Users.Add(student);
     }
 
-    //Remove Admin from list
+    //Remove student from list
     public void RemoveStudentUser(Student student)
     {
       Users.Remove(student);
@@ -130,5 +151,31 @@ namespace Grupp5Projekt
     }
 
     //Remove Room
+
+
+    
+    public void LogIn(User user)
+    {
+      LoggedUser = user;
+    }
+
+    //Temporär oeffektiv sökfunktion via Email
+    public User SearchUserWithEmail(string email)
+    {
+      int i = 0;
+      int pos = -1;
+      bool found = false;
+      while(i<Users.Count&&!found)
+      {
+        if (Users[i].Email==email)
+        {
+          pos = i;
+          found = true;
+        }
+        i++;
+      }
+      return Users[pos];
+    }
+
   }
 }

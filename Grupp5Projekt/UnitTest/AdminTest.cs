@@ -36,5 +36,19 @@ namespace UnitTest
 
 
         }
+        [Test]
+        public void AddRemoveFromListTest()
+        {
+            List<User> userList = new List<User>();
+            List<Course> courseList = new List<Course>();
+            List<Room> roomList = new List<Room>();
+            Teacher teacher = new Teacher("temp", "temp", "temp", User.Privilege.teacher);
+
+            userList.Add(teacher);
+            Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin, userList, courseList, roomList);
+            userList.Add(admin);
+            userList.Remove(teacher);
+            Assert.AreEqual(admin.users.Count, 1);
+        }
     }
 }

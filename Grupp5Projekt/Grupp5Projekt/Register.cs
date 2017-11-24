@@ -45,6 +45,14 @@ namespace Grupp5Projekt
       Rooms = rooms;
     }
 
+    //Constructor with all parameter
+    public Register(List<User> Users,List<Course> Courses,List<Room> Rooms)
+    {
+      this.Users = Users;
+      this.Courses = Courses;
+      this.Rooms = Rooms;
+    }
+
     //Methods
     //Add Admin to list
     public void AddAdminUser(string rName, string rPassword, string rEmail)

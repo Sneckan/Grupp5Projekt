@@ -12,6 +12,8 @@ namespace Grupp5Projekt
 
     public List<User> Users { get; set; }
     public List<Lesson> Lessons { get; set; }
+    public List<Room> Rooms { get; set; }
+    public List<Course> Courses { get; set; }
 
 
     //Constructor
@@ -19,6 +21,7 @@ namespace Grupp5Projekt
     {
       Users = new List<User>();
       Lessons = new List<Lesson>();
+      Users.Add(this);
     }
 
     //Constructor with existing lists from registry
@@ -26,6 +29,10 @@ namespace Grupp5Projekt
     {
       Users = users;
       Lessons = lessons;
+      if(!Users.Contains(this))
+      {
+        Users.Add(this);
+      }
     }
 
     public void AddLesson(Lesson lesson)

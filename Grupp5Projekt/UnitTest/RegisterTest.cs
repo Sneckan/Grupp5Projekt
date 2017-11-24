@@ -50,10 +50,16 @@ namespace UnitTest
       Assert.AreEqual(register.Courses.Count, 1);
     }
 
-    //[Test]
-    //public void AddRoomToRegistry()
-    //{
-    //}
+    [Test]
+    public void AddRoomToRegistry()
+    {
+      Register register = new Register();
+      Room room = new Room("Room1", 5);
+
+      register.AddRoom(room);
+
+      Assert.AreEqual(register.Rooms.Count, 1);
+    }
 
     //[Test]
     //public void RemoveRoomFromRegistry()

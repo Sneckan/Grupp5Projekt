@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace Grupp5Projekt
 {
-    public class Student : User
+  public class Student : User
+  {
+    public Student():base()
     {
-        public Student(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
-        {
-        }
+
     }
+
+    public Student(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
+    {
+    }
+  }
 }

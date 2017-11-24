@@ -12,6 +12,13 @@ namespace Grupp5Projekt
     public List<Course> courses { get; set; }
     public List<Room> rooms { get; set; }
 
+    public Admin():base()
+    {
+      users = new List<User>(50);
+      courses = new List<Course>(5);
+      rooms = new List<Room>(5);
+    }
+
     public Admin(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
     {
         users = new List<User>(50);

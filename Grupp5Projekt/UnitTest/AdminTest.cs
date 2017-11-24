@@ -107,5 +107,53 @@ namespace UnitTest
       Assert.AreEqual(admin.Users.Count, 2);
     }
 
+    [Test]
+    public void AddCourseTest()
+    {
+      Admin admin = new Admin();
+      Teacher teacher = new Teacher("name", "email", "password", User.Privilege.teacher);
+      Course course = new Course("name", teacher, DateTime.Now, DateTime.Now, 6);
+
+      admin.AddCourse(course);
+
+      Assert.AreEqual(admin.Courses.Count, 1);
+    }
+
+    [Test]
+    public void RemoveCourseTest()
+    {
+      Admin admin = new Admin();
+      Teacher teacher = new Teacher("name", "email", "password", User.Privilege.teacher);
+      Course course = new Course("name", teacher, DateTime.Now, DateTime.Now, 6);
+
+      admin.RemoveCourse(course);
+
+      Assert.AreEqual(admin.Courses.Count, 0);
+    }
+
+    [Test]
+    public void AddRoomTest()
+    {
+      Admin admin = new Admin();
+      Room room = new Room("room", 35);
+
+      admin.AddRoom(room);
+
+      Assert.AreEqual(admin.Rooms.Count, 1);
+    }
+
+    [Test]
+    public void RemoveRoomTest()
+    {
+      Admin admin = new Admin();
+      Room room = new Room("room", 35);
+
+      admin.RemoveRoom(room);
+
+      Assert.AreEqual(admin.Rooms.Count, 0);
+    }
+
+
+
   }
 }

@@ -160,7 +160,7 @@ namespace Grupp5Projekt
     }
 
     //Temporär oeffektiv sökfunktion via Email
-    public User SearchUserWithEmail(string email)
+    public int SearchUserWithEmail(string email)
     {
       int i = 0;
       int pos = -1;
@@ -174,7 +174,7 @@ namespace Grupp5Projekt
         }
         i++;
       }
-      return Users[pos];
+      return pos;
     }
 
   }

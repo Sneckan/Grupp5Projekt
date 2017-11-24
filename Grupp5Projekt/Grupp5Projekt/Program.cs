@@ -77,6 +77,13 @@ namespace Grupp5Projekt
         }
       }
 
+
+
+      Register register = new Register();
+      register.AddAdminUser("temp", "temp", "temp");
+
+      register.LogIn(register.Users[register.SearchUserWithEmail("temp")]);
+
       Console.ReadLine();
     }
   }

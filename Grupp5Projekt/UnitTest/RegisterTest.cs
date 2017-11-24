@@ -74,5 +74,24 @@ namespace UnitTest
     //public void RemoveTeacherFromRegistry()
     //{
     //}
+
+    [Test]
+    public void LogInTest()
+    {
+      Register register = new Register();
+      Admin admin = new Admin("temp", "temp", "password", User.Privilege.admin);
+
+      register.AddAdminUser(admin);
+      register.LogIn(admin);
+
+      Assert.AreEqual(admin, register.LoggedUser);
+      
+    }
+
+    [Test]
+    public void SearchUserWithEmail()
+    {
+
+    }
   }
 }

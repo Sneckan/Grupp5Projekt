@@ -18,7 +18,12 @@ namespace Grupp5Projekt
 
     public Teacher():base()
     {
+      privilege = User.Privilege.teacher;
+    }
 
+    public override string ToString()
+    {
+      return "Name: " + Name + "\tEmail: " + Email;
     }
   }
 }

@@ -33,5 +33,7 @@ namespace Grupp5Projekt
       Password = "";
       privilege = Privilege.admin;
     }
+
+    public abstract override string ToString();
   }
 }

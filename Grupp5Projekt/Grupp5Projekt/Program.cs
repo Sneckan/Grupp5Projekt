@@ -24,43 +24,56 @@ namespace Grupp5Projekt
 
     static void AdminMenu(Register register)
     {
-      Console.WriteLine("1. Add User");
-      Console.WriteLine("2. Remove User");
-      Console.WriteLine("3. Add Course");
-      Console.WriteLine("4. Remove Course");
-      Console.WriteLine("5. Add Room");
-      Console.WriteLine("6. Remove Room");
-      Console.WriteLine("7. Add Lesson");
-      Console.WriteLine("8. Remove Lesson");
+      bool MenuLoop = true;
 
-      string choice = Console.ReadLine();
-      switch (choice)
+      while (MenuLoop)
       {
-        case "1":
-          AddUser(register);
-          break;
 
-        case "2":
-          break;
 
-        case "3":
-          break;
+        Console.WriteLine("1. Add User");
+        Console.WriteLine("2. Remove User");
+        Console.WriteLine("3. Add Course");
+        Console.WriteLine("4. Remove Course");
+        Console.WriteLine("5. Add Room");
+        Console.WriteLine("6. Remove Room");
+        Console.WriteLine("7. Add Lesson");
+        Console.WriteLine("8. Remove Lesson");
+        Console.WriteLine("Q. Quit");
 
-        case "4":
-          break;
+        string choice = Console.ReadLine();
+        switch (choice)
+        {
+          case "1":
+            AddUser(register);
+            break;
 
-        case "5":
-          break;
+          case "2":
+            RemoveUser(register);
+            break;
 
-        case "6":
-          break;
+          case "3":
+            break;
 
-        case "7":
-          break;
+          case "4":
+            break;
 
-        case "8":
-          break;
+          case "5":
+            break;
 
+          case "6":
+            break;
+
+          case "7":
+            break;
+
+          case "8":
+            break;
+
+          case "Q":
+            MenuLoop = false;
+            break;
+
+        }
       }
 
     }
@@ -113,6 +126,32 @@ namespace Grupp5Projekt
           break;
       }
 
+    }
+
+    static void RemoveUser(Register register)
+    {
+      int pos = -1;
+      while(true)
+      {
+        Console.WriteLine("User Email: ");
+        pos = register.GetUser(Console.ReadLine());
+        if(pos<0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+      if(!register.RemoveUser(register.Users[pos]))
+      {
+        Console.WriteLine("Cant remove current logged user.");
+      }
+      else
+      {
+        Console.WriteLine("User removed");
+      }
     }
 
     

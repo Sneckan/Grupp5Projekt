@@ -25,5 +25,11 @@ namespace UnitTest
       Assert.AreEqual(course.lessons.Count, 2);
     }
 
+    [Test]
+    public void GradeStudentTest()
+    {
+
+    }
+
   }
 }

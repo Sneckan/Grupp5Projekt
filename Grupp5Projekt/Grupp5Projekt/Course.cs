@@ -17,6 +17,8 @@ namespace Grupp5Projekt
     public int Hours { get; set; }
     public List<Lesson> lessons { get; set; }
 
+    public List<Grade> Grades { get; set; }
+
     public Course()
     {
       Name = "";
@@ -41,6 +43,34 @@ namespace Grupp5Projekt
     public void addLessonToCourse(Lesson lesson)
     {
       lessons.Add(lesson);
+    }
+
+    //Grade a student
+
+    public void GradeStudent(string StudentEmail,string StudentGrade)
+    {
+      int pos = -1;
+      int i = 0;
+      while(pos<0&&i<Grades.Count)
+      {
+        if(Grades[i].StudentEmail==StudentEmail)
+        {
+          pos = i;
+        }
+      }
+
+      Grades[pos].StudentGrade = StudentGrade;
+
+    }
+
+    public string ShowGrade()
+    {
+      string temp = "";
+      foreach(Grade grade in Grades)
+      {
+        temp += grade.ToString();
+      }
+      return temp;
     }
   }
 }

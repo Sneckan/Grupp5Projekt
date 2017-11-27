@@ -190,7 +190,7 @@ namespace Grupp5Projekt
     //Save users
     public void SaveUsers()
     {
-      using (var writer = new StreamWriter("Users.xml"))
+      using (var writer = new StreamWriter("C:\\Users\\rasmu\\OneDrive\\Documents\\GitHub\\Grupp5Projekt\\Users.xml"))
       {
         var serializer = new XmlSerializer(typeof(List<User>));
         serializer.Serialize(writer, Users);
@@ -200,7 +200,7 @@ namespace Grupp5Projekt
     //Load users
     public List<User> LoadUser()
     {
-      using (var stream = System.IO.File.OpenRead("Users.xml"))
+      using (var stream = System.IO.File.OpenRead("C:\\Users\\rasmu\\OneDrive\\Documents\\GitHub\\Grupp5Projekt\\Users.xml"))
       {
         var serializer = new XmlSerializer(typeof(List<User>));
         return (List<User>)serializer.Deserialize(stream);

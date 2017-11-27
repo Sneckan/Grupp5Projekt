@@ -10,6 +10,12 @@ namespace Grupp5Projekt
   {
     public List<Lesson> lessons;
 
+    public Student()
+      : base()
+    {
+      MyPrivilege = Privilege.student;
+    }
+
     public Student(string name, string email, string password, Privilege myPrivilege) : base(name, email, password, myPrivilege)
     {
       lessons = new List<Lesson>();

@@ -11,7 +11,13 @@ namespace Grupp5Projekt
     public string Name { get; set; }
     public int MaxCapacity { get; set; }
     public List<Lesson> lessons { get; set; }
-    
+
+    public Room()
+    {
+      this.Name = "";
+      MaxCapacity = 35;
+      lessons = new List<Lesson>();
+    }
 
     public Room(string Name)
     {

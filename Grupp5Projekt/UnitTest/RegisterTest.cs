@@ -104,7 +104,7 @@ namespace UnitTest
     {
       Register register = new Register();
       register.AddStudentUser("Name", "Password", "Email");
-      register.RemoveStudentUser((Student)register.Users[0]);
+      register.RemoveStudentUser((Student) register.Users[0]);
 
       Assert.AreEqual(register.Users.Count, 0);
     }
@@ -114,7 +114,7 @@ namespace UnitTest
     {
       Register register = new Register();
       register.AddTeacherUser("Name", "Password", "Email");
-      register.RemoveTeacherUser((Teacher)register.Users[0]);
+      register.RemoveTeacherUser((Teacher) register.Users[0]);
 
       Assert.AreEqual(register.Users.Count, 0);
     }
@@ -129,7 +129,7 @@ namespace UnitTest
       register.LogIn(admin);
 
       Assert.AreEqual(admin, register.LoggedUser);
-      
+
     }
 
     [Test]
@@ -143,6 +143,22 @@ namespace UnitTest
       register.AddTeacherUser(teacher);
 
       Assert.AreEqual(register.SearchUserWithEmail("temp"), 0);
+    }
+
+    [Test]
+    public void SaveUserToXmlFileTest()
+    {
+      Register register = new Register();
+      Student student = new Student();
+
+      register.AddStudentUser(student);
+      register.SaveUsers();
+      register = new Register();
+      register.Users = register.LoadUser();
+
+      Assert.AreEqual(register.Users.Count, 1);
+      Assert.AreEqual(register.Users[0].MyPrivilege, User.Privilege.student);
+
     }
   }
 }

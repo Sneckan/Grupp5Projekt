@@ -12,6 +12,12 @@ namespace Grupp5Projekt
     public List<Course> Courses;
     public List<Lesson> lessons;
 
+    public Teacher()
+    : base (){
+      Courses = new List<Course>();
+      lessons = new List<Lesson>();
+    }
+
     public Teacher(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
     {
       Courses = new List<Course>();

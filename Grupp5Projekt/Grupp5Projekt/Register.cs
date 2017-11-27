@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Grupp5Projekt
 {
@@ -183,6 +185,26 @@ namespace Grupp5Projekt
         i++;
       }
       return pos;
+    }
+
+    //Save users
+    public void SaveUsers()
+    {
+      using (var writer = new StreamWriter("Users.xml"))
+      {
+        var serializer = new XmlSerializer(typeof(List<User>));
+        serializer.Serialize(writer, Users);
+      }
+    }
+
+    //Load users
+    public List<User> LoadUser()
+    {
+      using (var stream = System.IO.File.OpenRead("Users.xml"))
+      {
+        var serializer = new XmlSerializer(typeof(List<User>));
+        return (List<User>)serializer.Deserialize(stream);
+      }
     }
 
   }

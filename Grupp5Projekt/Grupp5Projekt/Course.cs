@@ -17,6 +17,16 @@ namespace Grupp5Projekt
     public int Hours { get; set; }
     public List<Lesson> lessons { get; set; }
 
+    public Course()
+    {
+      Name = "";
+      Teacher = new Teacher();
+      StartDate = DateTime.Now;
+      EndDate = DateTime.Now;
+      Hours = 2;
+      lessons = new List<Lesson>();
+    }
+
     //constructor gives values to everything
     public Course(string name, Teacher teacher, DateTime startDate, DateTime endDate, int hours)
     {

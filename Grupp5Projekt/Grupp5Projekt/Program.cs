@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -260,9 +261,9 @@ namespace Grupp5Projekt
       Console.WriteLine("Course length (hours): ");
       int courseLength = int.Parse(Console.ReadLine());
       Console.WriteLine("Course start date (day/month/year): ");
-      DateTime startDate = Convert.ToDateTime(Console.ReadLine());
+      DateTime startDate = DateTime.ParseExact(Console.ReadLine(), "d/M/yyyy", CultureInfo.InvariantCulture);
       Console.WriteLine("Coure end date (day/month/year): ");
-      DateTime endDate = Convert.ToDateTime(Console.ReadLine());
+      DateTime endDate = DateTime.ParseExact(Console.ReadLine(), "d/M/yyyy", CultureInfo.InvariantCulture);
 
       register.AddCourse(new Course(name, courseLength, startDate, endDate));
 

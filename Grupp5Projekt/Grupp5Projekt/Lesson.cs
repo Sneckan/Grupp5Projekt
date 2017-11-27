@@ -20,7 +20,5 @@ namespace Grupp5Projekt
       this.End = End;
       this.Room = Room;
     }
-    
-    
   }
 }

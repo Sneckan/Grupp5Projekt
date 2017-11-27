@@ -13,6 +13,11 @@ namespace Grupp5Projekt
     static void Main(string[] args)
     {
       Register register = new Register();
+      if(register.Users.Count==0)
+      {
+        Console.WriteLine("No users avaible, creating temporary admin user.");
+        register.AddUser(new Admin("admin", "admin", "admin"));
+      }
 
        while (!LogIn(register))
        {
@@ -32,12 +37,12 @@ namespace Grupp5Projekt
 
         Console.WriteLine("1. Add User");
         Console.WriteLine("2. Remove User");
-        Console.WriteLine("3. Add Course");
-        Console.WriteLine("4. Remove Course");
-        Console.WriteLine("5. Add Room");
-        Console.WriteLine("6. Remove Room");
-        Console.WriteLine("7. Add Lesson");
-        Console.WriteLine("8. Remove Lesson");
+        Console.WriteLine("3. Show Users");
+        Console.WriteLine("4. Add Course");
+        Console.WriteLine("5. Remove Course");
+        Console.WriteLine("6. ShowCourses");
+        Console.WriteLine("7. Add teacher to Course");
+        Console.WriteLine("8. Add Student to Course");
         Console.WriteLine("Q. Quit");
 
         string choice = Console.ReadLine();
@@ -52,30 +57,112 @@ namespace Grupp5Projekt
             break;
 
           case "3":
+            Console.WriteLine(register.ShowUsers());
             break;
 
           case "4":
+            AddCourse(register);
             break;
 
           case "5":
+            RemoveCourse(register);
             break;
 
           case "6":
+            Console.WriteLine(register.ShowCourses());
             break;
 
           case "7":
+            AddTeacherToCourse(register);
             break;
 
           case "8":
+            AddStudentToCourse(register);
             break;
 
           case "Q":
             MenuLoop = false;
             break;
 
+          case "q":
+            MenuLoop = false;
+            break;
+
         }
       }
 
+    }
+
+    private static void AddStudentToCourse(Register register)
+    {
+      int studentPos = -1;
+      while (true)
+      {
+        Console.WriteLine("Student Email: ");
+        studentPos = register.GetUser(Console.ReadLine());
+        if (studentPos < 0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      int coursePos = -1;
+      while (true)
+      {
+        Console.WriteLine("Course Name: ");
+        coursePos = register.GetCourse(Console.ReadLine());
+        if (coursePos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      register.AddStudentToCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
+      Console.WriteLine("Student added to course");
+    }
+
+    static void AddTeacherToCourse(Register register)
+    {
+      int teacherPos = -1;
+      while (true)
+      {
+        Console.WriteLine("Teacher Email: ");
+        teacherPos = register.GetUser(Console.ReadLine());
+        if (teacherPos < 0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      int coursePos = -1;
+      while (true)
+      {
+        Console.WriteLine("Course Name: ");
+        coursePos = register.GetCourse(Console.ReadLine());
+        if (coursePos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      register.AddTeacherToCourse(register.Courses[coursePos], (Teacher)register.Users[teacherPos]);
+      Console.WriteLine("Teacher added to course");
     }
 
     static void AddUser(Register register)
@@ -105,24 +192,23 @@ namespace Grupp5Projekt
       Console.WriteLine("User Privileges: ");
       string privilege = Console.ReadLine();
 
-      User user;
       switch(privilege)
       {
         case "admin":
-          user = new Admin(name, email, password, User.Privilege.admin);
-          register.AddUser(user);
+          Admin admin = new Admin(name, email, password);
+          register.AddUser(admin);
 
           break;
 
         case "student":
-          user = new Student(name, email, password, User.Privilege.student);
-          register.AddUser(user);
+          Student student = new Student(name, email, password);
+          register.AddUser(student);
 
           break;
 
         case "teacher":
-          user = new Teacher(name, email, password, User.Privilege.teacher);
-          register.AddUser(user);
+          Teacher teacher = new Teacher(name, email, password);
+          register.AddUser(teacher);
           break;
       }
 
@@ -154,13 +240,67 @@ namespace Grupp5Projekt
       }
     }
 
+    static void AddCourse(Register register)
+    {
+      string name = "";
+      while(true)
+      {
+        Console.WriteLine("Course name: ");
+        name = Console.ReadLine();
+        if(register.GetCourse(name)==-1)
+        {
+          break;
+        }
+        else
+        {
+          Console.WriteLine("Course with that name already exist, try again.");
+        }
+      }
+      
+      Console.WriteLine("Course length (hours): ");
+      int courseLength = int.Parse(Console.ReadLine());
+      Console.WriteLine("Course start date (day/month/year): ");
+      DateTime startDate = Convert.ToDateTime(Console.ReadLine());
+      Console.WriteLine("Coure end date (day/month/year): ");
+      DateTime endDate = Convert.ToDateTime(Console.ReadLine());
+
+      register.AddCourse(new Course(name, courseLength, startDate, endDate));
+
+    }
+
+    static void RemoveCourse(Register register)
+    {
+      int pos = -1;
+      while (true)
+      {
+        Console.WriteLine("Course Name: ");
+        pos = register.GetCourse(Console.ReadLine());
+        if (pos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      register.RemoveCourse(register.Courses[pos]);
+      Console.WriteLine("Course removed");
+    }
+
+
+    
+
     
     static bool LogIn(Register register)
     {
+      Console.WriteLine("Email: ");
       string email = Console.ReadLine();
       int userPos = register.GetUser(email);
       if(userPos!=-1)
       {
+        Console.WriteLine("Password: ");
         string password = Console.ReadLine();
         if(register.Users[userPos].Password==password)
         {

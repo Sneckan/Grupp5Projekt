@@ -15,9 +15,9 @@ namespace Grupp5Projekt
       privilege = User.Privilege.admin;
     }
 
-    public Admin(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
+    public Admin(string name, string email, string password) : base(name, email, password)
     {
-
+      privilege = Privilege.admin;
     }
 
     public override string ToString()

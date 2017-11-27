@@ -10,11 +10,12 @@ namespace Grupp5Projekt
   {
     public Student():base()
     {
-      privilege = User.Privilege.student;
+      privilege = Privilege.student;
     }
 
-    public Student(string name, string email, string password, Privilege privilege) : base(name, email, password, privilege)
+    public Student(string name, string email, string password) : base(name, email, password)
     {
+      privilege = Privilege.student;
     }
 
     public override string ToString()

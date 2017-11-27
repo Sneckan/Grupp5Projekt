@@ -26,6 +26,13 @@ namespace Grupp5Projekt
     this.privilege = privilege;
     }
 
+    public User(string name,string email,string password)
+    {
+      this.Name = name;
+      this.Email = email;
+      this.Password = password;
+    }
+
     public User()
     {
       Name = "";

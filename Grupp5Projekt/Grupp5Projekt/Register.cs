@@ -46,6 +46,15 @@ namespace Grupp5Projekt
       {
         Rooms = new List<Room>(5);
       }
+
+      try
+      {
+        Lessons = LoadLessons();
+      }
+      catch
+      {
+        Lessons = new List<Lesson>();
+      }
     }
 
 
@@ -87,6 +96,18 @@ namespace Grupp5Projekt
         Courses.Remove(course);
         SaveCourses(Courses);
 
+    }
+
+    public void AddTeacherToCourse(Course course,Teacher teacher)
+    {
+      course.AddTeacher(teacher);
+      SaveCourses(Courses);
+    }
+
+    public void AddStudentToCourse(Course course,Student student)
+    {
+      course.AddStudent(student);
+      SaveCourses(Courses);
     }
 
 
@@ -219,7 +240,10 @@ namespace Grupp5Projekt
         List<Course> Courses = (List<Course>)serializer.Deserialize(stream);
         foreach(Course Course in Courses)
         {
-          Course.AddTeacher((Teacher)Users[GetUser(Course.TeacherEmail)]);
+          if (GetUser(Course.TeacherEmail) != -1)
+          {
+            Course.AddTeacher((Teacher)Users[GetUser(Course.TeacherEmail)]);
+          }
         }
         return Courses;
       }

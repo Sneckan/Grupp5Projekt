@@ -10,15 +10,14 @@ namespace Grupp5Projekt
   {
 
       //  constructor for teacher
-    public Teacher(string name, string email, string password, Privilege privilege) : base(name, email, password,
-      privilege)
+    public Teacher(string name, string email, string password) : base(name, email, password)
     {
-
+      privilege = Privilege.teacher;
     }
 
     public Teacher():base()
     {
-      privilege = User.Privilege.teacher;
+      privilege = Privilege.teacher;
     }
 
     public override string ToString()

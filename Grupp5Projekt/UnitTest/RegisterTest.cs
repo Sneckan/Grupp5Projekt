@@ -159,6 +159,35 @@ namespace UnitTest
 
       Assert.AreEqual(register.Users.Count, 1);
       Assert.AreEqual(register.Users[0].MyPrivilege, User.Privilege.student);
+    }
+
+    [Test]
+    public void CoursesLoadsAListOfAttendingStudents()
+    {
+      Register register = new Register();
+      Course course = new Course();
+
+      register.AddCourse(course);
+      register.SaveCourse();
+      register = new Register();
+      register.Courses = register.LoadCourses();
+
+      Assert.AreEqual(register.Courses.Count, 1);
+    }
+
+    [Test]
+    public void CourseSavesStudents()
+    {
+      Register register = new Register();
+      Course course = new Course();
+      course.AddStudent(new Student("temp","temp","temp"));
+
+      register.AddCourse(course);
+      register.SaveCourse();
+      register = new Register();
+      register.Courses = register.LoadCourses();
+
+      Assert.AreEqual(register.Courses[0].Students.Count, 1);
 
     }
   }

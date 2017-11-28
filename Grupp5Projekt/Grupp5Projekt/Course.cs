@@ -11,6 +11,7 @@ namespace Grupp5Projekt
     public string Name { get; set; }
     // public Timetable TimeTable { get; set; }
     public Teacher Teacher { get; set; }
+    
     public List<Student> Students { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }

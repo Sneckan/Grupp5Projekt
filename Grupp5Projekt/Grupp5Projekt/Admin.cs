@@ -34,6 +34,17 @@ namespace Grupp5Projekt
       Users.Add(this);
     }
 
+    public Admin(string name, string email, string password) : base(name, email, password)
+    {
+
+      MyPrivilege = Privilege.admin;
+      Users = new List<User>();
+      Lessons = new List<Lesson>();
+      Rooms = new List<Room>();
+      Courses = new List<Course>();
+      Users.Add(this);
+    }
+
     //Constructor with existing lists from registry
     public Admin(string name, string email, string password, User.Privilege privilege, List<User> users, List<Lesson> lessons) : base(name, email, password, privilege)
     {

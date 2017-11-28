@@ -27,6 +27,8 @@ namespace Grupp5Projekt
       EndDate = DateTime.Now;
       Hours = 2;
       lessons = new List<Lesson>();
+      Grades = new List<Grade>();
+      Students = new List<Student>();
     }
 
     //constructor gives values to everything
@@ -38,9 +40,11 @@ namespace Grupp5Projekt
       EndDate = endDate;
       Hours = hours;
       lessons = new List<Lesson>();
+      Grades = new List<Grade>();
+      Students = new List<Student>();
     }
     //puts lesson in lesson list
-    public void addLessonToCourse(Lesson lesson)
+    public void AddLessonToCourse(Lesson lesson)
     {
       lessons.Add(lesson);
     }
@@ -71,6 +75,18 @@ namespace Grupp5Projekt
         temp += grade.ToString();
       }
       return temp;
+    }
+
+    public void AddStudent(Student student)
+    {
+      Students.Add(student);
+      Grades.Add(new Grade(student.Email, ""));
+
+    }
+
+    public void AddStudents(List<Student> students)
+    {
+      Students = students;
     }
   }
 }

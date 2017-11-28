@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Grupp5Projekt;
 using NUnit.Framework;
 
@@ -190,5 +191,35 @@ namespace UnitTest
       Assert.AreEqual(register.Courses[0].Students.Count, 1);
 
     }
-  }
+
+    [Test]
+    public void SaveRoomToXmlFileTest()
+    {
+      Register register = new Register();
+      Room room =new Room("sal 1");
+
+      register.AddRoom(room);
+      register.SaveRooms();
+      register = new Register();
+      register.Rooms = register.LoadRooms();
+
+      Assert.AreEqual(register.Rooms.Count, 1);
+      Assert.AreEqual(register.Rooms[0].Name, "sal 1");
+    }
+
+      [Test]
+      public void SaveCourseToXmlFileTest()
+      {
+          Register register = new Register();
+          Course course = new Course("Svenska");
+
+          register.AddCourse(course);
+          register.SaveCourse();
+          register = new Register();
+          register.Courses = Register.LoadCourses();
+
+            Assert.AreEqual(register.Courses.Count, 1);
+            Assert.AreEqual(register.Courses[0].Name, "Svenska");
+      }
+    }
 }

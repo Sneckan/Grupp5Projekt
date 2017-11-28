@@ -32,6 +32,19 @@ namespace Grupp5Projekt
       Students = new List<Student>();
     }
 
+
+    public Course(string v)
+    {
+      Name = v;
+      Teacher = new Teacher();
+      StartDate = DateTime.Now;
+      EndDate = DateTime.Now;
+      Hours = 2;
+      lessons = new List<Lesson>();
+      Grades = new List<Grade>();
+      Students = new List<Student>();
+    }
+
     //constructor gives values to everything
     public Course(string name, Teacher teacher, DateTime startDate, DateTime endDate, int hours)
     {

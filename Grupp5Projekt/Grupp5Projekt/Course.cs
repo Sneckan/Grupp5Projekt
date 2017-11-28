@@ -20,7 +20,7 @@ namespace Grupp5Projekt
 
     public List<Grade> Grades { get; set; }
 
-    public Course(string v)
+    public Course()
     {
       Name = "";
       Teacher = new Teacher();

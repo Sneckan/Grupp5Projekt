@@ -33,5 +33,13 @@ namespace Grupp5Projekt
       MyPrivilege = myPrivilege;
     }
 
+    public User(string name, string email, string password)
+    {
+      Name = name;
+      Email = email;
+      Password = password;
+      MyPrivilege = Privilege.admin;
+    }
+
   }
 }

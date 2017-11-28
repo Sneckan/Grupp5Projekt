@@ -24,6 +24,13 @@ namespace Grupp5Projekt
       lessons = new List<Lesson>();
     }
 
+    public Teacher(string name, string email, string password) : base(name, email, password)
+    {
+      Courses = new List<Course>();
+      lessons = new List<Lesson>();
+      MyPrivilege = Privilege.teacher;
+    }
+
     //adds a lesson to lesson list
     public void AddLesson(Lesson lesson)
     {

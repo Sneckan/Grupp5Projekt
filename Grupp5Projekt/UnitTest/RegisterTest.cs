@@ -177,5 +177,20 @@ namespace UnitTest
       Assert.AreEqual(register.Rooms.Count, 1);
       Assert.AreEqual(register.Rooms[0].Name, "sal 1");
     }
-  }
+
+      [Test]
+      public void SaveCourseToXmlFileTest()
+      {
+          Register register = new Register();
+          Course course = new Course("Svenska");
+
+          register.AddCourse(course);
+          register.SaveCourse();
+          register = new Register();
+          register.Courses = Register.LoadCourses();
+
+            Assert.AreEqual(register.Courses.Count, 1);
+            Assert.AreEqual(register.Courses[0].Name, "Svenska");
+      }
+    }
 }

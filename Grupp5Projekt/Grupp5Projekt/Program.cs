@@ -11,10 +11,10 @@ namespace Grupp5Projekt
     static void Main(string[] args)
     {
       Register register = new Register();
-      if (register.Users.Count == 0)
+      if (!register.Users.Any())
       {
         Console.WriteLine("No users exist in the registry, creating admin account.");
-        register.AddAdminUser("admin", "admin", "admin@hotmail.com");
+        register.AddAdminUser("admin", "admin@hotmail.com", "admin");
       }
 
       int i = -1;
@@ -48,7 +48,7 @@ namespace Grupp5Projekt
       switch(register.LoggedUser.MyPrivilege)
       {
         case User.Privilege.admin:
-          //Admin menu functioncall
+          AdminMenu(); //Admin menu functioncall
           break;
 
         case User.Privilege.teacher:
@@ -58,8 +58,32 @@ namespace Grupp5Projekt
         case User.Privilege.student:
           //Student menu functioncall
           break;
-      }
-
+      }     
     }
+
+    static void AdminMenu()
+    {
+      while (true)
+      {
+        string input = Console.ReadLine();
+        Console.WriteLine("1. Add student");
+        Console.WriteLine("2. Add teacher");
+
+        switch (input)
+        {
+          case "1":
+            Console.WriteLine("Add student");
+            Console.ReadLine();
+            break;
+          case "2":
+            Console.WriteLine("Add teacher");
+            Console.ReadLine();
+            break;
+            default:
+              break;
+        }
+      }
+    }
+
   }
 }

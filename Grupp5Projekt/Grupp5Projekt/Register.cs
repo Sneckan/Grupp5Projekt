@@ -332,6 +332,8 @@ namespace Grupp5Projekt
             }
           }
           course.AddStudents(students);
+          course.Teacher = (Teacher)Users[SearchUserWithEmail(course.TeacherEmail)];
+
         }
         return courses;
       }

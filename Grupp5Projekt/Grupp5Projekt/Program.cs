@@ -12,6 +12,8 @@ namespace Grupp5Projekt
     {
       Register register = new Register();
 
+
+
       int i = -1;
       while(i==-1)
       {

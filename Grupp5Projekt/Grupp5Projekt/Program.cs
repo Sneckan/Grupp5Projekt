@@ -135,6 +135,44 @@ namespace Grupp5Projekt
       }
     }
 
+    static void AdminMenu(Register register)
+    {
+      Console.WriteLine("1. Add user");
+      Console.WriteLine("2. Remove user");
+      Console.WriteLine("3. Create course");
+      Console.WriteLine("4. Create room");
+      Console.WriteLine("5. Create timetable");
+      Console.WriteLine("6. Show timetable");
+      Console.WriteLine("7. Show notices");
+      Console.WriteLine("0. Exit");
+      string userChoice = Console.ReadLine();
+
+      switch (userChoice)
+      {
+        case "1":
+          AddUser(register);
+          break;
+        case "2":
+          RemoveUser(register);
+          break;
+        case "3":
+          CreateCourse(register);
+          break;
+        case "4":
+          CreateRoom(register);
+          break;
+        case "5":
+          CreateTimetable(register);
+          break;
+        case "6":
+          ShowTimetable(register);
+          break;
+        case "7":
+          ShowNotices(register);
+          break;
+        case "0":
+          return;
+      }
     static void StudentChangeEmailMenu(Register register)
     {
       int i = 0;

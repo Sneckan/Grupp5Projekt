@@ -216,7 +216,7 @@ namespace UnitTest
           register.AddCourse(course);
           register.SaveCourse();
           register = new Register();
-          register.Courses = Register.LoadCourses();
+          register.Courses = register.LoadCourses();
 
             Assert.AreEqual(register.Courses.Count, 1);
             Assert.AreEqual(register.Courses[0].Name, "Svenska");

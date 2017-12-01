@@ -82,7 +82,7 @@ namespace Grupp5Projekt
 
     public void AddAdminUser(Admin admin)
     {
-        Users.Add(admin);
+      Users.Add(admin);
     }
 
     //Remove Admin from list
@@ -103,13 +103,13 @@ namespace Grupp5Projekt
 
     public void AddTeacherUser(Teacher teacher)
     {
-        Users.Add(teacher);
+      Users.Add(teacher);
     }
 
     //Remove Teacher from list
     public void RemoveTeacherUser(Teacher teacher)
     {
-        Users.Remove(teacher);
+      Users.Remove(teacher);
     }
 
     //Add Student
@@ -126,7 +126,7 @@ namespace Grupp5Projekt
     //Remove student from list
     public void RemoveStudentUser(Student student)
     {
-        Users.Remove(student);
+      Users.Remove(student);
     }
 
     //Add Course
@@ -137,7 +137,7 @@ namespace Grupp5Projekt
 
     public void AddCourse(Course course)
     {
-        Courses.Add(course);
+      Courses.Add(course);
     }
 
     //Remove Course
@@ -149,25 +149,25 @@ namespace Grupp5Projekt
     //Add Room
     public void AddRoom(string rName)
     {
-        Rooms.Add(new Room(rName));
+      Rooms.Add(new Room(rName));
     }
 
     public void AddRoom(Room room)
     {
-        Rooms.Add(room);
+      Rooms.Add(room);
     }
 
     //Remove Room
     public void RemoveRoom(Room room)
     {
-        Rooms.Remove(room);
+      Rooms.Remove(room);
     }
 
 
 
     public void LogIn(User user)
     {
-        LoggedUser = user;
+      LoggedUser = user;
     }
 
     //Temporär oeffektiv sökfunktion via Email
@@ -204,7 +204,7 @@ namespace Grupp5Projekt
       using (var stream = System.IO.File.OpenRead("Users.xml"))
       {
         var serializer = new XmlSerializer(typeof(List<User>));
-        return (List<User>) serializer.Deserialize(stream);
+        return (List<User>)serializer.Deserialize(stream);
       }
     }
 
@@ -246,9 +246,7 @@ namespace Grupp5Projekt
         return courses;
       }
     }
-  }
-
-      //Save Rooms
+    //Save Rooms
     public void SaveRooms()
     {
       using (var writer = new StreamWriter("Rooms.xml"))
@@ -257,5 +255,16 @@ namespace Grupp5Projekt
         serializer.Serialize(writer, Rooms);
       }
     }
+
+    public List<Room> LoadRooms()
+    {
+      using (var stream = System.IO.File.OpenRead("Rooms.xml"))
+      {
+        var serializer = new XmlSerializer(typeof(List<Room>));
+        return (List<Room>)serializer.Deserialize(stream);
+      }
+    }
   }
 }
+
+

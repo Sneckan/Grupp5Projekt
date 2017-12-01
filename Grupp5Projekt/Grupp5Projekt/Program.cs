@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,12 @@ namespace Grupp5Projekt
     static void Main(string[] args)
     {
       Register register = new Register();
+      Course course = new Course();
+      if (!register.Users.Any())
+      {
+        Console.WriteLine("No users exist in the registry, creating admin account.");
+        register.AddAdminUser("admin", "admin@hotmail.com", "admin");
+      }
 
       int i = -1;
       while(i==-1)
@@ -44,7 +51,7 @@ namespace Grupp5Projekt
       switch(register.LoggedUser.MyPrivilege)
       {
         case User.Privilege.admin:
-          //Admin menu functioncall
+          TeacherMenu(register); //Admin menu functioncall
           break;
 
         case User.Privilege.teacher:
@@ -193,10 +200,125 @@ namespace Grupp5Projekt
         case "7":
           ShowNotices(register);
           break;
-        case "0":
-          return;
-      }
-      */
+      }  
     }
+
+    static void TeacherMenu(Register register)
+    {
+      bool menuLoop = true;
+      while (menuLoop)
+      {
+        Console.WriteLine("1. Add student to course");
+        Console.WriteLine("2. Grade student");
+        Console.WriteLine("3. Show ungraded students");
+        Console.WriteLine("4. Show courses");
+        Console.WriteLine("5. Show finished courses");
+        Console.WriteLine("6. Show ongoing courses");
+
+        string input = Console.ReadLine();
+
+        switch (input)
+        {
+          case "1":
+            AddStudentToCourse(register);
+            break;
+          case "2":
+            break;
+        }
+      }
+    }
+
+    static void AddStudentToCourse(Register register)
+    {
+      int studentPos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a student: ");
+        studentPos = register.SearchUserWithEmail(Console.ReadLine());
+
+        if (studentPos < 0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          break;
+        }        
+      }
+
+      int coursePos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a course: ");
+        coursePos = register.SearchCourseWithName(Console.ReadLine());
+
+        if (coursePos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+      register.Courses[coursePos].AddStudent((Student)register.Users[studentPos]);
+      Console.WriteLine("Student added to course");
+      
+
+      //int studentPos = -1;
+      //while (true)
+      //{
+      //  Console.WriteLine("Student Email: ");
+      //  studentPos = register.GetUser(Console.ReadLine());
+      //  if (studentPos < 0)
+      //  {
+      //    Console.WriteLine("User not found, try again.");
+      //  }
+      //  else
+      //  {
+      //    break;
+      //  }
+      //}
+    static void StudentChangeEmailMenu(Register register)
+    {
+      int i = 0;
+      while (i > -1)
+      {
+        Console.WriteLine("Enter new email: ");
+        string newEmail = Console.ReadLine();
+
+        i = register.SearchUserWithEmail(newEmail);
+        if (i == -1)
+        {
+          register.LoggedUser.Email = newEmail;
+        }
+        else
+        {
+          Console.WriteLine("Email already in use. Please try again.");
+        }
+      }
+      Console.WriteLine("Email is now changed.");
+      //int coursePos = -1;
+      //while (true)
+      //{
+      //  Console.WriteLine("Course Name: ");
+      //  coursePos = register.GetCourse(Console.ReadLine());
+      //  if (coursePos < 0)
+      //  {
+      //    Console.WriteLine("Course not found, try again.");
+      //  }
+      //  else
+      //  {
+      //    break;
+      //  }
+      //}
+
+      //register.AddStudentToCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
+      //Console.WriteLine("Student added to course");
+
+
+
+    }
+
   }
 }

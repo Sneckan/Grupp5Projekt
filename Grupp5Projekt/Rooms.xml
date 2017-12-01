@@ -5,4 +5,24 @@
     <MaxCapacity>35</MaxCapacity>
     <lessons />
   </Room>
+  <Room>
+    <Name>sal 1</Name>
+    <MaxCapacity>35</MaxCapacity>
+    <lessons />
+  </Room>
+  <Room>
+    <Name>sal 1</Name>
+    <MaxCapacity>35</MaxCapacity>
+    <lessons />
+  </Room>
+  <Room>
+    <Name>sal 1</Name>
+    <MaxCapacity>35</MaxCapacity>
+    <lessons />
+  </Room>
+  <Room>
+    <Name>sal 1</Name>
+    <MaxCapacity>35</MaxCapacity>
+    <lessons />
+  </Room>
 </ArrayOfRoom>

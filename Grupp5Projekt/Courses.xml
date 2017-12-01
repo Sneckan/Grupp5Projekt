@@ -17,4 +17,228 @@
     <lessons />
     <Grades />
   </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T11:54:52.1173538+01:00</StartDate>
+    <EndDate>2017-12-01T11:54:52.1173538+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades>
+      <Grade>
+        <StudentEmail>temp</StudentEmail>
+        <StudentGrade />
+      </Grade>
+    </Grades>
+  </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T11:54:52.1463747+01:00</StartDate>
+    <EndDate>2017-12-01T11:54:52.1463747+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
+  <Course>
+    <Name>Svenska</Name>
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T11:54:52.1843982+01:00</StartDate>
+    <EndDate>2017-12-01T11:54:52.1843982+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T11:55:12.0376502+01:00</StartDate>
+    <EndDate>2017-12-01T11:55:12.0376502+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades>
+      <Grade>
+        <StudentEmail>temp</StudentEmail>
+        <StudentGrade />
+      </Grade>
+    </Grades>
+  </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T11:55:12.0576631+01:00</StartDate>
+    <EndDate>2017-12-01T11:55:12.0576631+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
+  <Course>
+    <Name>Svenska</Name>
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T11:55:12.0906858+01:00</StartDate>
+    <EndDate>2017-12-01T11:55:12.0906858+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T12:08:49.6953699+01:00</StartDate>
+    <EndDate>2017-12-01T12:08:49.6953699+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades>
+      <Grade>
+        <StudentEmail>temp</StudentEmail>
+        <StudentGrade />
+      </Grade>
+    </Grades>
+  </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T12:08:49.7192967+01:00</StartDate>
+    <EndDate>2017-12-01T12:08:49.7192967+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
+  <Course>
+    <Name>Svenska</Name>
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T12:08:49.744314+01:00</StartDate>
+    <EndDate>2017-12-01T12:08:49.744314+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T12:09:26.6059484+01:00</StartDate>
+    <EndDate>2017-12-01T12:09:26.6059484+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades>
+      <Grade>
+        <StudentEmail>temp</StudentEmail>
+        <StudentGrade />
+      </Grade>
+    </Grades>
+  </Course>
+  <Course>
+    <Name />
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T12:09:26.6259595+01:00</StartDate>
+    <EndDate>2017-12-01T12:09:26.6259595+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
+  <Course>
+    <Name>Svenska</Name>
+    <Teacher>
+      <Name />
+      <Email />
+      <Password />
+      <MyPrivilege>admin</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students />
+    <StartDate>2017-12-01T12:09:26.6539902+01:00</StartDate>
+    <EndDate>2017-12-01T12:09:26.6539902+01:00</EndDate>
+    <Hours>2</Hours>
+    <lessons />
+    <Grades />
+  </Course>
 </ArrayOfCourse>

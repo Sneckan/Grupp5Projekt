@@ -20,6 +20,7 @@ namespace Grupp5Projekt
         register.AddAdminUser("admin", "admin@hotmail.com", "admin");
       }
 
+      //Ask user to sign in with email and password
       int i = -1;
       while(i==-1)
       {
@@ -48,6 +49,7 @@ namespace Grupp5Projekt
         }
       }
 
+      //Check the user privilege and call the corresponding menu
       switch(register.LoggedUser.MyPrivilege)
       {
         case User.Privilege.admin:
@@ -63,8 +65,9 @@ namespace Grupp5Projekt
           break;
       }
 
-    } //End main
+    }//End of Main
 
+    //Student menu
     static void StudentMenu(Register register)
     {
       bool menuLoop = true;
@@ -165,6 +168,7 @@ namespace Grupp5Projekt
 
     }
 
+    //Admin menu
     static void AdminMenu(Register register)
     {
       Console.WriteLine("1. Add user");
@@ -200,7 +204,7 @@ namespace Grupp5Projekt
         case "7":
           ShowNotices(register);
           break;
-      }  
+      }  */
     }
 
     static void TeacherMenu(Register register)
@@ -243,7 +247,7 @@ namespace Grupp5Projekt
         else
         {
           break;
-        }        
+        }
       }
 
       int coursePos = -1;
@@ -261,11 +265,11 @@ namespace Grupp5Projekt
           break;
         }
       }
-      register.Courses[coursePos].AddStudent((Student)register.Users[studentPos]);
+      register.Courses[coursePos].AddStudent((Student) register.Users[studentPos]);
       Console.WriteLine("Student added to course");
-      
+    }
 
-      //int studentPos = -1;
+    //int studentPos = -1;
       //while (true)
       //{
       //  Console.WriteLine("Student Email: ");
@@ -279,25 +283,7 @@ namespace Grupp5Projekt
       //    break;
       //  }
       //}
-    static void StudentChangeEmailMenu(Register register)
-    {
-      int i = 0;
-      while (i > -1)
-      {
-        Console.WriteLine("Enter new email: ");
-        string newEmail = Console.ReadLine();
-
-        i = register.SearchUserWithEmail(newEmail);
-        if (i == -1)
-        {
-          register.LoggedUser.Email = newEmail;
-        }
-        else
-        {
-          Console.WriteLine("Email already in use. Please try again.");
-        }
-      }
-      Console.WriteLine("Email is now changed.");
+    
       //int coursePos = -1;
       //while (true)
       //{
@@ -319,6 +305,4 @@ namespace Grupp5Projekt
 
 
     }
-
-  }
 }

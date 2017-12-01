@@ -78,6 +78,7 @@ namespace Grupp5Projekt
     public void AddAdminUser(string rName, string rPassword, string rEmail)
     {
       Users.Add(new Admin(rName, rPassword, rEmail, User.Privilege.admin));
+      SaveUsers();
     }
 
     public void AddAdminUser(Admin admin)

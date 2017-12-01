@@ -11,6 +11,11 @@ namespace Grupp5Projekt
     static void Main(string[] args)
     {
       Register register = new Register();
+      if (register.Users.Count == 0)
+      {
+        Console.WriteLine("No users exist in the registry, creating admin account.");
+        register.AddAdminUser("admin", "admin", "admin@hotmail.com");
+      }
 
       int i = -1;
       while(i==-1)

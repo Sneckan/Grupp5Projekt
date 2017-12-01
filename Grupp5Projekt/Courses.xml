@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Course>
-    <Name />
+    <Name>Svenska</Name>
     <Teacher>
       <Name />
       <Email />
@@ -11,8 +11,8 @@
       <lessons />
     </Teacher>
     <Students />
-    <StartDate>2017-11-28T14:26:02.9963848+01:00</StartDate>
-    <EndDate>2017-11-28T14:26:02.9963848+01:00</EndDate>
+    <StartDate>2017-12-01T08:38:11.1947316+01:00</StartDate>
+    <EndDate>2017-12-01T08:38:11.1947316+01:00</EndDate>
     <Hours>2</Hours>
     <lessons />
     <Grades />

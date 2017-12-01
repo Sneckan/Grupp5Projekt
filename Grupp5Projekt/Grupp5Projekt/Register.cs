@@ -264,6 +264,21 @@ namespace Grupp5Projekt
         return (List<Room>)serializer.Deserialize(stream);
       }
     }
+
+    public List<Course> ShowStudentCourses(Student student)
+    {
+      List<Course> tempList=new List<Course>();
+      foreach (var Course in Courses)
+      {
+        if (Course.Students.Contains(student))
+        {
+          tempList.Add(Course);
+        }
+        
+      }
+
+      return tempList;
+    }
   }
 }
 

@@ -158,6 +158,7 @@ namespace Grupp5Projekt
     public void AddStudentUser(string rName, string rEmail, string rPassword)
     {
       Users.Add(new Student(rName, rPassword, rEmail, User.Privilege.student));
+      SaveUsers();
     }
 
     public void AddStudentUser(Student student)
@@ -221,6 +222,23 @@ namespace Grupp5Projekt
       while (i < Users.Count && !found)
       {
         if (Users[i].Email == email)
+        {
+          pos = i;
+          found = true;
+        }
+        i++;
+      }
+      return pos;
+    }
+
+    public int SearchCourseWithName(string name)
+    {
+      int i = 0;
+      int pos = -1;
+      bool found = false;
+      while (i < Courses.Count && !found)
+      {
+        if (Courses[i].Name == name)
         {
           pos = i;
           found = true;

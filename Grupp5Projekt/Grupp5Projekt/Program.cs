@@ -49,7 +49,7 @@ namespace Grupp5Projekt
       switch(register.LoggedUser.MyPrivilege)
       {
         case User.Privilege.admin:
-          AdminMenu(); //Admin menu functioncall
+          TeacherMenu(register); //Admin menu functioncall
           break;
 
         case User.Privilege.teacher:
@@ -59,42 +59,44 @@ namespace Grupp5Projekt
         case User.Privilege.student:
           //Student menu functioncall
           break;
-      }     
+      }  
     }
 
-    static void AdminMenu()
+    static void TeacherMenu(Register register)
     {
-      while (true)
+      bool menuLoop = true;
+      while (menuLoop)
       {
+        Console.WriteLine("1. Add student to course");
+        Console.WriteLine("2. Grade student");
+        Console.WriteLine("3. Show ungraded students");
+        Console.WriteLine("4. Show courses");
+        Console.WriteLine("5. Show finished courses");
+        Console.WriteLine("6. Show ongoing courses");
+
         string input = Console.ReadLine();
-        Console.WriteLine("1. Add student");
-        Console.WriteLine("2. Add teacher");
 
         switch (input)
         {
           case "1":
-            AddStudent(register);
+            AddStudentToCourse(register);
             break;
           case "2":
-            Console.WriteLine("Add teacher");
-            Console.ReadLine();
             break;
-            default:
-              break;
         }
       }
     }
 
-    static void AddStudent(Register register)
+    static void AddStudentToCourse(Register register)
     {
-      Console.WriteLine("Name:");
-      string name = Console.ReadLine();
-      Console.WriteLine("Email:");
-      string email = Console.ReadLine();
-      Console.WriteLine("Password:");
-      string password = Console.ReadLine();
+      Console.WriteLine("Choose a student: ");
+      string student = Console.ReadLine();
+      register.SearchUserWithEmail(student);
 
-      register.AddStudentUser(name, email, password);
+      Console.WriteLine("Choose a course: ");
+      string course = Console.ReadLine();
+      register.SearchCourseWithName(course);
+      register.Courses[register.SearchCourseWithName(course)].AddStudent();
     }
 
   }

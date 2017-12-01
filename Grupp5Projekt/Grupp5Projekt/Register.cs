@@ -115,6 +115,12 @@ namespace Grupp5Projekt
     }
 
     //Methods
+
+    public static void AddUser()
+    {
+      Console.WriteLine("Add user");
+    }
+
     //Add Admin to list
     public void AddAdminUser(string rName, string rEmail, string rPassword)
     {
@@ -323,6 +329,21 @@ namespace Grupp5Projekt
         var serializer = new XmlSerializer(typeof(List<Room>));
         return (List<Room>)serializer.Deserialize(stream);
       }
+    }
+
+    public List<Course> ShowStudentCourses(Student student)
+    {
+      List<Course> tempList=new List<Course>();
+      foreach (var Course in Courses)
+      {
+        if (Course.Students.Contains(student))
+        {
+          tempList.Add(Course);
+        }
+        
+      }
+
+      return tempList;
     }
   }
 }

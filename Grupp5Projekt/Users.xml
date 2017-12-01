@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <User xsi:type="Admin">
+    <Name>Name</Name>
+    <Email>Password</Email>
+    <Password>Email</Password>
+    <MyPrivilege>admin</MyPrivilege>
+  </User>
+  <User xsi:type="Student">
+    <Name>Name</Name>
+    <Email>Email</Email>
+    <Password>Password</Password>
+    <MyPrivilege>student</MyPrivilege>
+    <lessons />
+  </User>
   <User xsi:type="Student">
     <Name />
     <Email />

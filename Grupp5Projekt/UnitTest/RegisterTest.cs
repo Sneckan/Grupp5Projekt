@@ -104,8 +104,9 @@ namespace UnitTest
     public void RemoveStudentFromRegistry()
     {
       Register register = new Register();
-      register.AddStudentUser("Name", "Password", "Email");
-      register.RemoveStudentUser((Student) register.Users[0]);
+      Student student=new Student("Name","Password","Email");
+      register.AddStudentUser(student);
+      register.RemoveStudentUser(student);
 
       Assert.AreEqual(register.Users.Count, 0);
     }
@@ -114,8 +115,9 @@ namespace UnitTest
     public void RemoveTeacherFromRegistry()
     {
       Register register = new Register();
-      register.AddTeacherUser("Name", "Password", "Email");
-      register.RemoveTeacherUser((Teacher) register.Users[0]);
+      Teacher teacher=new Teacher("Name","Password","Email");
+      register.AddTeacherUser(teacher);
+      register.RemoveTeacherUser(teacher);
 
       Assert.AreEqual(register.Users.Count, 0);
     }
@@ -175,7 +177,7 @@ namespace UnitTest
 
       Assert.AreEqual(register.Courses.Count, 1);
     }
-
+    
     [Test]
     public void CourseSavesStudents()
     {

@@ -17,16 +17,57 @@ namespace Grupp5Projekt
     public List<Course> Courses { get; set; }
     public List<Room> Rooms { get; set; }
     public List<Lesson> Lessons { get; set; }
+
+    public Register()
+    {
+      try
+      {
+        Users = LoadUser();
+      }
+      catch
+      {
+        Users = new List<User>(50);
+      }
+
+      try
+      {
+        Courses = LoadCourses();
+      }
+
+      catch
+      {
+        Courses = new List<Course>(5);
+      }
+
+      try
+      {
+        Rooms = LoadRooms();
+      }
+
+      catch
+      {
+        Rooms = new List<Room>(5);
+      }
+
+      try
+      {
+        //Lessons = LoadLessons();
+      }
+      catch
+      {
+        Lessons = new List<Lesson>();
+      }
+    }
     public User LoggedUser;
 
     //Constructor with no parameters
-    public Register()
-    {
-      Users = new List<User>();
-      Courses = new List<Course>();
-      Rooms = new List<Room>();
-      Lessons = new List<Lesson>();
-    }
+    //public Register()
+    //{
+    //  Users = new List<User>();
+    //  Courses = new List<Course>();
+    //  Rooms = new List<Room>();
+    //  Lessons = new List<Lesson>();
+    //}
 
     //Constructor with parameter Users
     public Register(List<User> users)
@@ -74,10 +115,17 @@ namespace Grupp5Projekt
     }
 
     //Methods
-    //Add Admin to list
-    public void AddAdminUser(string rName, string rPassword, string rEmail)
+
+    public static void AddUser()
     {
-      Users.Add(new Admin(rName, rPassword, rEmail, User.Privilege.admin));
+      Console.WriteLine("Add user");
+    }
+
+    //Add Admin to list
+    public void AddAdminUser(string rName, string rEmail, string rPassword)
+    {
+      Users.Add(new Admin(rName, rEmail, rPassword,User.Privilege.admin));
+      SaveUsers();
     }
 
     public void AddAdminUser(Admin admin)
@@ -113,9 +161,10 @@ namespace Grupp5Projekt
     }
 
     //Add Student
-    public void AddStudentUser(string rName, string rPassword, string rEmail)
+    public void AddStudentUser(string rName, string rEmail, string rPassword)
     {
       Users.Add(new Student(rName, rPassword, rEmail, User.Privilege.student));
+      SaveUsers();
     }
 
     public void AddStudentUser(Student student)
@@ -179,6 +228,23 @@ namespace Grupp5Projekt
       while (i < Users.Count && !found)
       {
         if (Users[i].Email == email)
+        {
+          pos = i;
+          found = true;
+        }
+        i++;
+      }
+      return pos;
+    }
+
+    public int SearchCourseWithName(string name)
+    {
+      int i = 0;
+      int pos = -1;
+      bool found = false;
+      while (i < Courses.Count && !found)
+      {
+        if (Courses[i].Name == name)
         {
           pos = i;
           found = true;
@@ -264,7 +330,21 @@ namespace Grupp5Projekt
         return (List<Room>)serializer.Deserialize(stream);
       }
     }
+
+    public List<Course> ShowStudentCourses(Student student)
+    {
+      List<Course> tempList=new List<Course>();
+      foreach (var Course in Courses)
+      {
+        if (Course.Students.Contains(student))
+        {
+          tempList.Add(Course);
+        }
+        
+      }
+
+      return tempList;
+    }
   }
 }
-
 

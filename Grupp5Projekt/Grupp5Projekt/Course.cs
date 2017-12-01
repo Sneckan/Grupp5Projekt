@@ -75,6 +75,7 @@ namespace Grupp5Projekt
         {
           pos = i;
         }
+        i++;
       }
 
       Grades[pos].StudentGrade = StudentGrade;
@@ -89,6 +90,28 @@ namespace Grupp5Projekt
         temp += grade.ToString();
       }
       return temp;
+    }
+
+    public string ShowGradeForStudent(Student student)
+    {
+      int pos = -1;
+      int i = 0;
+      while (pos < 0 && i < Grades.Count)
+      {
+        if (Grades[i].StudentEmail == student.Email)
+        {
+          pos = i;
+        }
+        i++;
+      }
+      if (pos != -1)
+      {
+        return Grades[pos].StudentGrade;
+      }
+      else
+      {
+        return "Student not part of this course.";
+      }
     }
 
     public void AddStudent(Student student)

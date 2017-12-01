@@ -38,5 +38,22 @@ namespace UnitTest
       Assert.AreEqual(course.ShowGrade(),"Student Email: temp\tGrade: A+\n");
     }
 
+    [Test]
+    public void ShowGradeForStudentTest()
+    {
+      Course course=new Course();
+      Student student1=new Student("temp","temp","temp");
+      Student student2=new Student("temp2","temp2","temp2");
+      course.AddStudent(student1);
+      course.AddStudent(student2);
+
+      course.GradeStudent("temp","B-");
+      course.GradeStudent("temp2", "A+");
+
+      Assert.AreEqual(course.ShowGradeForStudent(course.Students[0]),"B-");
+      Assert.AreEqual(course.ShowGradeForStudent(course.Students[1]), "A+");
+
+    }
+
   }
 }

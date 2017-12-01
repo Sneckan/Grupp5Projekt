@@ -75,6 +75,7 @@ namespace Grupp5Projekt
         {
           pos = i;
         }
+        i++;
       }
 
       Grades[pos].StudentGrade = StudentGrade;
@@ -101,6 +102,7 @@ namespace Grupp5Projekt
         {
           pos = i;
         }
+        i++;
       }
       if (pos != -1)
       {

@@ -175,7 +175,7 @@ namespace UnitTest
 
       Assert.AreEqual(register.Courses.Count, 1);
     }
-
+    
     [Test]
     public void CourseSavesStudents()
     {

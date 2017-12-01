@@ -12,7 +12,7 @@ namespace Grupp5Projekt
     static void Main(string[] args)
     {
       Register register = new Register();
-      register.AddStudentUser("student","student","student");
+
       int i = -1;
       while(i==-1)
       {
@@ -55,6 +55,7 @@ namespace Grupp5Projekt
           StudentMenu(register);
           break;
       }
+
     } //End main
 
     static void StudentMenu(Register register)
@@ -135,6 +136,28 @@ namespace Grupp5Projekt
       }
     }
 
+    static void StudentChangeEmailMenu(Register register)
+    {
+      int i = 0;
+      while (i > -1)
+      {
+        Console.WriteLine("Enter new email: ");
+        string newEmail = Console.ReadLine();
+
+        i = register.SearchUserWithEmail(newEmail);
+        if (i == -1)
+        {
+          register.LoggedUser.Email = newEmail;
+        }
+        else
+        {
+          Console.WriteLine("Email already in use. Please try again.");
+        }
+      }
+      Console.WriteLine("Email is now changed.");
+
+    }
+
     static void AdminMenu(Register register)
     {
       Console.WriteLine("1. Add user");
@@ -146,7 +169,7 @@ namespace Grupp5Projekt
       Console.WriteLine("7. Show notices");
       Console.WriteLine("0. Exit");
       string userChoice = Console.ReadLine();
-
+      /*
       switch (userChoice)
       {
         case "1":
@@ -173,25 +196,7 @@ namespace Grupp5Projekt
         case "0":
           return;
       }
-    static void StudentChangeEmailMenu(Register register)
-    {
-      int i = 0;
-      while (i > -1)
-      {
-        Console.WriteLine("Enter new email: ");
-        string newEmail = Console.ReadLine();
-
-        i = register.SearchUserWithEmail(newEmail);
-        if (i == -1)
-        {
-          register.LoggedUser.Email = newEmail;
-        }
-        else
-        {
-          Console.WriteLine("Email already in use. Please try again.");
-        }
-      }
-      Console.WriteLine("Email is now changed.");
+      */
     }
   }
 }

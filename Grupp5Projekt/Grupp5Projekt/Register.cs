@@ -155,7 +155,7 @@ namespace Grupp5Projekt
     }
 
     //Add Student
-    public void AddStudentUser(string rName, string rPassword, string rEmail)
+    public void AddStudentUser(string rName, string rEmail, string rPassword)
     {
       Users.Add(new Student(rName, rPassword, rEmail, User.Privilege.student));
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,8 +73,7 @@ namespace Grupp5Projekt
         switch (input)
         {
           case "1":
-            Console.WriteLine("Add student");
-            Console.ReadLine();
+            AddStudent(register);
             break;
           case "2":
             Console.WriteLine("Add teacher");
@@ -83,6 +83,18 @@ namespace Grupp5Projekt
               break;
         }
       }
+    }
+
+    static void AddStudent(Register register)
+    {
+      Console.WriteLine("Name:");
+      string name = Console.ReadLine();
+      Console.WriteLine("Email:");
+      string email = Console.ReadLine();
+      Console.WriteLine("Password:");
+      string password = Console.ReadLine();
+
+      register.AddStudentUser(name, email, password);
     }
 
   }

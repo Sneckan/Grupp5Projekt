@@ -74,6 +74,12 @@ namespace Grupp5Projekt
     }
 
     //Methods
+
+    public static void AddUser()
+    {
+      Console.WriteLine("Add user");
+    }
+
     //Add Admin to list
     public void AddAdminUser(string rName, string rPassword, string rEmail)
     {

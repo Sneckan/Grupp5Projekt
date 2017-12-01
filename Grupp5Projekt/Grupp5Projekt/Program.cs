@@ -12,6 +12,7 @@ namespace Grupp5Projekt
     static void Main(string[] args)
     {
       Register register = new Register();
+      Course course = new Course();
       if (!register.Users.Any())
       {
         Console.WriteLine("No users exist in the registry, creating admin account.");
@@ -89,14 +90,76 @@ namespace Grupp5Projekt
 
     static void AddStudentToCourse(Register register)
     {
-      Console.WriteLine("Choose a student: ");
-      string student = Console.ReadLine();
-      register.SearchUserWithEmail(student);
+      int studentPos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a student: ");
+        studentPos = register.SearchUserWithEmail(Console.ReadLine());
 
-      Console.WriteLine("Choose a course: ");
-      string course = Console.ReadLine();
-      register.SearchCourseWithName(course);
-      register.Courses[register.SearchCourseWithName(course)].AddStudent();
+        if (studentPos < 0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          break;
+        }        
+      }
+
+      int coursePos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a course: ");
+        coursePos = register.SearchCourseWithName(Console.ReadLine());
+
+        if (coursePos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+      register.Courses[coursePos].AddStudent((Student)register.Users[studentPos]);
+      Console.WriteLine("Student added to course");
+      
+
+      //int studentPos = -1;
+      //while (true)
+      //{
+      //  Console.WriteLine("Student Email: ");
+      //  studentPos = register.GetUser(Console.ReadLine());
+      //  if (studentPos < 0)
+      //  {
+      //    Console.WriteLine("User not found, try again.");
+      //  }
+      //  else
+      //  {
+      //    break;
+      //  }
+      //}
+
+      //int coursePos = -1;
+      //while (true)
+      //{
+      //  Console.WriteLine("Course Name: ");
+      //  coursePos = register.GetCourse(Console.ReadLine());
+      //  if (coursePos < 0)
+      //  {
+      //    Console.WriteLine("Course not found, try again.");
+      //  }
+      //  else
+      //  {
+      //    break;
+      //  }
+      //}
+
+      //register.AddStudentToCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
+      //Console.WriteLine("Student added to course");
+
+
+
     }
 
   }

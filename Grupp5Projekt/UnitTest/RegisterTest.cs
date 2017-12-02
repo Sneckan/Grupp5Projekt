@@ -12,10 +12,14 @@ namespace UnitTest
     public void AddAdminToRegistry()
     {
       Register register = new Register();
-      register.AddAdminUser("Name", "Password", "Email");
+
+      Admin admin = new Admin("Name", "Password", "Email");
+      register.AddAdminUser(admin);
 
       Assert.AreEqual(register.Users.Count, 1);
       Assert.AreEqual(register.Users[0].MyPrivilege, User.Privilege.admin);
+
+      
     }
 
     [Test]

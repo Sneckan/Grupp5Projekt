@@ -17,6 +17,7 @@ namespace Grupp5Projekt
     public DateTime EndDate { get; set; }
     public int Hours { get; set; }
     public List<Lesson> lessons { get; set; }
+    
 
     public List<Grade> Grades { get; set; }
 

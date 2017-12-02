@@ -8,24 +8,25 @@ namespace UnitTest
   [TestFixture]
   class RegisterTest
   {
+    
     [Test]
     public void AddAdminToRegistry()
     {
-      Register register = new Register();
-
-      Admin admin = new Admin("Name", "Password", "Email");
-      register.AddAdminUser(admin);
+      Admin admin =new Admin();
+      Register register = new Register(admin);
+      register.AddAdminUser("Name", "Password", "Email");
 
       Assert.AreEqual(register.Users.Count, 1);
       Assert.AreEqual(register.Users[0].MyPrivilege, User.Privilege.admin);
 
-      
+    
     }
 
     [Test]
     public void AddTeacherToRegistry()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       register.AddTeacherUser("Name", "Password", "Email");
 
       Assert.AreEqual(register.Users.Count, 1);
@@ -35,7 +36,8 @@ namespace UnitTest
     [Test]
     public void AddStudentToRegistry()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       register.AddStudentUser("Name", "Password", "Email");
 
       Assert.AreEqual(register.Users.Count, 1);
@@ -45,7 +47,8 @@ namespace UnitTest
     [Test]
     public void AddCourseToRegistry()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Teacher teacher = new Teacher("Name", "Email", "Password", User.Privilege.teacher);
       DateTime time = DateTime.Now;
       Course course = new Course("Name", teacher, time, time, 5);
@@ -58,7 +61,8 @@ namespace UnitTest
     [Test]
     public void AddRoomToRegistry()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Room room = new Room("Room1", 5);
 
       register.AddRoom(room);
@@ -69,7 +73,8 @@ namespace UnitTest
     [Test]
     public void RemoveRoomFromRegistry()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Room room = new Room("Room1", 5);
 
       register.AddRoom(room);
@@ -81,7 +86,8 @@ namespace UnitTest
     [Test]
     public void RemoveAdminFromRegistry()
     {
-      Register register = new Register();
+      Admin temp = new Admin();
+      Register register = new Register(temp);
       Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
 
       register.AddAdminUser(admin);
@@ -93,7 +99,8 @@ namespace UnitTest
     [Test]
     public void AdminSuicideRegistry()
     {
-      Register register = new Register();
+      Admin temp = new Admin();
+      Register register = new Register(temp);
       Admin admin = new Admin("temp", "temp", "temp", User.Privilege.admin);
 
       register.AddAdminUser(admin);
@@ -107,7 +114,8 @@ namespace UnitTest
     [Test]
     public void RemoveStudentFromRegistry()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Student student=new Student("Name","Password","Email");
       register.AddStudentUser(student);
       register.RemoveStudentUser(student);
@@ -118,7 +126,8 @@ namespace UnitTest
     [Test]
     public void RemoveTeacherFromRegistry()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Teacher teacher=new Teacher("Name","Password","Email");
       register.AddTeacherUser(teacher);
       register.RemoveTeacherUser(teacher);
@@ -129,7 +138,8 @@ namespace UnitTest
     [Test]
     public void LogInTest()
     {
-      Register register = new Register();
+      Admin temp = new Admin();
+      Register register = new Register(temp);
       Admin admin = new Admin("temp", "temp", "password", User.Privilege.admin);
 
       register.AddAdminUser(admin);
@@ -142,7 +152,8 @@ namespace UnitTest
     [Test]
     public void SearchUserWithEmail()
     {
-      Register register = new Register();
+      Admin temp = new Admin();
+      Register register = new Register(temp);
       Admin admin = new Admin("temp", "temp", "password", User.Privilege.admin);
       Teacher teacher = new Teacher("temp", "temp2", "password", User.Privilege.teacher);
 
@@ -155,7 +166,8 @@ namespace UnitTest
     [Test]
     public void SaveUserToXmlFileTest()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Student student = new Student();
 
 
@@ -171,7 +183,8 @@ namespace UnitTest
     [Test]
     public void CoursesLoadsAListOfAttendingStudents()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Course course = new Course();
 
       register.AddCourse(course);
@@ -185,9 +198,12 @@ namespace UnitTest
     [Test]
     public void CourseSavesStudents()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Student student=new Student("temp","temp","temp");
       Course course = new Course();
-      course.AddStudent(new Student("temp","temp","temp"));
+      register.AddStudentUser(student);
+      course.AddStudent(student);
 
       register.AddCourse(course);
       register.SaveCourse();
@@ -201,7 +217,8 @@ namespace UnitTest
     [Test]
     public void SaveRoomToXmlFileTest()
     {
-      Register register = new Register();
+      Admin admin = new Admin();
+      Register register = new Register(admin);
       Room room =new Room("sal 1");
 
       register.AddRoom(room);
@@ -213,19 +230,20 @@ namespace UnitTest
       Assert.AreEqual(register.Rooms[0].Name, "sal 1");
     }
 
-      [Test]
-      public void SaveCourseToXmlFileTest()
-      {
-          Register register = new Register();
-          Course course = new Course("Svenska");
+    [Test]
+    public void SaveCourseToXmlFileTest()
+    {
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Course course = new Course("Svenska");
 
-          register.AddCourse(course);
-          register.SaveCourse();
-          register = new Register();
-          register.Courses = register.LoadCourses();
+      register.AddCourse(course);
+      register.SaveCourse();
+      register = new Register();
+      register.Courses = register.LoadCourses();
 
-            Assert.AreEqual(register.Courses.Count, 1);
-            Assert.AreEqual(register.Courses[0].Name, "Svenska");
-      }
+      Assert.AreEqual(register.Courses.Count, 1);
+      Assert.AreEqual(register.Courses[0].Name, "Svenska");
     }
+  }
 }

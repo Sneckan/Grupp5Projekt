@@ -17,8 +17,7 @@ namespace Grupp5Projekt
     public DateTime EndDate { get; set; }
     public int Hours { get; set; }
     public List<Lesson> lessons { get; set; }
-    
-
+    public string TeacherEmail { get; set; }
     public List<Grade> Grades { get; set; }
 
     public Course()
@@ -31,6 +30,7 @@ namespace Grupp5Projekt
       lessons = new List<Lesson>();
       Grades = new List<Grade>();
       Students = new List<Student>();
+      TeacherEmail = Teacher.Email;
     }
 
 
@@ -44,6 +44,7 @@ namespace Grupp5Projekt
       lessons = new List<Lesson>();
       Grades = new List<Grade>();
       Students = new List<Student>();
+      TeacherEmail = Teacher.Email;
     }
 
     //constructor gives values to everything
@@ -57,6 +58,7 @@ namespace Grupp5Projekt
       lessons = new List<Lesson>();
       Grades = new List<Grade>();
       Students = new List<Student>();
+      TeacherEmail = Teacher.Email;
     }
     //puts lesson in lesson list
     public void AddLessonToCourse(Lesson lesson)

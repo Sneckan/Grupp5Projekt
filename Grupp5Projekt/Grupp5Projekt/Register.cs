@@ -147,6 +147,7 @@ namespace Grupp5Projekt
     public void AddTeacherUser(string rName, string rPassword, string rEmail)
     {
       Users.Add(new Teacher(rName, rPassword, rEmail, User.Privilege.teacher));
+      SaveUsers();
     }
 
     public void AddTeacherUser(Teacher teacher)
@@ -182,6 +183,7 @@ namespace Grupp5Projekt
     public void AddCourse(string rName, Teacher rTeacher, DateTime rStartDate, DateTime rEndDate, int rHours)
     {
       Courses.Add(new Course(rName, rTeacher, rStartDate, rEndDate, rHours));
+      SaveCourse();
     }
 
     public void AddCourse(Course course)
@@ -297,6 +299,7 @@ namespace Grupp5Projekt
         foreach (var course in courses)
         {
           List<Student> students = new List<Student>();
+
           foreach (var grade in course.Grades)
           {
             foreach (var user in Users)
@@ -339,10 +342,21 @@ namespace Grupp5Projekt
         if (Course.Students.Contains(student))
         {
           tempList.Add(Course);
-        }
-        
+        }       
       }
+      return tempList;
+    }
 
+    public List<Course> ShowTeacherCourses(Teacher teacher)
+    {
+      List<Course> tempList = new List<Course>();
+      foreach (var course in Courses)
+      {
+        if (course.Teacher == teacher)
+        {
+          tempList.Add(course);         
+        }
+      }
       return tempList;
     }
   }

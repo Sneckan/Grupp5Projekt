@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Grupp5Projekt
@@ -17,6 +18,16 @@ namespace Grupp5Projekt
     public List<Course> Courses { get; set; }
     public List<Room> Rooms { get; set; }
     public List<Lesson> Lessons { get; set; }
+    public User LoggedUser { get; set; }
+
+    public Register(User LoggedUser)
+    {
+      this.LoggedUser = LoggedUser;
+      Users=new List<User>();
+      Courses=new List<Course>();
+      Rooms=new List<Room>();
+      Lessons=new List<Lesson>();
+    }
 
     public Register()
     {
@@ -58,7 +69,7 @@ namespace Grupp5Projekt
         Lessons = new List<Lesson>();
       }
     }
-    public User LoggedUser;
+    
 
     //Constructor with no parameters
     //public Register()
@@ -131,6 +142,7 @@ namespace Grupp5Projekt
     public void AddAdminUser(Admin admin)
     {
       Users.Add(admin);
+      SaveUsers();
     }
 
     //Remove Admin from list
@@ -139,6 +151,7 @@ namespace Grupp5Projekt
       if (admin != LoggedUser)
       {
         Users.Remove(admin);
+        SaveUsers();
       }
 
     }
@@ -153,12 +166,14 @@ namespace Grupp5Projekt
     public void AddTeacherUser(Teacher teacher)
     {
       Users.Add(teacher);
+      SaveUsers();
     }
 
     //Remove Teacher from list
     public void RemoveTeacherUser(Teacher teacher)
     {
       Users.Remove(teacher);
+      SaveUsers();
     }
 
     //Add Student
@@ -171,12 +186,14 @@ namespace Grupp5Projekt
     public void AddStudentUser(Student student)
     {
       Users.Add(student);
+      SaveUsers();
     }
 
     //Remove student from list
     public void RemoveStudentUser(Student student)
     {
       Users.Remove(student);
+      SaveUsers();
     }
 
     //Add Course
@@ -189,29 +206,34 @@ namespace Grupp5Projekt
     public void AddCourse(Course course)
     {
       Courses.Add(course);
+      SaveCourse();
     }
 
     //Remove Course
     public void RemoveCourse(Course course)
     {
       Courses.Remove(course);
+      SaveCourse();
     }
 
     //Add Room
     public void AddRoom(string rName)
     {
       Rooms.Add(new Room(rName));
+      SaveRooms();
     }
 
     public void AddRoom(Room room)
     {
       Rooms.Add(room);
+      SaveRooms();
     }
 
     //Remove Room
     public void RemoveRoom(Room room)
     {
       Rooms.Remove(room);
+      SaveRooms();
     }
 
 
@@ -311,6 +333,8 @@ namespace Grupp5Projekt
             }
           }
           course.AddStudents(students);
+          course.Teacher = (Teacher)Users[SearchUserWithEmail(course.TeacherEmail)];
+
         }
         return courses;
       }

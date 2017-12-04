@@ -25,5 +25,17 @@ namespace UnitTest
       Assert.AreEqual(lesson.Start, time);
       Assert.AreEqual(lesson.End, time);
     }
+
+    [Test]
+    public void LessonToStringTest()
+    {
+      Teacher teacher = new Teacher("temp", "temp", "temp", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Room room = new Room("temp");
+      Course course = new Course("temp", teacher, DateTime.Now, DateTime.Now, 0);
+      Lesson lesson = new Lesson(course, time, time, room);
+
+      Assert.AreEqual(lesson.ToString(), "Course: temp\tRoom: temp\tTeacher: temp\tStarts: " + time + "\tEnds: " + time);
+    }
   }
 }

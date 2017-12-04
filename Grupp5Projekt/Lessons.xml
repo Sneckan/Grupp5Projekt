@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfLesson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Lesson>
+    <CourseName>Name</CourseName>
+    <Start>2017-12-04T15:42:07.148316+01:00</Start>
+    <End>2017-12-04T15:42:07.148316+01:00</End>
+    <RoomName>Room1</RoomName>
+  </Lesson>
+  <Lesson>
+    <CourseName>Name</CourseName>
+    <Start>2017-12-04T15:42:07.148316+01:00</Start>
+    <End>2017-12-04T15:42:07.148316+01:00</End>
+    <RoomName>Room2</RoomName>
+  </Lesson>
+  <Lesson>
+    <CourseName>Name</CourseName>
+    <Start>2017-12-04T15:42:07.148316+01:00</Start>
+    <End>2017-12-04T15:42:07.148316+01:00</End>
+    <RoomName>Room3</RoomName>
+  </Lesson>
+</ArrayOfLesson>

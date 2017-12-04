@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Course>
-    <Name>Svenska</Name>
+    <Name>Name</Name>
     <Teacher>
-      <Name />
-      <Email />
-      <Password />
-      <MyPrivilege>admin</MyPrivilege>
+      <Name>Name</Name>
+      <Email>Email</Email>
+      <Password>Password</Password>
+      <MyPrivilege>teacher</MyPrivilege>
       <Courses />
       <lessons />
     </Teacher>
-    <Students />
-    <StartDate>2017-12-01T13:26:15.4483138+01:00</StartDate>
-    <EndDate>2017-12-01T13:26:15.4483138+01:00</EndDate>
-    <Hours>2</Hours>
+    <Students>
+      <Student>
+        <Name>student</Name>
+        <Email>email</Email>
+        <Password>password</Password>
+        <MyPrivilege>student</MyPrivilege>
+        <lessons />
+      </Student>
+    </Students>
+    <StartDate>2017-12-04T15:42:07.148316+01:00</StartDate>
+    <EndDate>2017-12-04T15:42:07.148316+01:00</EndDate>
+    <Hours>5</Hours>
     <lessons />
-    <Grades />
+    <TeacherEmail>Email</TeacherEmail>
+    <Grades>
+      <Grade>
+        <StudentEmail>email</StudentEmail>
+        <StudentGrade />
+      </Grade>
+    </Grades>
   </Course>
 </ArrayOfCourse>

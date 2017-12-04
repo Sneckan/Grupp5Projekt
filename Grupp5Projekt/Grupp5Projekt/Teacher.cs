@@ -27,10 +27,5 @@ namespace Grupp5Projekt
     {
       courses.Add(course);
     }
-<<<<<<< HEAD
-=======
-    
-
->>>>>>> 447164fa52e78c92d63e9484fe329924d37851a0
   }
 }

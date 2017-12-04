@@ -13,6 +13,14 @@ namespace Grupp5Projekt
     public DateTime End { get; set; }
     public Room Room { get; set; }
 
+    public Lesson()
+    {
+      this.Course = new Course();
+      this.Start = new DateTime();
+      this.End = new DateTime();
+      this.Room = new Room();
+    }
+
     public Lesson(Course Course,DateTime Start,DateTime End,Room Room)
     {
       this.Course = Course;

@@ -1,4 +1,5 @@
-﻿using Grupp5Projekt;
+﻿using System;
+using Grupp5Projekt;
 using NUnit.Framework;
 
 namespace UnitTest
@@ -10,7 +11,9 @@ namespace UnitTest
     public void CheckIfAdminIsCreatedCorrectly()
     {
       Admin admin = new Admin("temp", "temp@temp.se", "temp", User.Privilege.admin);
+
       Assert.AreEqual("temp", admin.Name);
     }
+
   }
 }

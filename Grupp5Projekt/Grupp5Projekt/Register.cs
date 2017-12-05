@@ -464,7 +464,7 @@ namespace Grupp5Projekt
       return tempList;
     }
 
-    public List<Lesson> ShowLessonsCourse(Course Course)
+    public List<Lesson> GetLessonsCourse(Course Course)
     {
       List<Lesson> tempList = new List<Lesson>();
       foreach(var Lesson in Lessons)

@@ -116,7 +116,12 @@ namespace Grupp5Projekt
 
     static void StudentShowLessonsMenu(Register register)
     {
-     
+      List<Lesson> studentList = register.ShowLessonsStudent((Student)register.LoggedUser);
+      foreach(Lesson Lesson in studentList)
+      {
+        Console.WriteLine(Lesson.ToString());
+      }
+
     }
 
     static void StudentShowCoursesMenu(Register register)
@@ -174,6 +179,7 @@ namespace Grupp5Projekt
 
     }
 
+<<<<<<< HEAD
     static void AdminMenu(Register register)
   {
       Console.WriteLine("1. Add user");
@@ -330,6 +336,177 @@ namespace Grupp5Projekt
           return;
       }
     }
+=======
+        static void AdminMenu(Register register)
+        {
+            Console.WriteLine("1. Add user");
+            Console.WriteLine("2. Remove user");
+            Console.WriteLine("3. Create course");
+            Console.WriteLine("4. Create room");
+            Console.WriteLine("5. Create timetable");
+            Console.WriteLine("6. Show timetable");
+            Console.WriteLine("7. Show notices");
+            Console.WriteLine("0. Exit");
+            string userChoice = Console.ReadLine();
+
+            switch (userChoice)
+            {
+                case "1":
+                    AddUser(register);
+                    break;
+                case "2":
+                    RemoveUser(register);
+                    break;
+                case "3":
+                    CreateCourse(register);
+                    break;
+                case "4":
+                    CreateRoom(register);
+                    break;
+                case "5":
+                    CreateTimetable(register);
+                    break;
+                case "6":
+                    ShowTimetable(register);
+                    break;
+                case "7":
+                    ShowNotices(register);
+                    break;
+                case "0":
+                    break;
+            }
+        }
+
+        public static void AddUser(Register register)
+        {
+            Console.WriteLine("1. Add Admin");
+            Console.WriteLine("2. Add Teacher");
+            Console.WriteLine("3. Add Student");
+            Console.WriteLine("0. Return");
+            string userChoice = Console.ReadLine();
+
+            switch (userChoice)
+            {
+                case "1":
+                    AddAdminUser(register);
+                    break;
+                case "2":
+                    AddTeacherUser(register);
+                    break;
+                case "3":
+                    AddStudentUser(register);
+                    break;
+                case "0":
+                    return;
+
+            }
+        }
+
+        //Add admin user
+        static void AddAdminUser(Register register)
+        {
+            Console.WriteLine("Enter admin name: ");
+            string rName = Console.ReadLine();
+            Console.WriteLine("Enter admin password: ");
+            string rPassword = Console.ReadLine();
+            Console.WriteLine("Enter admin email: ");
+            string rEmail = Console.ReadLine();
+        }
+
+        //Add teacher user
+        static void AddTeacherUser(Register register)
+        {
+            Console.WriteLine("Enter teacher name: ");
+            string rName = Console.ReadLine();
+            Console.WriteLine("Enter teacher password: ");
+            string rPassword = Console.ReadLine();
+            Console.WriteLine("Enter teacher email: ");
+            string rEmail = Console.ReadLine();
+        }
+        //Add student user
+        static void AddStudentUser(Register register)
+        {
+            Console.WriteLine("Enter student name: ");
+            string rName = Console.ReadLine();
+            Console.WriteLine("Enter student password: ");
+            string rPassword = Console.ReadLine();
+            Console.WriteLine("Enter student email: ");
+            string rEmail = Console.ReadLine();
+        }
+
+        //Remove User
+        static void RemoveUser(Register register)
+        {
+            Console.WriteLine("To remove please enter user email: ");
+            string rEmail = Console.ReadLine();
+        }
+
+        //Create course
+        static void CreateCourse(Register register)
+        {
+            Console.WriteLine("Enter course name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter teacher name to course: ");
+            string teacher = Console.ReadLine();
+            Console.WriteLine("Enter start date 'YYYY-MM-DD' for course: ");
+            string cstartDate = Console.ReadLine();
+            DateTime startDate = DateTime.Parse(cstartDate);
+            Console.WriteLine("Enter end date 'YYYY-MM-DD' for course: ");
+            string cendDate = Console.ReadLine();
+            DateTime endDate = DateTime.Parse(cendDate);
+            Console.WriteLine("Enter course length in '00:00': ");
+            string cHours = Console.ReadLine();
+            int hours = Int32.Parse(cHours);
+        }
+
+        //Create Room
+        static void CreateRoom(Register register)
+        {
+            Console.WriteLine("Enter room name: ");
+            string Name = Console.ReadLine();
+            Console.WriteLine("Enter room capacity: ");
+            string MaxCapacity = Console.ReadLine();
+            Console.WriteLine("Give lesson to room: ");
+            string lessons = Console.ReadLine();
+        }
+
+        //Show Timetable
+        static void ShowTimetable(Register register)
+        {
+            Console.WriteLine("1. Show all");
+            Console.WriteLine("2. Show for one course");
+            Console.WriteLine("3. Show for one room");
+            Console.WriteLine("0. Return");
+            string userChoice = Console.ReadLine();
+
+            switch (userChoice)
+            {
+                case "1":
+                    Console.WriteLine("Show all/ Select,Back");
+                    break;
+                case "2":
+                    Console.WriteLine("Show for one course/ Select,Back");
+                    break;
+                case "3":
+                    Console.WriteLine("Show for one room/ Select, Back");
+                    break;
+                case "0":
+                    return;
+            }
+        }
+
+        //Create Timetable
+        static void CreateTimetable(Register register)
+        {
+            Console.WriteLine("Create Timetable");
+        }
+
+        //Show Notices
+        static void ShowNotices(Register register)
+        {
+            Console.WriteLine("Show Notices");
+        }
+>>>>>>> a718f9c960acfce8c11e3f92bddcbf77e7263974
 
     //Create Timetable
     public static void CreateTimetable()
@@ -408,7 +585,7 @@ namespace Grupp5Projekt
 
         if (coursePos < 0)
         {
-          Console.WriteLine("Course not found, try again.");
+          Console.WriteLine("Course not found, try again.");          
         }
         else
         {
@@ -421,9 +598,50 @@ namespace Grupp5Projekt
 
     static void GradeStudent(Register register)
     {
-      
-    }
+      int coursePos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a course: ");
+        coursePos = register.SearchCourseWithName(Console.ReadLine());
 
+        if (coursePos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      int studentPos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a student email: ");
+        studentPos = register.SearchUserWithEmail(Console.ReadLine());
+
+        if (studentPos < 0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          if (register.Courses[coursePos].Students.Contains(register.Users[studentPos]))
+          {
+            break;          
+          }
+          Console.WriteLine("Student doesn't exist in that course.");
+        }
+      }
+
+      Console.WriteLine("Choose a grade (F, E, D, C, B, A):");
+      string grade = Console.ReadLine();
+
+      register.Courses[coursePos].GradeStudent(register.Users[studentPos].Email, grade);
+      
+      Console.WriteLine("Grade successfully added to student.");
+    }
+  
     static void TeacherShowCourses(Register register)
     {
       Console.WriteLine("All courses for " + register.LoggedUser.Name + ":" + "\n");

@@ -278,7 +278,7 @@ namespace Grupp5Projekt
 
         if (coursePos < 0)
         {
-          Console.WriteLine("Course not found, try again.");
+          Console.WriteLine("Course not found, try again.");          
         }
         else
         {
@@ -291,9 +291,50 @@ namespace Grupp5Projekt
 
     static void GradeStudent(Register register)
     {
-      
-    }
+      int coursePos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a course: ");
+        coursePos = register.SearchCourseWithName(Console.ReadLine());
 
+        if (coursePos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      int studentPos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a student email: ");
+        studentPos = register.SearchUserWithEmail(Console.ReadLine());
+
+        if (studentPos < 0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          if (register.Courses[coursePos].Students.Contains(register.Users[studentPos]))
+          {
+            break;          
+          }
+          Console.WriteLine("Student doesn't exist in that course.");
+        }
+      }
+
+      Console.WriteLine("Choose a grade (F, E, D, C, B, A):");
+      string grade = Console.ReadLine();
+
+      register.Courses[coursePos].GradeStudent(register.Users[studentPos].Email, grade);
+      
+      Console.WriteLine("Grade successfully added to student.");
+    }
+  
     static void TeacherShowCourses(Register register)
     {
       Console.WriteLine("All courses for " + register.LoggedUser.Name + ":" + "\n");

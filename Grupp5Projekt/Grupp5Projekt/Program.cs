@@ -117,12 +117,77 @@ namespace Grupp5Projekt
 
     static void StudentShowLessonsMenu(Register register)
     {
-      List<Lesson> studentList = register.ShowLessonsStudent((Student)register.LoggedUser);
-      foreach(Lesson Lesson in studentList)
+      bool menuLoop = true;
+      while(menuLoop)
+      {
+        Console.Clear();
+        Console.WriteLine("1. Show lessons for all courses");
+        Console.WriteLine("2. Show lessons for selected course");
+        Console.WriteLine("Q. Back");
+        string choice = Console.ReadLine();
+
+        switch(choice)
+        {
+          case "1":
+            StudentShowAllLessons(register);
+            break;
+          case "2":
+            StudentShowSelectedCourseLessons(register);
+            break;
+          case "q":
+            menuLoop = false;
+            break;
+
+          case "Q":
+            menuLoop = false;
+            break;
+        }
+
+      }
+    }
+
+    static void StudentShowAllLessons(Register register)
+    {
+      List<Lesson> lessonList = register.ShowLessonsStudent((Student)register.LoggedUser);
+      foreach (Lesson Lesson in lessonList)
       {
         Console.WriteLine(Lesson.ToString());
       }
+      
+      bool menuLoop = true;
+      while (menuLoop)
+      {
+        Console.WriteLine("Q. Back");
+        string choice = Console.ReadLine();
+        choice = Console.ReadLine();
+        if (choice == "Q" || choice == "q")
+        {
+          menuLoop = false;
+        }
+      }
+    }
 
+    static void StudentShowSelectedCourseLessons(Register register)
+    {
+      StudentShowCoursesMenu(register);
+      Console.WriteLine("Choose course: Name ");
+      string choice = Console.ReadLine();
+      List<Lesson> lessonList = register.GetLessonsCourse(register.Courses[register.SearchCourseWithName(choice)]);
+      foreach(Lesson Lesson in lessonList)
+      {
+        Console.WriteLine(Lesson.ToString());
+      }
+      bool menuLoop = true;
+      while(menuLoop)
+      {
+        Console.WriteLine("Q. Back");
+        choice = Console.ReadLine();
+        if(choice=="Q"||choice=="q")
+        {
+          menuLoop = false;
+        }
+      }
+      
     }
 
     static void StudentShowCoursesMenu(Register register)
@@ -136,24 +201,19 @@ namespace Grupp5Projekt
 
     static void StudentShowGradesMenu(Register register)
     {
+      foreach (var Course in register.ShowStudentCourses((Student)register.LoggedUser))
+      {
+        Console.WriteLine(Course.Name + ":\t" + Course.ShowGradeForStudent((Student)register.LoggedUser));
+      }
+
       bool menuLoop = true;
       while (menuLoop)
       {
-        Console.WriteLine("1. Show grades for all courses");
-        Console.WriteLine("2. Go back");
-
-        switch (Console.ReadLine())
+        Console.WriteLine("Q. Back");
+        string choice = Console.ReadLine();
+        if(choice=="q"||choice=="Q")
         {
-        case "1":
-          foreach (var Course in register.ShowStudentCourses((Student)register.LoggedUser))
-          {
-            Console.WriteLine(Course.Name+":\t"+Course.ShowGradeForStudent((Student)register.LoggedUser));
-          }
-          break;
-
-        case "2":
           menuLoop = false;
-          break;
         }
       }
     }

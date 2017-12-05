@@ -63,7 +63,7 @@ namespace Grupp5Projekt
 
       try
       {
-        Lessons = LoadLessons();
+        //Lessons = LoadLessons();
       }
       catch
       {
@@ -259,11 +259,37 @@ namespace Grupp5Projekt
       }
     }
 
+    public bool AddLesson(Lesson lesson)
+    {
+
+      bool occupied = false;
+      foreach(var Lesson in Lessons)
+      {
+        if((lesson.Start>=Lesson.Start&&lesson.End<=Lesson.End)&&Lesson.Room==lesson.Room)
+        {
+          occupied = true;
+        }
+      }
+
+      if(!occupied)
+      {
+        Lessons.Add(lesson);
+        SaveLessons();
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
     public void RemoveLesson(Lesson lesson)
     {
       Lessons.Remove(lesson);
       SaveLessons();
     }
+
+
 
     public void LogIn(User user)
     {
@@ -296,6 +322,22 @@ namespace Grupp5Projekt
       while (i < Courses.Count && !found)
       {
         if (Courses[i].Name == name)
+        {
+          pos = i;
+          found = true;
+        }
+        i++;
+      }
+      return pos;
+    }
+    public int SearchRoomWithName(string name)
+    {
+      int i = 0;
+      int pos = -1;
+      bool found = false;
+      while (i < Rooms.Count && !found)
+      {
+        if (Rooms[i].Name == name)
         {
           pos = i;
           found = true;
@@ -366,6 +408,7 @@ namespace Grupp5Projekt
         foreach (var course in courses)
         {
           List<Student> students = new List<Student>();
+
           foreach (var grade in course.Grades)
           {
             foreach (var user in Users)
@@ -393,6 +436,7 @@ namespace Grupp5Projekt
       }
     }
 
+    //Load Rooms
     public List<Room> LoadRooms()
     {
       using (var stream = System.IO.File.OpenRead("Rooms.xml"))
@@ -429,56 +473,90 @@ namespace Grupp5Projekt
       }
     }
 
+    public void SaveLessons()
+    {
+      using (var writer = new StreamWriter("Lessons.xml"))
+      {
+        var serializer = new XmlSerializer(typeof(List<Lesson>));
+        serializer.Serialize(writer, Lessons);
+      }
+    }
+
+    public List<Lesson> LoadLessons()
+    {
+      using (var stream = System.IO.File.OpenRead("Lessons.xml"))
+      {
+        var serializer = new XmlSerializer(typeof(List<Lesson>));
+        List<Lesson> lessons=(List<Lesson>)serializer.Deserialize(stream);
+        foreach(Lesson lesson in lessons)
+        {
+          lesson.Course = Courses[SearchCourseWithName(lesson.CourseName)];
+          lesson.Room = Rooms[SearchRoomWithName(lesson.RoomName)];
+        }
+
+        return lessons;
+      }
+    }
+
     public List<Course> ShowStudentCourses(Student student)
+    {
+      List<Course> tempList=new List<Course>();
+      foreach (var Course in Courses)
       {
-        List<Course> tempList = new List<Course>();
-        foreach (var Course in Courses)
+        if (Course.Students.Contains(student))
         {
-          if (Course.Students.Contains(student))
-          {
-            tempList.Add(Course);
-          }
-
-        }
-
-        return tempList;
+          tempList.Add(Course);
+        }       
       }
+      return tempList;
+    }
 
-    public List<Lesson> ShowLessonCourses(Course course)
+    public List<Course> ShowTeacherCourses(Teacher teacher)
+    {
+      List<Course> tempList = new List<Course>();
+      foreach (var course in Courses)
+      {
+        if (course.Teacher == teacher)
+        {
+          tempList.Add(course);         
+        }
+      }
+      return tempList;
+    }
+
+    public List<Lesson> ShowLessonsCourse(Course Course)
     {
       List<Lesson> tempList = new List<Lesson>();
-      foreach (var Lesson in Lessons)
+      foreach(var Lesson in Lessons)
       {
-        if (Lesson.Course == course)
+        if(Lesson.Course==Course)
         {
           tempList.Add(Lesson);
         }
-
       }
 
       return tempList;
     }
 
-    public List<Lesson> ShowLessonRoom(Room room)
+    public List<Lesson> ShowLessonsRoom(Room Room)
     {
       List<Lesson> tempList = new List<Lesson>();
       foreach (var Lesson in Lessons)
       {
-        if (Lesson.Room == room)
+        if (Lesson.Room == Room)
         {
           tempList.Add(Lesson);
         }
-
       }
-
       return tempList;
     }
 
-    public List<Lesson> ShowLessonStudent(Student student)
+    public List<Lesson> ShowLessonsStudent(Student student)
     {
       List<Lesson> tempList = new List<Lesson>();
       List<Course> tempCourseList = ShowStudentCourses(student);
-      foreach (var Course in tempCourseList)
+
+      foreach(var Course in tempCourseList)
       {
         foreach (var Lesson in Lessons)
         {

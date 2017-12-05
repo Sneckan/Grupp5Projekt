@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 
 namespace Grupp5Projekt
 {
   public class Lesson
   {
+    
     [XmlIgnore]
     public Room Room { get; set; }
-
     [XmlIgnore]
     public Course Course { get; set; }
+
 
 
     public string CourseName { get; set; }
@@ -29,6 +31,7 @@ namespace Grupp5Projekt
       this.Room = new Room();
       this.CourseName = "";
       this.RoomName = "";
+
     }
 
     public Lesson(Course Course, DateTime Start, DateTime End, Room Room)
@@ -39,17 +42,11 @@ namespace Grupp5Projekt
       this.Room = Room;
       this.CourseName = Course.Name;
       this.RoomName = Room.Name;
-
     }
 
     public override string ToString()
     {
-      return
-        "Course: " + CourseName +
-        "\tRoom: " + RoomName +
-        "\tTeacher: " + Course.Teacher.Name + 
-        "\tStarts: " + Start + 
-        "\tEnds: " + End;
+      return "Course: " + CourseName + "\tRoom: " + RoomName + "\tTeacher: " + Course.Teacher.Name + "\tStarts: " + Start + "\tEnds: " + End;
     }
   }
 }

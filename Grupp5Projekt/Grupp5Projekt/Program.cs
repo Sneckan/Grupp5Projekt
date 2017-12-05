@@ -189,32 +189,32 @@ namespace Grupp5Projekt
             switch (userChoice)
             {
                 case "1":
-                    AddUser();
+                    AddUser(register);
                     break;
                 case "2":
-                    RemoveUser();
+                    RemoveUser(register);
                     break;
                 case "3":
-                    CreateCourse();
+                    CreateCourse(register);
                     break;
                 case "4":
-                    CreateRoom();
+                    CreateRoom(register);
                     break;
                 case "5":
-                    CreateTimetable();
+                    CreateTimetable(register);
                     break;
                 case "6":
-                    ShowTimetable();
+                    ShowTimetable(register);
                     break;
                 case "7":
-                    ShowNotices();
+                    ShowNotices(register);
                     break;
                 case "0":
                     break;
             }
         }
 
-        public static void AddUser()
+        public static void AddUser(Register register)
         {
             Console.WriteLine("1. Add Admin");
             Console.WriteLine("2. Add Teacher");
@@ -225,13 +225,13 @@ namespace Grupp5Projekt
             switch (userChoice)
             {
                 case "1":
-                    AddAdminUser();
+                    AddAdminUser(register);
                     break;
                 case "2":
-                    AddTeacherUser();
+                    AddTeacherUser(register);
                     break;
                 case "3":
-                    AddStudentUser();
+                    AddStudentUser(register);
                     break;
                 case "0":
                     return;
@@ -240,7 +240,7 @@ namespace Grupp5Projekt
         }
 
         //Add admin user
-        public static void AddAdminUser()
+        static void AddAdminUser(Register register)
         {
             Console.WriteLine("Enter admin name: ");
             string rName = Console.ReadLine();
@@ -251,7 +251,7 @@ namespace Grupp5Projekt
         }
 
         //Add teacher user
-        public static void AddTeacherUser()
+        static void AddTeacherUser(Register register)
         {
             Console.WriteLine("Enter teacher name: ");
             string rName = Console.ReadLine();
@@ -261,7 +261,7 @@ namespace Grupp5Projekt
             string rEmail = Console.ReadLine();
         }
         //Add student user
-        public static void AddStudentUser()
+        static void AddStudentUser(Register register)
         {
             Console.WriteLine("Enter student name: ");
             string rName = Console.ReadLine();
@@ -272,14 +272,14 @@ namespace Grupp5Projekt
         }
 
         //Remove User
-        public static void RemoveUser()
+        static void RemoveUser(Register register)
         {
             Console.WriteLine("To remove please enter user email: ");
             string rEmail = Console.ReadLine();
         }
 
         //Create course
-        public static void CreateCourse()
+        static void CreateCourse(Register register)
         {
             Console.WriteLine("Enter course name: ");
             string name = Console.ReadLine();
@@ -297,7 +297,7 @@ namespace Grupp5Projekt
         }
 
         //Create Room
-        public static void CreateRoom()
+        static void CreateRoom(Register register)
         {
             Console.WriteLine("Enter room name: ");
             string Name = Console.ReadLine();
@@ -308,7 +308,7 @@ namespace Grupp5Projekt
         }
 
         //Show Timetable
-        public static void ShowTimetable()
+        static void ShowTimetable(Register register)
         {
             Console.WriteLine("1. Show all");
             Console.WriteLine("2. Show for one course");
@@ -333,13 +333,13 @@ namespace Grupp5Projekt
         }
 
         //Create Timetable
-        public static void CreateTimetable()
+        static void CreateTimetable(Register register)
         {
             Console.WriteLine("Create Timetable");
         }
 
         //Show Notices
-        public static void ShowNotices()
+        static void ShowNotices(Register register)
         {
             Console.WriteLine("Show Notices");
         }

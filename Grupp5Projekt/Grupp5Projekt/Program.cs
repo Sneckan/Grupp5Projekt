@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -59,7 +60,7 @@ namespace Grupp5Projekt
       switch(register.LoggedUser.MyPrivilege)
       {
         case User.Privilege.admin:
-          /*AdminMenu(register);*/ //Admin menu functioncall
+          AdminMenu(register); //Admin menu functioncall
           break;
 
         case User.Privilege.teacher:
@@ -181,6 +182,9 @@ namespace Grupp5Projekt
 
         static void AdminMenu(Register register)
         {
+          bool menuLoop = true;
+          while (menuLoop)
+          {
             Console.WriteLine("1. Add user");
             Console.WriteLine("2. Remove user");
             Console.WriteLine("3. Create course");
@@ -193,60 +197,76 @@ namespace Grupp5Projekt
 
             switch (userChoice)
             {
-                case "1":
-                    AddUser(register);
-                    break;
-                case "2":
-                    RemoveUser(register);
-                    break;
-                case "3":
-                    CreateCourse(register);
-                    break;
-                case "4":
-                    CreateRoom(register);
-                    break;
-                case "5":
-                    CreateTimetable(register);
-                    break;
-                case "6":
-                    ShowTimetable(register);
-                    break;
-                case "7":
-                    ShowNotices(register);
-                    break;
-                case "0":
-                    break;
+              case "1":
+                Console.Clear();
+                AddUser(register);
+                break;
+              case "2":
+                Console.Clear();
+                RemoveUser(register);
+                break;
+              case "3":
+                Console.Clear();
+                CreateCourse(register);
+                break;
+              case "4":
+                Console.Clear();
+                CreateRoom(register);
+                break;
+              case "5":
+                Console.Clear();
+                CreateTimetable(register);
+                break;
+              case "6":
+                Console.Clear();
+                ShowTimetable(register);
+                break;
+              case "7":
+                Console.Clear();
+                ShowNotices(register);
+                break;
+              case "0":
+                break;
             }
+          }
         }
 
         public static void AddUser(Register register)
         {
+          bool menuLoop = true;
+          while (menuLoop)
+          {
             Console.WriteLine("1. Add Admin");
             Console.WriteLine("2. Add Teacher");
             Console.WriteLine("3. Add Student");
-            Console.WriteLine("0. Return");
+            Console.WriteLine("0. Return to Main Menu");
             string userChoice = Console.ReadLine();
 
             switch (userChoice)
             {
-                case "1":
-                    AddAdminUser(register);
-                    break;
-                case "2":
-                    AddTeacherUser(register);
-                    break;
-                case "3":
-                    AddStudentUser(register);
-                    break;
-                case "0":
-                    return;
+              case "1":
+                Console.Clear();
+                AddAdminUser(register);
+                break;
+              case "2":
+                Console.Clear();
+                AddTeacherUser(register);
+                break;
+              case "3":
+                Console.Clear();
+                AddStudentUser(register);
+                break;
+              case "0":
+                break;
 
             }
+          }
         }
 
         //Add admin user
         static void AddAdminUser(Register register)
         {
+            Console.Clear();
             Console.WriteLine("Enter admin name: ");
             string rName = Console.ReadLine();
             Console.WriteLine("Enter admin password: ");
@@ -258,6 +278,7 @@ namespace Grupp5Projekt
         //Add teacher user
         static void AddTeacherUser(Register register)
         {
+            Console.Clear();
             Console.WriteLine("Enter teacher name: ");
             string rName = Console.ReadLine();
             Console.WriteLine("Enter teacher password: ");
@@ -268,6 +289,7 @@ namespace Grupp5Projekt
         //Add student user
         static void AddStudentUser(Register register)
         {
+            Console.Clear();
             Console.WriteLine("Enter student name: ");
             string rName = Console.ReadLine();
             Console.WriteLine("Enter student password: ");
@@ -279,6 +301,7 @@ namespace Grupp5Projekt
         //Remove User
         static void RemoveUser(Register register)
         {
+            Console.Clear();
             Console.WriteLine("To remove please enter user email: ");
             string rEmail = Console.ReadLine();
         }
@@ -286,6 +309,7 @@ namespace Grupp5Projekt
         //Create course
         static void CreateCourse(Register register)
         {
+            Console.Clear();
             Console.WriteLine("Enter course name: ");
             string name = Console.ReadLine();
             Console.WriteLine("Enter teacher name to course: ");
@@ -304,6 +328,7 @@ namespace Grupp5Projekt
         //Create Room
         static void CreateRoom(Register register)
         {
+            Console.Clear();
             Console.WriteLine("Enter room name: ");
             string Name = Console.ReadLine();
             Console.WriteLine("Enter room capacity: ");
@@ -324,12 +349,15 @@ namespace Grupp5Projekt
             switch (userChoice)
             {
                 case "1":
+                    Console.Clear();
                     Console.WriteLine("Show all/ Select,Back");
                     break;
                 case "2":
+                    Console.Clear();
                     Console.WriteLine("Show for one course/ Select,Back");
                     break;
                 case "3":
+                    Console.Clear();
                     Console.WriteLine("Show for one room/ Select, Back");
                     break;
                 case "0":
@@ -340,12 +368,14 @@ namespace Grupp5Projekt
         //Create Timetable
         static void CreateTimetable(Register register)
         {
+            Console.Clear();
             Console.WriteLine("Create Timetable");
         }
 
         //Show Notices
         static void ShowNotices(Register register)
         {
+            Console.Clear();
             Console.WriteLine("Show Notices");
         }
 

@@ -138,16 +138,16 @@ namespace Grupp5Projekt
 
         switch (Console.ReadLine())
         {
-          case "1":
-            foreach (var Course in register.ShowStudentCourses((Student)register.LoggedUser))
-            {
-              Console.WriteLine(Course.Name+":\t"+Course.ShowGradeForStudent((Student)register.LoggedUser));
-            }
-            break;
+        case "1":
+          foreach (var Course in register.ShowStudentCourses((Student)register.LoggedUser))
+          {
+            Console.WriteLine(Course.Name+":\t"+Course.ShowGradeForStudent((Student)register.LoggedUser));
+          }
+          break;
 
-          case "2":
-            menuLoop = false;
-            break;
+        case "2":
+          menuLoop = false;
+          break;
         }
       }
     }
@@ -174,213 +174,212 @@ namespace Grupp5Projekt
 
     }
 
-        static void AdminMenu(Register register)
-        {
-            Console.WriteLine("1. Add user");
-            Console.WriteLine("2. Remove user");
-            Console.WriteLine("3. Create course");
-            Console.WriteLine("4. Create room");
-            Console.WriteLine("5. Create timetable");
-            Console.WriteLine("6. Show timetable");
-            Console.WriteLine("7. Show notices");
-            Console.WriteLine("0. Exit");
-            string userChoice = Console.ReadLine();
+    static void AdminMenu(Register register)
+  {
+      Console.WriteLine("1. Add user");
+      Console.WriteLine("2. Remove user");
+      Console.WriteLine("3. Create course");
+      Console.WriteLine("4. Create room");
+      Console.WriteLine("5. Create timetable");
+      Console.WriteLine("6. Show timetable");
+      Console.WriteLine("7. Show notices");
+      Console.WriteLine("0. Exit");
+      string userChoice = Console.ReadLine();
 
-            switch (userChoice)
-            {
-                case "1":
-                    AddUser();
-                    break;
-                case "2":
-                    RemoveUser();
-                    break;
-                case "3":
-                    CreateCourse();
-                    break;
-                case "4":
-                    CreateRoom();
-                    break;
-                case "5":
-                    CreateTimetable();
-                    break;
-                case "6":
-                    ShowTimetable();
-                    break;
-                case "7":
-                    ShowNotices();
-                    break;
-                case "0":
-                    break;
-            }
-        }
-
-        public static void AddUser()
-        {
-            Console.WriteLine("1. Add Admin");
-            Console.WriteLine("2. Add Teacher");
-            Console.WriteLine("3. Add Student");
-            Console.WriteLine("0. Return");
-            string userChoice = Console.ReadLine();
-
-            switch (userChoice)
-            {
-                case "1":
-                    AddAdminUser();
-                    break;
-                case "2":
-                    AddTeacherUser();
-                    break;
-                case "3":
-                    AddStudentUser();
-                    break;
-                case "0":
-                    return;
-
-            }
-        }
-
-        //Add admin user
-        public static void AddAdminUser()
-        {
-            Console.WriteLine("Enter admin name: ");
-            string rName = Console.ReadLine();
-            Console.WriteLine("Enter admin password: ");
-            string rPassword = Console.ReadLine();
-            Console.WriteLine("Enter admin email: ");
-            string rEmail = Console.ReadLine();
-        }
-
-        //Add teacher user
-        public static void AddTeacherUser()
-        {
-            Console.WriteLine("Enter teacher name: ");
-            string rName = Console.ReadLine();
-            Console.WriteLine("Enter teacher password: ");
-            string rPassword = Console.ReadLine();
-            Console.WriteLine("Enter teacher email: ");
-            string rEmail = Console.ReadLine();
-        }
-        //Add student user
-        public static void AddStudentUser()
-        {
-            Console.WriteLine("Enter student name: ");
-            string rName = Console.ReadLine();
-            Console.WriteLine("Enter student password: ");
-            string rPassword = Console.ReadLine();
-            Console.WriteLine("Enter student email: ");
-            string rEmail = Console.ReadLine();
-        }
-
-        //Remove User
-        public static void RemoveUser()
-        {
-            Console.WriteLine("To remove please enter user email: ");
-            string rEmail = Console.ReadLine();
-        }
-
-        //Create course
-        public static void CreateCourse()
-        {
-            Console.WriteLine("Enter course name: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter teacher name to course: ");
-            string teacher = Console.ReadLine();
-            Console.WriteLine("Enter start date 'YYYY-MM-DD' for course: ");
-            string cstartDate = Console.ReadLine();
-            DateTime startDate = DateTime.Parse(cstartDate);
-            Console.WriteLine("Enter end date 'YYYY-MM-DD' for course: ");
-            string cendDate = Console.ReadLine();
-            DateTime endDate = DateTime.Parse(cendDate);
-            Console.WriteLine("Enter course length in '00:00': ");
-            string cHours = Console.ReadLine();
-            int hours = Int32.Parse(cHours);
-        }
-
-        //Create Room
-        public static void CreateRoom()
-        {
-            Console.WriteLine("Enter room name: ");
-            string Name = Console.ReadLine();
-            Console.WriteLine("Enter room capacity: ");
-            string MaxCapacity = Console.ReadLine();
-            Console.WriteLine("Give lesson to room: ");
-            string lessons = Console.ReadLine();
-        }
-
-        //Show Timetable
-        public static void ShowTimetable()
-        {
-            Console.WriteLine("1. Show all");
-            Console.WriteLine("2. Show for one course");
-            Console.WriteLine("3. Show for one room");
-            Console.WriteLine("0. Return");
-            string userChoice = Console.ReadLine();
-
-            switch (userChoice)
-            {
-                case "1":
-                    Console.WriteLine("Show all/ Select,Back");
-                    break;
-                case "2":
-                    Console.WriteLine("Show for one course/ Select,Back");
-                    break;
-                case "3":
-                    Console.WriteLine("Show for one room/ Select, Back");
-                    break;
-                case "0":
-                    return;
-            }
-        }
-
-        //Create Timetable
-        public static void CreateTimetable()
-        {
-            Console.WriteLine("Create Timetable");
-        }
-
-        //Show Notices
-        public static void ShowNotices()
-        {
-            Console.WriteLine("Show Notices");
-        }
-
-        static void TeacherMenu(Register register)
-    {
-      bool menuLoop = true;
-      while (menuLoop)
+      switch (userChoice)
       {
-        Console.WriteLine("1. Add student to course");
-        Console.WriteLine("2. Grade student");
-        Console.WriteLine("3. Show ungraded students");
-        Console.WriteLine("4. Show courses");
-        Console.WriteLine("5. Show finished courses");
-        Console.WriteLine("6. Show ongoing courses");
-
-        string input = Console.ReadLine();
-
-        switch (input)
-        {
-          case "1":
-            Console.Clear();
-            AddStudentToCourse(register);
-            break;
-          case "2":
-            GradeStudent(register);
-            break;
-          case "4":
-            Console.Clear();
-            TeacherShowCourses(register);
-            break;
-          case "5":
-            Console.Clear();
-            TeacherShowFinishedCourses(register);
-            break;
-          case "6":
-            Console.Clear();
-            TeacherShowOngoingCourses(register);
-            break;
-        }
+        case "1":
+          AddUser();
+          break;
+        case "2":
+          RemoveUser();
+          break;
+        case "3":
+          CreateCourse();
+          break;
+        case "4":
+          CreateRoom();
+          break;
+        case "5":
+          CreateTimetable();
+          break;
+        case "6":
+          ShowTimetable();
+          break;
+        case "7":
+          ShowNotices();
+          break;
+        case "0":
+          break;
       }
+  }
+
+    public static void AddUser()
+    {
+      Console.WriteLine("1. Add Admin");
+      Console.WriteLine("2. Add Teacher");
+      Console.WriteLine("3. Add Student");
+      Console.WriteLine("0. Return");
+      string userChoice = Console.ReadLine();
+
+      switch (userChoice)
+      {
+        case "1":
+          AddAdminUser();
+          break;
+      case "2":
+        AddTeacherUser();
+        break;
+      case "3":
+        AddStudentUser();
+        break;
+      case "0":
+        return;
+      }
+    }
+
+    //Add admin user
+    public static void AddAdminUser()
+  {
+      Console.WriteLine("Enter admin name: ");
+      string rName = Console.ReadLine();
+      Console.WriteLine("Enter admin password: ");
+      string rPassword = Console.ReadLine();
+      Console.WriteLine("Enter admin email: ");
+      string rEmail = Console.ReadLine();
+    }
+
+    //Add teacher user
+    public static void AddTeacherUser()
+    {
+      Console.WriteLine("Enter teacher name: ");
+      string rName = Console.ReadLine();
+      Console.WriteLine("Enter teacher password: ");
+      string rPassword = Console.ReadLine();
+      Console.WriteLine("Enter teacher email: ");
+      string rEmail = Console.ReadLine();
+    }
+    //Add student user
+    public static void AddStudentUser()
+    {
+      Console.WriteLine("Enter student name: ");
+      string rName = Console.ReadLine();
+      Console.WriteLine("Enter student password: ");
+      string rPassword = Console.ReadLine();
+      Console.WriteLine("Enter student email: ");
+      string rEmail = Console.ReadLine();
+    }
+
+    //Remove User
+    public static void RemoveUser()
+    {
+      Console.WriteLine("To remove please enter user email: ");
+      string rEmail = Console.ReadLine();
+    }
+
+    //Create course
+    public static void CreateCourse()
+    {
+      Console.WriteLine("Enter course name: ");
+      string name = Console.ReadLine();
+      Console.WriteLine("Enter teacher name to course: ");
+      string teacher = Console.ReadLine();
+      Console.WriteLine("Enter start date 'YYYY-MM-DD' for course: ");
+      string cstartDate = Console.ReadLine();
+      DateTime startDate = DateTime.Parse(cstartDate);
+      Console.WriteLine("Enter end date 'YYYY-MM-DD' for course: ");
+      string cendDate = Console.ReadLine();
+      DateTime endDate = DateTime.Parse(cendDate);
+      Console.WriteLine("Enter course length in '00:00': ");
+      string cHours = Console.ReadLine();
+      int hours = Int32.Parse(cHours);
+    }
+
+    //Create Room
+    public static void CreateRoom()
+    {
+      Console.WriteLine("Enter room name: ");
+      string Name = Console.ReadLine();
+      Console.WriteLine("Enter room capacity: ");
+      string MaxCapacity = Console.ReadLine();
+      Console.WriteLine("Give lesson to room: ");
+      string lessons = Console.ReadLine();
+    }
+
+    //Show Timetable
+    public static void ShowTimetable()
+    {
+      Console.WriteLine("1. Show all");
+      Console.WriteLine("2. Show for one course");
+      Console.WriteLine("3. Show for one room");
+      Console.WriteLine("0. Return");
+      string userChoice = Console.ReadLine();
+
+      switch (userChoice)
+      {
+        case "1":
+          Console.WriteLine("Show all/ Select,Back");
+          break;
+        case "2":
+          Console.WriteLine("Show for one course/ Select,Back");
+          break;
+        case "3":
+          Console.WriteLine("Show for one room/ Select, Back");
+          break;
+        case "0":
+          return;
+      }
+    }
+
+    //Create Timetable
+    public static void CreateTimetable()
+    {
+        Console.WriteLine("Create Timetable");
+    }
+
+    //Show Notices
+    public static void ShowNotices()
+    {
+        Console.WriteLine("Show Notices");
+    }
+
+    static void TeacherMenu(Register register)
+    {
+    bool menuLoop = true;
+    while (menuLoop)
+    {
+      Console.WriteLine("1. Add student to course");
+      Console.WriteLine("2. Grade student");
+      Console.WriteLine("3. Show ungraded students");
+      Console.WriteLine("4. Show courses");
+      Console.WriteLine("5. Show finished courses");
+      Console.WriteLine("6. Show ongoing courses");
+
+      string input = Console.ReadLine();
+
+      switch (input)
+      {
+        case "1":
+          Console.Clear();
+          AddStudentToCourse(register);
+          break;
+        case "2":
+          GradeStudent(register);
+          break;
+        case "4":
+          Console.Clear();
+          TeacherShowCourses(register);
+          break;
+        case "5":
+          Console.Clear();
+          TeacherShowFinishedCourses(register);
+          break;
+        case "6":
+          Console.Clear();
+          TeacherShowOngoingCourses(register);
+          break;
+      }
+    }
     }
 
     static void AddStudentToCourse(Register register)
@@ -461,9 +460,6 @@ namespace Grupp5Projekt
     }
 
 
-
-
-
     //int studentPos = -1;
     //while (true)
     //{
@@ -496,8 +492,6 @@ namespace Grupp5Projekt
 
     //register.AddStudentToCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
     //Console.WriteLine("Student added to course");
-
-
 
   }
 }

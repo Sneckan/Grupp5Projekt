@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Runtime.InteropServices;
 using Grupp5Projekt;
 using NUnit.Framework;
@@ -328,9 +329,9 @@ namespace UnitTest
       register.AddLesson(lesson2);
       register.AddLesson(lesson3);
 
-      Assert.AreEqual(register.ShowLessonsCourse(course).Contains(lesson1), true);
-      Assert.AreEqual(register.ShowLessonsCourse(course).Contains(lesson2), true);
-      Assert.AreEqual(register.ShowLessonsCourse(course).Contains(lesson3), true);
+      Assert.AreEqual(register.GetLessonsCourse(course).Contains(lesson1), true);
+      Assert.AreEqual(register.GetLessonsCourse(course).Contains(lesson2), true);
+      Assert.AreEqual(register.GetLessonsCourse(course).Contains(lesson3), true);
 
     }
 

@@ -259,29 +259,7 @@ namespace Grupp5Projekt
       }
     }
 
-    public bool AddLesson(Lesson lesson)
-    {
-
-      bool occupied = false;
-      foreach(var Lesson in Lessons)
-      {
-        if((lesson.Start>=Lesson.Start&&lesson.End<=Lesson.End)&&Lesson.Room==lesson.Room)
-        {
-          occupied = true;
-        }
-      }
-
-      if(!occupied)
-      {
-        Lessons.Add(lesson);
-        SaveLessons();
-        return true;
-      }
-      else
-      {
-        return false;
-      }
-    }
+    
 
     public void RemoveLesson(Lesson lesson)
     {
@@ -348,22 +326,7 @@ namespace Grupp5Projekt
     }
 
 
-    public int SearchRoomWithName(string name)
-    {
-      int i = 0;
-      int pos = -1;
-      bool found = false;
-      while (i < Rooms.Count && !found)
-      {
-        if (Rooms[i].Name == name)
-        {
-          pos = i;
-          found = true;
-        }
-        i++;
-      }
-      return pos;
-    }
+   
 
     //Save users
     public void SaveUsers()
@@ -473,30 +436,7 @@ namespace Grupp5Projekt
       }
     }
 
-    public void SaveLessons()
-    {
-      using (var writer = new StreamWriter("Lessons.xml"))
-      {
-        var serializer = new XmlSerializer(typeof(List<Lesson>));
-        serializer.Serialize(writer, Lessons);
-      }
-    }
-
-    public List<Lesson> LoadLessons()
-    {
-      using (var stream = System.IO.File.OpenRead("Lessons.xml"))
-      {
-        var serializer = new XmlSerializer(typeof(List<Lesson>));
-        List<Lesson> lessons=(List<Lesson>)serializer.Deserialize(stream);
-        foreach(Lesson lesson in lessons)
-        {
-          lesson.Course = Courses[SearchCourseWithName(lesson.CourseName)];
-          lesson.Room = Rooms[SearchRoomWithName(lesson.RoomName)];
-        }
-
-        return lessons;
-      }
-    }
+    
 
     public List<Course> ShowStudentCourses(Student student)
     {

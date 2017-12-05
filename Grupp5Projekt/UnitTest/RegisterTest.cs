@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Runtime.InteropServices;
 using Grupp5Projekt;
 using NUnit.Framework;
@@ -244,6 +245,126 @@ namespace UnitTest
 
       Assert.AreEqual(register.Courses.Count, 1);
       Assert.AreEqual(register.Courses[0].Name, "Svenska");
+    }
+
+    [Test]
+    public void AddLessonTest()
+    {
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Teacher teacher = new Teacher("Name", "Email", "Password", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Course course = new Course("Name", teacher, time, time, 5);
+      Lesson lesson = new Lesson(course, time, time, new Room("room"));
+
+      register.AddLesson(lesson);
+
+      Assert.AreEqual(register.Lessons.Count, 1);
+    }
+
+    [Test]
+    public void AddLessonOnOccupiedSlotTest()
+    {
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Teacher teacher = new Teacher("Name", "Email", "Password", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Course course = new Course("Name", teacher, time, time, 5);
+      Room room =new Room("room");
+
+      Lesson lesson=new Lesson(course, time, time, room);
+      register.AddLesson(lesson);
+      Assert.AreEqual(register.AddLesson(lesson), false);
+    }
+
+    [Test]
+    public void RemoveLessonTest()
+    {
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Teacher teacher = new Teacher("Name", "Email", "Password", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Course course = new Course("Name", teacher, time, time, 5);
+      Lesson lesson = new Lesson(course, time, time, new Room("room"));
+
+      register.AddLesson(lesson);
+      register.RemoveLesson(lesson);
+      Assert.AreEqual(register.Lessons.Count, 0);
+    }
+
+    [Test]
+    public void ShowLessonForCourseTest()
+    {
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Teacher teacher = new Teacher("Name", "Email", "Password", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Course course = new Course("Name", teacher, time, time, 5);
+
+      Lesson lesson1 = new Lesson(course, time, time, new Room("room1"));
+      Lesson lesson2 = new Lesson(course, time, time, new Room("room2"));
+      Lesson lesson3 = new Lesson(course, time, time, new Room("room3"));
+
+      register.AddCourse(course);
+      register.AddLesson(lesson1);
+      register.AddLesson(lesson2);
+      register.AddLesson(lesson3);
+
+      Assert.AreEqual(register.ShowLessonCourses(course).Contains(lesson1), true);
+      Assert.AreEqual(register.ShowLessonCourses(course).Contains(lesson2), true);
+      Assert.AreEqual(register.ShowLessonCourses(course).Contains(lesson3), true);
+    }
+
+    [Test]
+    public void ShowLessonForRoomTest()
+    {
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Teacher teacher = new Teacher("Name", "Email", "Password", User.Privilege.teacher);
+      DateTime time= new DateTime(1991, 12, 1);
+      DateTime time1 = new DateTime(1991, 12, 2);
+      DateTime time2 = new DateTime(1991, 12, 3);
+      Course course = new Course("Name", teacher, time, time, 5);
+      Room room = new Room("room");
+
+      Lesson lesson1 = new Lesson(course, time, time, room);
+      Lesson lesson2 = new Lesson(course, time1, time1, room);
+      Lesson lesson3 = new Lesson(course, time2, time2, room);
+
+      register.AddCourse(course);
+      register.AddRoom(room);
+      register.AddLesson(lesson1);
+      register.AddLesson(lesson2);
+      register.AddLesson(lesson3);
+
+      Assert.AreEqual(register.ShowLessonCourses(course).Contains(lesson1), true);
+      Assert.AreEqual(register.ShowLessonCourses(course).Contains(lesson2), true);
+      Assert.AreEqual(register.ShowLessonCourses(course).Contains(lesson3), true);
+    }
+
+    [Test]
+    public void ShowLessonforStudentTest()
+    {
+      Admin admin = new Admin();
+      Register register = new Register(admin);
+      Teacher teacher = new Teacher("Name", "Email", "Password", User.Privilege.teacher);
+      DateTime time = DateTime.Now;
+      Course course = new Course("Name", teacher, time, time, 5);
+      Student student = new Student("student", "email", "password");
+      course.AddStudent(student);
+
+      Lesson lesson1 = new Lesson(course, time, time, new Room("room1"));
+      Lesson lesson2 = new Lesson(course, time, time, new Room("room2"));
+      Lesson lesson3 = new Lesson(course, time, time, new Room("room3"));
+
+      register.AddCourse(course);
+      register.AddLesson(lesson1);
+      register.AddLesson(lesson2);
+      register.AddLesson(lesson3);
+
+      Assert.AreEqual(register.ShowLessonStudent(student).Contains(lesson1), true);
+      Assert.AreEqual(register.ShowLessonStudent(student).Contains(lesson2), true);
+      Assert.AreEqual(register.ShowLessonStudent(student).Contains(lesson3), true);
     }
   }
 }

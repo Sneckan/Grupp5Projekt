@@ -840,5 +840,7 @@ namespace Grupp5Projekt
 
       Console.WriteLine("Grade successfully added to student.");
     }
+
+ 
   }
 }

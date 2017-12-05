@@ -59,7 +59,7 @@ namespace Grupp5Projekt
       switch(register.LoggedUser.MyPrivilege)
       {
         case User.Privilege.admin:
-          /*AdminMenu(register);*/ //Admin menu functioncall
+          AdminMenu(register); //Admin menu functioncall
           break;
 
         case User.Privilege.teacher:
@@ -185,8 +185,8 @@ namespace Grupp5Projekt
             Console.WriteLine("2. Remove user");
             Console.WriteLine("3. Create course");
             Console.WriteLine("4. Create room");
-            Console.WriteLine("5. Create timetable");
-            Console.WriteLine("6. Show timetable");
+            Console.WriteLine("5. Create lesson");
+            Console.WriteLine("6. Show lesson");
             Console.WriteLine("7. Show notices");
             Console.WriteLine("0. Exit");
             string userChoice = Console.ReadLine();
@@ -206,10 +206,10 @@ namespace Grupp5Projekt
                     CreateRoom();
                     break;
                 case "5":
-                    CreateTimetable();
+                    CreateLesson();
                     break;
                 case "6":
-                    ShowTimetable();
+                    ShowLessons();
                     break;
                 case "7":
                     ShowNotices();
@@ -313,7 +313,7 @@ namespace Grupp5Projekt
         }
 
         //Show Timetable
-        public static void ShowTimetable()
+        public static void ShowLessons()
         {
             Console.WriteLine("1. Show all");
             Console.WriteLine("2. Show for one course");
@@ -338,7 +338,7 @@ namespace Grupp5Projekt
         }
 
         //Create Timetable
-        public static void CreateTimetable()
+        public static void CreateLesson()
         {
             Console.WriteLine("Create Timetable");
         }

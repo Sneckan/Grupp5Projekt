@@ -13,31 +13,37 @@ namespace Grupp5Projekt
     static void Main(string[] args)
     {
       Register register = new Register();
-      Course course = new Course();
+
       if (!register.Users.Any())
       {
         Console.WriteLine("No users exist in the registry, creating admin account.");
-        register.AddAdminUser("admin", "admin@hotmail.com", "admin");
+        register.AddAdminUser("admin", "admin", "admin");
+        Teacher teacher = new Teacher("lasse", "lasse", "lasse");
+        register.AddTeacherUser(teacher);
+        register.AddCourse("Matematik", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 01), 60);
+        register.AddCourse("Svenska", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 31), 60);
+        register.AddStudentUser("erik", "erik", "erik");
+
       }
 
       //Ask user to sign in with email and password
       int i = -1;
-      while(i==-1)
+      while (i == -1)
       {
         Console.WriteLine("Email: ");
         i = register.SearchUserWithEmail(Console.ReadLine());
 
-        if(i==-1)
+        if (i == -1)
         {
           Console.WriteLine("No user with that email! try again");
         }
       }
 
-      while(true)
+      while (true)
       {
         Console.WriteLine("Password: ");
         string password = Console.ReadLine();
-        if(register.Users[i].Password==password)
+        if (register.Users[i].Password == password)
         {
           register.LogIn(register.Users[i]);
           Console.WriteLine("Logged in");
@@ -53,11 +59,11 @@ namespace Grupp5Projekt
       switch(register.LoggedUser.MyPrivilege)
       {
         case User.Privilege.admin:
-          TeacherMenu(register); //Admin menu functioncall
+          /*AdminMenu(register);*/ //Admin menu functioncall
           break;
 
         case User.Privilege.teacher:
-          //Teacher menu functioncall
+          TeacherMenu(register); //Teacher menu functioncall
           break;
 
         case User.Privilege.student:
@@ -224,9 +230,23 @@ namespace Grupp5Projekt
         switch (input)
         {
           case "1":
+            Console.Clear();
             AddStudentToCourse(register);
             break;
           case "2":
+            GradeStudent(register);
+            break;
+          case "4":
+            Console.Clear();
+            TeacherShowCourses(register);
+            break;
+          case "5":
+            Console.Clear();
+            TeacherShowFinishedCourses(register);
+            break;
+          case "6":
+            Console.Clear();
+            TeacherShowOngoingCourses(register);
             break;
         }
       }
@@ -269,40 +289,84 @@ namespace Grupp5Projekt
       Console.WriteLine("Student added to course");
     }
 
-    //int studentPos = -1;
-      //while (true)
-      //{
-      //  Console.WriteLine("Student Email: ");
-      //  studentPos = register.GetUser(Console.ReadLine());
-      //  if (studentPos < 0)
-      //  {
-      //    Console.WriteLine("User not found, try again.");
-      //  }
-      //  else
-      //  {
-      //    break;
-      //  }
-      //}
-    
-      //int coursePos = -1;
-      //while (true)
-      //{
-      //  Console.WriteLine("Course Name: ");
-      //  coursePos = register.GetCourse(Console.ReadLine());
-      //  if (coursePos < 0)
-      //  {
-      //    Console.WriteLine("Course not found, try again.");
-      //  }
-      //  else
-      //  {
-      //    break;
-      //  }
-      //}
-
-      //register.AddStudentToCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
-      //Console.WriteLine("Student added to course");
-
-
-
+    static void GradeStudent(Register register)
+    {
+      
     }
+
+    static void TeacherShowCourses(Register register)
+    {
+      Console.WriteLine("All courses for " + register.LoggedUser.Name + ":" + "\n");
+
+      foreach (var course in register.ShowTeacherCourses((Teacher) register.LoggedUser))
+      {
+        Console.WriteLine(course.Name);
+      }
+      Console.WriteLine();
+    }
+
+    static void TeacherShowFinishedCourses(Register register)
+    {
+      Console.WriteLine("Finished courses for " + register.LoggedUser.Name + ":" + "\n");
+      foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
+      {
+        if (course.EndDate < DateTime.Now)
+        {
+          Console.WriteLine(course.Name);
+        }
+      }
+      Console.WriteLine();
+    }
+
+    static void TeacherShowOngoingCourses(Register register)
+    {
+      Console.WriteLine("Ongoing courses for " + register.LoggedUser.Name + ":" + "\n");
+      // LINQ-uttryck. Funkar också med en if-sats som i metoden över
+      foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser).Where(x => x.EndDate > DateTime.Now))
+      {
+        Console.WriteLine(course.Name);
+      }
+      Console.WriteLine();
+    }
+
+
+
+
+
+    //int studentPos = -1;
+    //while (true)
+    //{
+    //  Console.WriteLine("Student Email: ");
+    //  studentPos = register.GetUser(Console.ReadLine());
+    //  if (studentPos < 0)
+    //  {
+    //    Console.WriteLine("User not found, try again.");
+    //  }
+    //  else
+    //  {
+    //    break;
+    //  }
+    //}
+
+    //int coursePos = -1;
+    //while (true)
+    //{
+    //  Console.WriteLine("Course Name: ");
+    //  coursePos = register.GetCourse(Console.ReadLine());
+    //  if (coursePos < 0)
+    //  {
+    //    Console.WriteLine("Course not found, try again.");
+    //  }
+    //  else
+    //  {
+    //    break;
+    //  }
+    //}
+
+    //register.AddStudentToCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
+    //Console.WriteLine("Student added to course");
+
+
+
+  }
 }

@@ -368,6 +368,7 @@ namespace Grupp5Projekt
         foreach (var course in courses)
         {
           List<Student> students = new List<Student>();
+
           foreach (var grade in course.Grades)
           {
             foreach (var user in Users)
@@ -438,10 +439,21 @@ namespace Grupp5Projekt
         if (Course.Students.Contains(student))
         {
           tempList.Add(Course);
-        }
-        
+        }       
       }
+      return tempList;
+    }
 
+    public List<Course> ShowTeacherCourses(Teacher teacher)
+    {
+      List<Course> tempList = new List<Course>();
+      foreach (var course in Courses)
+      {
+        if (course.Teacher == teacher)
+        {
+          tempList.Add(course);         
+        }
+      }
       return tempList;
     }
 

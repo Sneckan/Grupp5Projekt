@@ -34,7 +34,7 @@ namespace Grupp5Projekt
 
     }
 
-    public Lesson(Course Course,DateTime Start,DateTime End,Room Room)
+    public Lesson(Course Course, DateTime Start, DateTime End, Room Room)
     {
       this.Course = Course;
       this.Start = Start;

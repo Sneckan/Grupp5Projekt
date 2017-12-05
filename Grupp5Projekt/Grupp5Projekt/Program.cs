@@ -23,7 +23,6 @@ namespace Grupp5Projekt
         register.AddCourse("Matematik", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 01), 60);
         register.AddCourse("Svenska", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 31), 60);
         register.AddStudentUser("erik", "erik", "erik");
-
       }
 
       //Ask user to sign in with email and password
@@ -563,7 +562,7 @@ namespace Grupp5Projekt
             break;
           case "2":
             Console.Clear();
-            //TeacherShowLessons(register);
+            TeacherShowLessons(register);
             break;
         }
       }
@@ -584,21 +583,25 @@ namespace Grupp5Projekt
         {
           //Show all courses
           case "1":
-           TeacherShowAllCourses(register);
+            Console.Clear();
+            TeacherShowAllCourses(register);
            break;
           
           //Show ongoing courses
           case "2":
+            Console.Clear();
             TeacherShowUnfinishedCourses(register);
             break;
 
           //Show finished courses
           case "3":
+            Console.Clear();
             TeacherShowFinishedCourses(register);
             break;
 
           //Go back
           case "4":
+            Console.Clear();
             menuLoop = false;
             break;
         }
@@ -618,6 +621,7 @@ namespace Grupp5Projekt
         {
           //Show all lessons
           case "1":
+            Console.Clear();
             TeacherShowAllLessons(register);
             break;
 
@@ -632,7 +636,14 @@ namespace Grupp5Projekt
     //Show all lessons method
     static void TeacherShowAllLessons(Register register)
     {
-      
+      Console.WriteLine("All lessons for " + register.LoggedUser.Name + ":" + "\n");
+      foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
+      {
+        foreach (var lesson in register.GetLessonsCourse(course))
+        {
+          Console.WriteLine("Name: {0}, Start date: {1}, End date: {2}", lesson.Course.Name, lesson.Start, lesson.End);
+        }
+      }
     }
 
     //Show all courses method
@@ -656,6 +667,7 @@ namespace Grupp5Projekt
         .Where(x => x.EndDate > DateTime.Now))
       {
         Console.WriteLine(course.Name);
+        Console.WriteLine();
       }
 
       bool menuLoop = true;

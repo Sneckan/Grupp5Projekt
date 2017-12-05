@@ -179,46 +179,8 @@ namespace Grupp5Projekt
 
     }
 
-<<<<<<< HEAD
-    static void AdminMenu(Register register)
-  {
-      Console.WriteLine("1. Add user");
-      Console.WriteLine("2. Remove user");
-      Console.WriteLine("3. Create course");
-      Console.WriteLine("4. Create room");
-      Console.WriteLine("5. Create timetable");
-      Console.WriteLine("6. Show timetable");
-      Console.WriteLine("7. Show notices");
-      Console.WriteLine("0. Exit");
-      string userChoice = Console.ReadLine();
 
-      switch (userChoice)
-      {
-        case "1":
-          AddUser();
-          break;
-        case "2":
-          RemoveUser();
-          break;
-        case "3":
-          CreateCourse();
-          break;
-        case "4":
-          CreateRoom();
-          break;
-        case "5":
-          CreateTimetable();
-          break;
-        case "6":
-          ShowTimetable();
-          break;
-        case "7":
-          ShowNotices();
-          break;
-        case "0":
-          break;
-      }
-  }
+    
 
     public static void AddUser()
     {
@@ -336,7 +298,7 @@ namespace Grupp5Projekt
           return;
       }
     }
-=======
+
         static void AdminMenu(Register register)
         {
             Console.WriteLine("1. Add user");
@@ -506,7 +468,7 @@ namespace Grupp5Projekt
         {
             Console.WriteLine("Show Notices");
         }
->>>>>>> a718f9c960acfce8c11e3f92bddcbf77e7263974
+
 
     //Create Timetable
     public static void CreateTimetable()

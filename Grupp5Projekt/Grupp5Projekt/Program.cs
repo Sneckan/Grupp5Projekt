@@ -480,45 +480,43 @@ namespace Grupp5Projekt
         Console.WriteLine("Show Notices");
     }
 
+    //TeacherMenu
     static void TeacherMenu(Register register)
     {
-    bool menuLoop = true;
-    while (menuLoop)
-    {
-      Console.WriteLine("1. Add student to course");
-      Console.WriteLine("2. Grade student");
-      Console.WriteLine("3. Show ungraded students");
-      Console.WriteLine("4. Show courses");
-      Console.WriteLine("5. Show finished courses");
-      Console.WriteLine("6. Show ongoing courses");
+      bool menuLoop = true;
+      while (menuLoop)
+      {
+        Console.WriteLine("1. Add student to course");
+        Console.WriteLine("2. Remove student from course");
+        Console.WriteLine("3. Grade student");
+        Console.WriteLine("4. Show ungraded students");
+        Console.WriteLine("5. Show courses");
+        Console.WriteLine("6. Show lessons");
 
       string input = Console.ReadLine();
 
-      switch (input)
-      {
-        case "1":
-          Console.Clear();
-          AddStudentToCourse(register);
-          break;
-        case "2":
-          GradeStudent(register);
-          break;
-        case "4":
-          Console.Clear();
-          TeacherShowCourses(register);
-          break;
-        case "5":
-          Console.Clear();
-          TeacherShowFinishedCourses(register);
-          break;
-        case "6":
-          Console.Clear();
-          TeacherShowOngoingCourses(register);
-          break;
+        switch (input)
+        {
+          case "1":
+            Console.Clear();
+            AddStudentToCourse(register);
+            break;
+          case "2":
+            Console.Clear();
+            AddStudentToCourse(register);
+            break;
+          case "3":
+            GradeStudent(register);
+            break;
+          case "5":
+            Console.Clear();
+            TeacherShowCourses(register);
+            break;
+        }
       }
     }
-    }
 
+    //add student to course by choosing student to add and then the course.
     static void AddStudentToCourse(Register register)
     {
       int studentPos = -1;
@@ -556,6 +554,7 @@ namespace Grupp5Projekt
       Console.WriteLine("Student added to course");
     }
 
+    //Case 3: Add a grade to a student
     static void GradeStudent(Register register)
     {
       int coursePos = -1;
@@ -601,42 +600,61 @@ namespace Grupp5Projekt
       
       Console.WriteLine("Grade successfully added to student.");
     }
-  
+
+    //Show all courses
     static void TeacherShowCourses(Register register)
     {
-      Console.WriteLine("All courses for " + register.LoggedUser.Name + ":" + "\n");
-
-      foreach (var course in register.ShowTeacherCourses((Teacher) register.LoggedUser))
+      bool menuLoop = true;
+      while (menuLoop)
       {
-        Console.WriteLine(course.Name);
-      }
-      Console.WriteLine();
-    }
+        Console.WriteLine("1. Show all courses");
+        Console.WriteLine("2. Show ongoing courses");
+        Console.WriteLine("3. Show finished courses");
+        Console.WriteLine("4. Go back");
 
-    static void TeacherShowFinishedCourses(Register register)
-    {
-      Console.WriteLine("Finished courses for " + register.LoggedUser.Name + ":" + "\n");
-      foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
-      {
-        if (course.EndDate < DateTime.Now)
+        switch (Console.ReadLine())
         {
-          Console.WriteLine(course.Name);
+          //Show all courses
+          case "1":
+            Console.WriteLine("All courses for " + register.LoggedUser.Name + ":" + "\n");
+
+            foreach (var course in register.ShowTeacherCourses((Teacher) register.LoggedUser))
+            {
+              Console.WriteLine(course.Name);
+            }
+            Console.WriteLine();
+            break;
+          
+          //Show ongoing courses
+          case "2":
+            Console.WriteLine("Ongoing courses for " + register.LoggedUser.Name + ":" + "\n");
+            // LINQ-uttryck. Funkar också med en if-sats som i metoden över
+            foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser).Where(x => x.EndDate > DateTime.Now))
+            {
+              Console.WriteLine(course.Name);
+            }
+            Console.WriteLine();
+            break;
+
+          //Show finished courses
+          case "3":
+            Console.WriteLine("Finished courses for " + register.LoggedUser.Name + ":" + "\n");
+            foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
+            {
+              if (course.EndDate < DateTime.Now)
+              {
+                Console.WriteLine(course.Name);
+              }
+            }
+            Console.WriteLine();
+            break;
+
+          case "4":
+            menuLoop = false;
+            break;
         }
       }
-      Console.WriteLine();
     }
-
-    static void TeacherShowOngoingCourses(Register register)
-    {
-      Console.WriteLine("Ongoing courses for " + register.LoggedUser.Name + ":" + "\n");
-      // LINQ-uttryck. Funkar också med en if-sats som i metoden över
-      foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser).Where(x => x.EndDate > DateTime.Now))
-      {
-        Console.WriteLine(course.Name);
-      }
-      Console.WriteLine();
-    }
-
 
     //int studentPos = -1;
     //while (true)

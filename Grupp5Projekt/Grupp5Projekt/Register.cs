@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
@@ -23,10 +24,10 @@ namespace Grupp5Projekt
     public Register(User LoggedUser)
     {
       this.LoggedUser = LoggedUser;
-      Users=new List<User>();
-      Courses=new List<Course>();
-      Rooms=new List<Room>();
-      Lessons=new List<Lesson>();
+      Users = new List<User>();
+      Courses = new List<Course>();
+      Rooms = new List<Room>();
+      Lessons = new List<Lesson>();
     }
 
     public Register()
@@ -69,7 +70,7 @@ namespace Grupp5Projekt
         Lessons = new List<Lesson>();
       }
     }
-    
+
 
     //Constructor with no parameters
     //public Register()
@@ -135,7 +136,7 @@ namespace Grupp5Projekt
     //Add Admin to list
     public void AddAdminUser(string rName, string rEmail, string rPassword)
     {
-      Users.Add(new Admin(rName, rEmail, rPassword,User.Privilege.admin));
+      Users.Add(new Admin(rName, rEmail, rPassword, User.Privilege.admin));
       SaveUsers();
     }
 
@@ -236,6 +237,36 @@ namespace Grupp5Projekt
       SaveRooms();
     }
 
+    public bool AddLesson(Lesson lesson)
+    {
+      var occupied = false;
+      foreach (var Lesson in Lessons)
+      {
+        if ((lesson.Start >= Lesson.Start && lesson.End <= Lesson.End) && lesson.Room == Lesson.Room)
+        {
+          occupied = true;
+        }
+      }
+      if (!occupied)
+      {
+        Lessons.Add(lesson);
+        SaveLessons();
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+
+    
+
+    public void RemoveLesson(Lesson lesson)
+    {
+      Lessons.Remove(lesson);
+      SaveLessons();
+    }
+
 
 
     public void LogIn(User user)
@@ -277,6 +308,25 @@ namespace Grupp5Projekt
       }
       return pos;
     }
+    public int SearchRoomWithName(string name)
+    {
+      int i = 0;
+      int pos = -1;
+      bool found = false;
+      while (i < Rooms.Count && !found)
+      {
+        if (Rooms[i].Name == name)
+        {
+          pos = i;
+          found = true;
+        }
+        i++;
+      }
+      return pos;
+    }
+
+
+   
 
     //Save users
     public void SaveUsers()
@@ -294,7 +344,7 @@ namespace Grupp5Projekt
       using (var stream = System.IO.File.OpenRead("Users.xml"))
       {
         var serializer = new XmlSerializer(typeof(List<User>));
-        return (List<User>)serializer.Deserialize(stream);
+        return (List<User>) serializer.Deserialize(stream);
       }
     }
 
@@ -315,7 +365,7 @@ namespace Grupp5Projekt
       {
         var serializer = new XmlSerializer(typeof(List<Course>));
 
-        List<Course> courses = (List<Course>)serializer.Deserialize(stream);
+        List<Course> courses = (List<Course>) serializer.Deserialize(stream);
 
         //A course gets a list of attending students
         foreach (var course in courses)
@@ -328,17 +378,17 @@ namespace Grupp5Projekt
             {
               if (grade.StudentEmail == user.Email)
               {
-                students.Add((Student)user);
+                students.Add((Student) user);
               }
             }
           }
           course.AddStudents(students);
-          course.Teacher = (Teacher)Users[SearchUserWithEmail(course.TeacherEmail)];
-
+          course.Teacher = (Teacher) Users[SearchUserWithEmail(course.TeacherEmail)];
         }
         return courses;
       }
     }
+
     //Save Rooms
     public void SaveRooms()
     {
@@ -349,14 +399,44 @@ namespace Grupp5Projekt
       }
     }
 
+    //Load Rooms
     public List<Room> LoadRooms()
     {
       using (var stream = System.IO.File.OpenRead("Rooms.xml"))
       {
         var serializer = new XmlSerializer(typeof(List<Room>));
-        return (List<Room>)serializer.Deserialize(stream);
+        return (List<Room>) serializer.Deserialize(stream);
       }
     }
+
+    public void SaveLessons()
+    {
+      using (var writer = new StreamWriter("Lessons.xml"))
+      {
+        var serializer = new XmlSerializer(typeof(List<Lesson>));
+        serializer.Serialize(writer, Lessons);
+      }
+    }
+
+    public List<Lesson> LoadLessons()
+    {
+      using (var stream = System.IO.File.OpenRead("Lessons.xml"))
+      {
+        var serializer = new XmlSerializer(typeof(List<Lesson>));
+
+        List<Lesson> lessons = (List<Lesson>) serializer.Deserialize(stream);
+
+        foreach (Lesson lesson in lessons)
+        {
+          lesson.Course = Courses[SearchCourseWithName(lesson.CourseName)];
+          lesson.Room = Rooms[SearchRoomWithName(lesson.RoomName)];
+        }
+
+        return lessons;
+      }
+    }
+
+    
 
     public List<Course> ShowStudentCourses(Student student)
     {
@@ -379,6 +459,51 @@ namespace Grupp5Projekt
         if (course.Teacher == teacher)
         {
           tempList.Add(course);         
+        }
+      }
+      return tempList;
+    }
+
+    public List<Lesson> ShowLessonsCourse(Course Course)
+    {
+      List<Lesson> tempList = new List<Lesson>();
+      foreach(var Lesson in Lessons)
+      {
+        if(Lesson.Course==Course)
+        {
+          tempList.Add(Lesson);
+        }
+      }
+
+      return tempList;
+    }
+
+    public List<Lesson> ShowLessonsRoom(Room Room)
+    {
+      List<Lesson> tempList = new List<Lesson>();
+      foreach (var Lesson in Lessons)
+      {
+        if (Lesson.Room == Room)
+        {
+          tempList.Add(Lesson);
+        }
+      }
+      return tempList;
+    }
+
+    public List<Lesson> ShowLessonsStudent(Student student)
+    {
+      List<Lesson> tempList = new List<Lesson>();
+      List<Course> tempCourseList = ShowStudentCourses(student);
+
+      foreach(var Course in tempCourseList)
+      {
+        foreach (var Lesson in Lessons)
+        {
+          if (Lesson.Course == Course)
+          {
+            tempList.Add(Lesson);
+          }
         }
       }
       return tempList;

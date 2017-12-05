@@ -180,8 +180,6 @@ namespace Grupp5Projekt
     }
 
 
-    
-
     public static void AddUser()
     {
       Console.WriteLine("1. Add Admin");
@@ -208,7 +206,7 @@ namespace Grupp5Projekt
 
     //Add admin user
     public static void AddAdminUser()
-  {
+    {
       Console.WriteLine("Enter admin name: ");
       string rName = Console.ReadLine();
       Console.WriteLine("Enter admin password: ");

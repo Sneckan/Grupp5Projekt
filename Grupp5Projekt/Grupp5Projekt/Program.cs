@@ -829,61 +829,6 @@ namespace Grupp5Projekt
       Console.WriteLine("Grade successfully added to student.");
     }
 
-    //Show all courses
-    static void TeacherShowCourses(Register register)
-    {
-      bool menuLoop = true;
-      while (menuLoop)
-      {
-        Console.WriteLine("1. Show all courses");
-        Console.WriteLine("2. Show ongoing courses");
-        Console.WriteLine("3. Show finished courses");
-        Console.WriteLine("4. Go back");
-
-        switch (Console.ReadLine())
-        {
-          //Show all courses
-          case "1":
-            Console.WriteLine("All courses for " + register.LoggedUser.Name + ":" + "\n");
-
-            foreach (var course in register.ShowTeacherCourses((Teacher) register.LoggedUser))
-            {
-              Console.WriteLine(course.Name);
-            }
-            Console.WriteLine();
-            break;
-          
-          //Show ongoing courses
-          case "2":
-            Console.WriteLine("Ongoing courses for " + register.LoggedUser.Name + ":" + "\n");
-            // LINQ-uttryck. Funkar också med en if-sats som i metoden över
-            foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser).Where(x => x.EndDate > DateTime.Now))
-            {
-              Console.WriteLine(course.Name);
-            }
-            Console.WriteLine();
-            break;
-
-          //Show finished courses
-          case "3":
-            Console.WriteLine("Finished courses for " + register.LoggedUser.Name + ":" + "\n");
-            foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
-            {
-              if (course.EndDate < DateTime.Now)
-              {
-                Console.WriteLine(course.Name);
-              }
-            }
-            Console.WriteLine();
-            break;
-
-          case "4":
-            menuLoop = false;
-            break;
-        }
-      }
-    }
-
-
+ 
   }
 }

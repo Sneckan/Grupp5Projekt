@@ -116,7 +116,12 @@ namespace Grupp5Projekt
 
     static void StudentShowLessonsMenu(Register register)
     {
-     
+      List<Lesson> studentList = register.ShowLessonsStudent((Student)register.LoggedUser);
+      foreach(Lesson Lesson in studentList)
+      {
+        Console.WriteLine(Lesson.ToString());
+      }
+
     }
 
     static void StudentShowCoursesMenu(Register register)

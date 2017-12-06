@@ -390,19 +390,20 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- Admin User Created --");
             Console.WriteLine("");
+            Admin admin = new Admin(rName, rEmail, rPassword);
+            register.AddAdminUser(admin);
             Console.WriteLine("   Press Any Key To Go Back.");
             Console.WriteLine("");
             Console.ReadKey();
-            break;
+          break;
           }
           else
           {
             Console.WriteLine("");
             Console.WriteLine("   -- Email already in use, try again! --");
             Console.WriteLine("");
-        }
-          Admin admin = new Admin(rName, rEmail, rPassword);
-          register.AddAdminUser(admin);
+          }
+          
       }
     }
 

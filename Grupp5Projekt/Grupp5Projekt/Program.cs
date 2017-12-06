@@ -277,7 +277,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- 0. Exit");
             Console.WriteLine("");
-            Console.Write("   Make A Choice And Press [ENTER]: ");
+            Console.Write("   Make A Choice (1-6) And Press [ENTER]: ");
 
         string userChoice = Console.ReadLine();
 

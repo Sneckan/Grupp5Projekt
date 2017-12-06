@@ -236,19 +236,24 @@ namespace Grupp5Projekt
       {
         Console.WriteLine("Enter new email: ");
         string newEmail = Console.ReadLine();
+        bool testEmail = IsEmailValid(newEmail);
 
-        i = register.SearchUserWithEmail(newEmail);
-        if (i == -1)
+        if (testEmail == true)
         {
-          register.LoggedUser.Email = newEmail;
-        }
-        else
-        {
-          Console.WriteLine("Email already in use. Please try again.");
+          i = register.SearchUserWithEmail(newEmail);
+          if (i == -1)
+          {
+            register.LoggedUser.Email = newEmail;
+            testEmail = false;
+          }
+          else
+          {
+            Console.WriteLine("Email already in use. Please try again.");
+          }
         }
       }
       Console.WriteLine("Email is now changed.");
-
+      Console.ReadLine();
     }
 
     //Admin Menu
@@ -372,18 +377,22 @@ namespace Grupp5Projekt
     //Add Admin User
     static void AddAdminUser(Register register)
     {
-        Console.WriteLine("");
-        Console.WriteLine("   *Add Admin User*");
-        Console.WriteLine("");
-        Console.Write("   Enter Admin Name: ");
-        string rName = Console.ReadLine();
-        Console.Write("   Enter Admin Password: ");
-        string rPassword = Console.ReadLine();
-        string rEmail = "";
-        while (true)
+      Console.WriteLine("");
+      Console.WriteLine("   *Add Admin User*");
+      Console.WriteLine("");
+      Console.Write("   Enter Admin Name: ");
+      string rName = Console.ReadLine();
+      Console.Write("   Enter Admin Password: ");
+      string rPassword = Console.ReadLine();
+      string rEmail = "";
+      while (true)
+      {
+        Console.Write("   Enter Admin Email: ");
+        rEmail = Console.ReadLine();
+        bool testEmail = IsEmailValid(rEmail);
+
+        if (testEmail == true)
         {
-          Console.Write("   Enter Admin Email: ");
-          rEmail = Console.ReadLine();
           if (register.GetUser(rEmail) == -1)
           {
             Console.WriteLine("");
@@ -395,7 +404,9 @@ namespace Grupp5Projekt
             Console.Write("   Press Any Key To Go Back.");
             Console.WriteLine("");
             Console.ReadKey();
-          break;
+            Admin admin = new Admin(rName, rEmail, rPassword);
+            register.AddAdminUser(admin);
+            break;
           }
           else
           {
@@ -403,7 +414,7 @@ namespace Grupp5Projekt
             Console.WriteLine("   -- Email already in use, try again! --");
             Console.WriteLine("");
           }
-          
+        } 
       }
     }
 
@@ -413,6 +424,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Admin User*");
         Console.WriteLine("");
@@ -433,6 +445,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveAdminUser((Admin)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -454,26 +467,31 @@ namespace Grupp5Projekt
       {
         Console.Write("   Enter Teacher Email: ");
         rEmail = Console.ReadLine();
-        if (register.GetUser(rEmail) == -1)
+        bool testEmail = IsEmailValid(rEmail);
+
+        if (testEmail == true)
         {
-          Console.WriteLine("");
-          Console.WriteLine("");
-          Console.WriteLine("   -- Teacher User Created --");
-          Console.WriteLine("");
-          Console.WriteLine("   Press Any Key To Go Back.");
-          Console.WriteLine("");
-          Teacher teacher = new Teacher(rName, rEmail, rPassword);
-          register.AddTeacherUser(teacher);
-          Console.ReadKey();
-          break;
+          if (register.GetUser(rEmail) == -1)
+          {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("   -- Teacher User Created --");
+            Console.WriteLine("");
+            Console.WriteLine("   Press Any Key To Go Back.");
+            Console.WriteLine("");
+            Teacher teacher = new Teacher(rName, rEmail, rPassword);
+            register.AddTeacherUser(teacher);
+            Console.ReadKey();
+            break;
+          }
+          else
+          {
+            Console.WriteLine("");
+            Console.WriteLine("   -- Email already in use, try again! --");
+            Console.WriteLine("");
+          }
         }
-        else
-        {
-          Console.WriteLine("");
-          Console.WriteLine("   -- Email already in use, try again! --");
-          Console.WriteLine("");
-        }
-        
+
       }
     }
 
@@ -483,6 +501,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Teacher User*");
         Console.WriteLine("");
@@ -503,6 +522,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveTeacherUser((Teacher)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -511,40 +531,45 @@ namespace Grupp5Projekt
 
     //Add Student User
     static void AddStudentUser(Register register)
-        {
+    {
       Console.WriteLine("");
-          Console.WriteLine("   *Add Student User*");
-          Console.WriteLine("");
-          Console.Write("   Enter Student Name: ");
-          string rName = Console.ReadLine();
-          Console.Write("   Enter Student Password: ");
-          string rPassword = Console.ReadLine();
-          string rEmail = "";
-          while (true)
-          {
-            Console.Write("   Enter Student Email: ");
-            rEmail = Console.ReadLine();
-            if (register.GetUser(rEmail) == -1)
-            {
-              Console.WriteLine("");
-              Console.WriteLine("");
-              Console.WriteLine("   -- Student User Created --");
-              Console.WriteLine("");
-              Console.WriteLine("   Press Any Key To Go Back.");
-              Console.WriteLine("");
-          Student student = new Student(rName, rEmail, rPassword);
-          register.AddStudentUser(student);
-          Console.ReadKey();
-              break;
-            }
-            else
-            {
-              Console.WriteLine("");
-              Console.WriteLine("   -- Email already in use, try again! --");
-              Console.WriteLine("");
-            }
+      Console.WriteLine("   *Add Student User*");
+      Console.WriteLine("");
+      Console.Write("   Enter Student Name: ");
+      string rName = Console.ReadLine();
+      Console.Write("   Enter Student Password: ");
+      string rPassword = Console.ReadLine();
+      string rEmail = "";
+      while (true)
+      {
+        Console.Write("   Enter Student Email: ");
+        rEmail = Console.ReadLine();
+        bool testEmail = IsEmailValid(rEmail);
 
+        if (testEmail == true)
+        {
+          if (register.GetUser(rEmail) == -1)
+          {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("   -- Student User Created --");
+            Console.WriteLine("");
+            Console.WriteLine("   Press Any Key To Go Back.");
+            Console.WriteLine("");
+            Student student = new Student(rName, rEmail, rPassword);
+            register.AddStudentUser(student);
+            Console.ReadKey();
+            break;
           }
+          else
+          {
+            Console.WriteLine("");
+            Console.WriteLine("   -- Email already in use, try again! --");
+            Console.WriteLine("");
+          }
+        }
+
+      }
     }
 
     //Remove Student User
@@ -553,6 +578,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Student User*");
         Console.WriteLine("");
@@ -573,6 +599,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveStudentUser((Student)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -724,12 +751,15 @@ namespace Grupp5Projekt
         switch (userChoice)
         {
           case "1":
+            Console.Clear();
             AddRoom(register);
             break;
           case "2":
+            Console.Clear();
             RemoveRoom(register);
             break;
           case "0":
+            Console.Clear();
             menuLoop = false;
             break;
 
@@ -748,8 +778,8 @@ namespace Grupp5Projekt
             string Name = Console.ReadLine();
             Console.Write("   Set Room capacity: ");
             string MaxCapacity = Console.ReadLine();
-            Console.Write("   Add Lesson to room: ");
-            string lessons = Console.ReadLine();
+
+      Room room = new Room(Name, int.Parse(MaxCapacity));
         }
 
     //Remove Room
@@ -1383,7 +1413,6 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
-        Console.Clear();
         Console.WriteLine("1. Grade students");
         Console.WriteLine("2. Back");
 
@@ -1394,6 +1423,7 @@ namespace Grupp5Projekt
             break;
 
           case "2":
+            Console.Clear();
             menuLoop = false;
             break;
         }
@@ -1447,6 +1477,30 @@ namespace Grupp5Projekt
       register.SaveCourse();
 
       Console.WriteLine("Grade successfully added to student!" + "\n");
+    }
+
+    static bool IsEmailValid(string email)
+    {
+      try
+      {
+        var addr = new System.Net.Mail.MailAddress(email);
+        return addr.Address == email;
+      }
+      catch
+      {
+        Console.WriteLine("   -- Invalid email adress format. --");
+        return false;
+      }
+    }
+
+    static void ShowAllStudents(Register register)
+    {
+      Console.WriteLine("List of students:" + "\n");
+      foreach (var student in register.Users.OfType<Student>())
+      {
+        Console.WriteLine(student.Name + " " + student.Email);
+      }
+      Console.WriteLine();
     }
   }
 }

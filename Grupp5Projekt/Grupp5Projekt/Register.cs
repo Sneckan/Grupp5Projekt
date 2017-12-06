@@ -123,6 +123,22 @@ namespace Grupp5Projekt
       Console.WriteLine("Add user");
     }
 
+    //Get User
+    public int GetUser(string email)
+    {
+      int i = 0;
+      int pos = -1;
+      while (i < Users.Count && pos < 0)
+      {
+        if (Users[i].Email == email)
+        {
+          pos = i;
+        }
+        i++;
+      }
+      return pos;
+    }
+
     //Add Admin to list
     public void AddAdminUser(string rName, string rEmail, string rPassword)
     {
@@ -522,6 +538,7 @@ namespace Grupp5Projekt
         course.AddStudent(student);
         SaveCourse();
      }
+
   }
 }
 

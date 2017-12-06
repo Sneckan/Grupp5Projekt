@@ -71,16 +71,6 @@ namespace Grupp5Projekt
       }
     }
 
-
-    //Constructor with no parameters
-    //public Register()
-    //{
-    //  Users = new List<User>();
-    //  Courses = new List<Course>();
-    //  Rooms = new List<Room>();
-    //  Lessons = new List<Lesson>();
-    //}
-
     //Constructor with parameter Users
     public Register(List<User> users)
     {
@@ -325,6 +315,24 @@ namespace Grupp5Projekt
       return pos;
     }
 
+    public int SearchLessonWithRoomNameTimes(string name, DateTime start)
+    {
+      int i = 0;
+      int pos = -1;
+      bool found = false;
+      while(1<Lessons.Count &&!found)
+      {
+        if(Lessons[i].RoomName==name&&Lessons[i].Start==start)
+        {
+          pos = i;
+          found = true;
+        }
+        i++;
+      }
+
+
+      return pos;
+    }
 
    
 
@@ -458,7 +466,7 @@ namespace Grupp5Projekt
       {
         if (course.Teacher == teacher)
         {
-          tempList.Add(course);         
+          tempList.Add(course);
         }
       }
       return tempList;

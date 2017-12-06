@@ -468,29 +468,61 @@ namespace Grupp5Projekt
 
     //Create Course
     static void AddCourse(Register register)
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("   *Add Course*");
-            Console.WriteLine("");
-            Console.Write("   Enter Course name: ");
-            string rName = Console.ReadLine();
-            Console.Write("   Add Teacher to course: ");
-            string rTeacher = Console.ReadLine();
-            Console.Write("   Set Start date for course 'YYYY-MM-DD': ");
-            string cstartDate = Console.ReadLine();
-            DateTime rStartDate = DateTime.Parse(cstartDate);
-            Console.Write("   Set End date for course 'YYYY-MM-DD': ");
-            string cendDate = Console.ReadLine();
-            DateTime rEndDate = DateTime.Parse(cendDate);
-            Console.Write("   Set Course length in '00:00': ");
-            string cHours = Console.ReadLine();
-            int rHours = Int32.Parse(cHours);
-        }
+    {
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("   *Add Course*");
+      Console.WriteLine("");
+      Console.WriteLine("   Enter Course name: ");
+      string rName = Console.ReadLine();
+      Console.WriteLine("   Set Start date for course 'YYYY-MM-DD': ");
+      string cstartDate = Console.ReadLine();
+      DateTime rStartDate = DateTime.Parse(cstartDate);
+      Console.WriteLine("   Set End date for course 'YYYY-MM-DD': ");
+      string cendDate = Console.ReadLine();
+      DateTime rEndDate = DateTime.Parse(cendDate);
+      Console.WriteLine("   Set Course length in '00:00': ");
+      string cHours = Console.ReadLine();
+      int rHours = Int32.Parse(cHours);
+      Console.WriteLine("Select teacher");
+      string teacherEmail = Console.ReadLine();
+      Teacher teacher = (Teacher)register.Users[register.SearchUserWithEmail(teacherEmail)];
+      Course course = new Course(rName, teacher, rStartDate, rEndDate, rHours);
+      register.AddCourse(course);
+
+    }
 
     //Remove Course
     static void RemoveCourse(Register register)
     {
+      bool menuLoop = true;
+      while(menuLoop)
+      {
+        Console.WriteLine("Select course");
+        string courseName = Console.ReadLine();
+
+        if(register.SearchCourseWithName(courseName)==-1)
+        {
+          Console.WriteLine("Course with that name doesnt exist");
+          Console.WriteLine("1. Try again");
+          Console.WriteLine("2. Go back");
+          if(Console.ReadLine()=="2")
+          {
+            menuLoop = false;
+          }
+          
+        }
+        else
+        {
+          Console.WriteLine("Are you sure? y/n");
+          if (Console.ReadLine() == "y" || Console.ReadLine() == "Y")
+          {
+            register.RemoveCourse(register.Courses[register.SearchCourseWithName(courseName)]);
+            menuLoop = false;
+          }
+
+        }
+      }
 
     }
 
@@ -595,26 +627,111 @@ namespace Grupp5Projekt
     //Create Lesson
     static void AddLesson(Register register)
     {
-      Console.Clear();
-      Console.WriteLine("");
-      Console.WriteLine("   *Add Lesson*");
-      Console.WriteLine("");
-      Console.Write("   Enter course name: ");
-      string name = Console.ReadLine();
-      Console.Write("   Set Start date for course 'YYYY-MM-DD': ");
-      string cstartDate = Console.ReadLine();
-      DateTime startDate = DateTime.Parse(cstartDate);
-      Console.Write("   Set End date for course 'YYYY-MM-DD': ");
-      string cendDate = Console.ReadLine();
-      DateTime endDate = DateTime.Parse(cendDate);
-      Console.Write("   Enter room: ");
-      string room = Console.ReadLine();
+      bool bigMenuLoop = true;
+      while (bigMenuLoop)
+      {
 
+
+
+        Console.Clear();
+        Console.WriteLine("");
+        Console.WriteLine("   *Add Lesson*");
+        Console.WriteLine("");
+        bool menuLoop = true;
+        Course course = new Course();
+        while (menuLoop)
+        {
+          Console.Write("   Enter course name: ");
+          string courseName = Console.ReadLine();
+          if (register.SearchCourseWithName(courseName) == -1)
+          {
+            Console.WriteLine("Course doesnt exist, try again");
+          }
+          else
+          {
+            course = register.Courses[register.SearchCourseWithName(courseName)];
+            menuLoop = false;
+          }
+        }
+
+
+        Console.Write("Enter date: YYYY-MM-DD");
+        string temp = Console.ReadLine();
+        string[] date = temp.Split('-');
+
+        Console.WriteLine("Enter start time: HH-MM");
+        temp = Console.ReadLine();
+        string[] startTime = temp.Split('-');
+
+        Console.WriteLine("Enter end time: HH-MM");
+        temp = Console.ReadLine();
+        string[] endTime = temp.Split('-');
+
+        menuLoop = true;
+        Room room = new Room();
+        while (menuLoop)
+        {
+          Console.Write("   Enter room: ");
+          temp = Console.ReadLine();
+          if (register.SearchRoomWithName(temp) == -1)
+          {
+            Console.WriteLine("Room not found, try again");
+          }
+          else
+          {
+            room = register.Rooms[register.SearchRoomWithName(temp)];
+            menuLoop = false;
+          }
+        }
+
+        DateTime startDate = new DateTime(Int32.Parse(date[0]), Int32.Parse(date[1]), Int32.Parse(date[2]), Int32.Parse(startTime[0]), Int32.Parse(startTime[1]), 0);
+        DateTime endDate = new DateTime(Int32.Parse(date[0]), Int32.Parse(date[1]), Int32.Parse(date[2]), Int32.Parse(endTime[0]), Int32.Parse(endTime[1]), 0);
+
+        if (!register.AddLesson(new Lesson(course, startDate, endDate, room)))
+        {
+          Console.WriteLine("Lesson room/time already occupied.");
+          Console.WriteLine("1. Try again");
+          Console.WriteLine("2. Go back");
+          if(Console.ReadLine()=="2")
+          {
+            bigMenuLoop = false;
+          }
+        }
+        else
+        {
+          Console.WriteLine("Lesson created!");
+          bigMenuLoop = false;
+        }
+      }
     }
 
     //Remove Lesson
     static void RemoveLesson(Register register)
     {
+      bool menuLoop = true;
+      int lessonPos = 0;
+      while (menuLoop)
+      {
+        Console.WriteLine("Room name:");
+        string roomName = Console.ReadLine();
+        Console.WriteLine("Date: YYYY-MM-DD");
+        string[] date= Console.ReadLine().Split('-');
+        Console.WriteLine("Time: HH-MM");
+        string[] time = Console.ReadLine().Split('-');
+
+        lessonPos = register.SearchLessonWithRoomNameTimes(roomName, new DateTime(Int32.Parse(date[0]), Int32.Parse(date[1]), Int32.Parse(date[2]), Int32.Parse(time[0]), Int32.Parse(time[1]), 0));
+
+        if (lessonPos==-1)
+        {
+          Console.WriteLine("Lesson not found, try again");
+        }
+        else
+        {
+          menuLoop = false;
+        }
+      }
+      Console.WriteLine("Lesson is removed");
+      register.RemoveLesson(register.Lessons[lessonPos]);
 
     }
 
@@ -670,6 +787,10 @@ namespace Grupp5Projekt
         Console.WriteLine("");
         Console.WriteLine("   *Show all lessons*");
         Console.WriteLine("");
+        foreach(var lesson in register.Lessons)
+        {
+          Console.WriteLine(lesson.ToString());
+        }
         Console.WriteLine("   -- 0. Return to Lessons Menu");
         Console.WriteLine("");
         Console.Write("   Your choice: ");
@@ -692,6 +813,31 @@ namespace Grupp5Projekt
         Console.WriteLine("");
         Console.WriteLine("   *Show for one course*");
         Console.WriteLine("");
+
+        bool smallMenuLoop = true;
+        int coursePos = 0;
+        while(smallMenuLoop)
+        {
+          Console.WriteLine("Enter Course:");
+          string courseName = Console.ReadLine();
+          coursePos=register.SearchCourseWithName(courseName);
+          if (coursePos==-1)
+          {
+            Console.WriteLine("Course not found, try again");
+          }
+          else
+          {
+            smallMenuLoop = false;
+          }
+
+        }
+        Course course = register.Courses[coursePos];
+
+        foreach(var lesson in register.GetLessonsCourse(course))
+        {
+          Console.WriteLine(lesson.ToString());
+        }
+
         Console.WriteLine("   -- 0. Return to Lessons Menu");
         Console.WriteLine("");
         Console.Write("   Your choice: ");
@@ -714,6 +860,32 @@ namespace Grupp5Projekt
         Console.WriteLine("");
         Console.WriteLine("   *Show for one room*");
         Console.WriteLine("");
+        Room room = new Room();
+        bool smallMenuLoop = true;
+        while(smallMenuLoop)
+        {
+          Console.WriteLine("Enter room:");
+          string temp = Console.ReadLine();
+          int roomPos = register.SearchRoomWithName(temp);
+          if (roomPos==-1)
+          {
+            Console.WriteLine("Room not found, try again");
+          }
+          else
+          {
+            room = register.Rooms[roomPos];
+            smallMenuLoop = false;
+          }
+        }
+
+        
+        List<Lesson> lessonList = register.ShowLessonsRoom(room);
+
+        foreach(var lesson in lessonList)
+        {
+          Console.WriteLine(lesson.ToString());
+        }
+
         Console.WriteLine("   -- 0. Return to Lessons Menu");
         Console.WriteLine("");
         Console.Write("   Your choice: ");

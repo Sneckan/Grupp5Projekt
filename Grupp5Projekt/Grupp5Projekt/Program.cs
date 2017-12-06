@@ -724,8 +724,8 @@ namespace Grupp5Projekt
             string Name = Console.ReadLine();
             Console.Write("   Set Room capacity: ");
             string MaxCapacity = Console.ReadLine();
-            Console.Write("   Add Lesson to room: ");
-            string lessons = Console.ReadLine();
+
+      Room room = new Room(Name, int.Parse(MaxCapacity));
         }
 
     //Remove Room

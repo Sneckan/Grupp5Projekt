@@ -264,9 +264,9 @@ namespace Grupp5Projekt
           {
             Console.Clear();
             Console.WriteLine("");
-            Console.WriteLine("   ***Welcome to the Admin Menu***");
+            Console.WriteLine("   ***Welcome To The Admin Menu***");
             Console.WriteLine("");
-            Console.WriteLine("   Select an option:");
+            Console.WriteLine("   Select An option:");
             Console.WriteLine("");
             Console.WriteLine("   -- 1. Create & Remove User");
             Console.WriteLine("   -- 2. Create & Remove Course");
@@ -277,7 +277,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- 0. Exit");
             Console.WriteLine("");
-            Console.Write("   Make a choice and press [ENTER]: ");
+            Console.Write("   Make A Choice And Press [ENTER]: ");
 
         string userChoice = Console.ReadLine();
 
@@ -325,7 +325,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   *Create & Remove User*");
             Console.WriteLine("");
-            Console.WriteLine("   Select an option:");
+            Console.WriteLine("   Select An Option:");
             Console.WriteLine("");
             Console.WriteLine("   -- 1. Create Admin");
             Console.WriteLine("   -- 2. Remove Admin");
@@ -334,9 +334,9 @@ namespace Grupp5Projekt
             Console.WriteLine("   -- 5. Create Student");
             Console.WriteLine("   -- 6. Remove Student");
             Console.WriteLine("");
-            Console.WriteLine("   -- 0. Return to Main Menu");
+            Console.WriteLine("   -- 0. Return To Main Menu");
             Console.WriteLine("");
-            Console.Write("   Make a choice and press [ENTER]: ");
+            Console.Write("   Make A Choice And Press [ENTER]: ");
         string userChoice = Console.ReadLine();
 
       switch (userChoice)
@@ -409,7 +409,7 @@ namespace Grupp5Projekt
           else
           {
             Console.WriteLine("");
-            Console.WriteLine("   -- Email already in use, try again! --");
+            Console.WriteLine("   -- Email Already In Use, Try Again! --");
             Console.WriteLine("");
           }
         } 

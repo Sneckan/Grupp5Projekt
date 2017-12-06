@@ -461,30 +461,41 @@ namespace Grupp5Projekt
 
     //Create Course
     static void AddCourse(Register register)
-        {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("   *Add Course*");
-            Console.WriteLine("");
-            Console.Write("   Enter Course name: ");
-            string rName = Console.ReadLine();
-            Console.Write("   Add Teacher to course: ");
-            string rTeacher = Console.ReadLine();
-            Console.Write("   Set Start date for course 'YYYY-MM-DD': ");
-            string cstartDate = Console.ReadLine();
-            DateTime rStartDate = DateTime.Parse(cstartDate);
-            Console.Write("   Set End date for course 'YYYY-MM-DD': ");
-            string cendDate = Console.ReadLine();
-            DateTime rEndDate = DateTime.Parse(cendDate);
-            Console.Write("   Set Course length in '00:00': ");
-            string cHours = Console.ReadLine();
-            int rHours = Int32.Parse(cHours);
-        }
+    {
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("   *Add Course*");
+      Console.WriteLine("");
+      Console.WriteLine("   Enter Course name: ");
+      string rName = Console.ReadLine();
+      Console.WriteLine("   Set Start date for course 'YYYY-MM-DD': ");
+      string cstartDate = Console.ReadLine();
+      DateTime rStartDate = DateTime.Parse(cstartDate);
+      Console.WriteLine("   Set End date for course 'YYYY-MM-DD': ");
+      string cendDate = Console.ReadLine();
+      DateTime rEndDate = DateTime.Parse(cendDate);
+      Console.WriteLine("   Set Course length in '00:00': ");
+      string cHours = Console.ReadLine();
+      int rHours = Int32.Parse(cHours);
+      Console.WriteLine("Select teacher");
+      string teacherEmail = Console.ReadLine();
+      Teacher teacher = (Teacher)register.Users[register.SearchUserWithEmail(teacherEmail)];
+      Course course = new Course(rName, teacher, rStartDate, rEndDate, rHours);
+      register.AddCourse(course);
+
+    }
 
     //Remove Course
     static void RemoveCourse(Register register)
     {
+      Console.WriteLine("Select course");
+      string courseName = Console.ReadLine();
 
+      Console.WriteLine("Are you sure? y/n");
+      if (Console.ReadLine() == "y" || Console.ReadLine() == "Y")
+      {
+        register.RemoveCourse(register.Courses[register.SearchCourseWithName(courseName)]);
+      }
     }
 
     static void CreateRemoveRoom(Register register)

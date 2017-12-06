@@ -458,7 +458,7 @@ namespace Grupp5Projekt
       {
         if (course.Teacher == teacher)
         {
-          tempList.Add(course);         
+          tempList.Add(course);
         }
       }
       return tempList;

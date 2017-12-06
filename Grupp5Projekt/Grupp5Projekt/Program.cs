@@ -23,8 +23,9 @@ namespace Grupp5Projekt
         register.AddTeacherUser(teacher);
         register.AddCourse("Matematik", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 01), 60);
         register.AddCourse("Svenska", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 31), 60);
-        register.AddStudentUser("erik", "erik", "erik");
-        register.AddStudentUser("ove", "ove", "ove");
+        register.AddStudentUser("Erik Andersson", "erik@hotmail.com", "erik");
+        register.AddStudentUser("Jonas Persson", "jonas@hotmail.com", "jonas");
+        register.AddStudentUser("Jimmy Nilsson", "jimmy@hotmail.com", "jimmy");
         Room room = new Room("Sal 1", 35);
         Course course = new Course("Engelska", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 01), 60);
         Lesson lesson = new Lesson(course, DateTime.Now, DateTime.Now, room);
@@ -1181,7 +1182,6 @@ namespace Grupp5Projekt
     //Teacher - Show courses menu
     static void TeacherShowCourses(Register register)
     {
-
       bool menuLoop = true;
       while (menuLoop)
       {
@@ -1358,10 +1358,11 @@ namespace Grupp5Projekt
     //Add student to course method
     static void AddStudentToCourse(Register register)
     {
+      Console.WriteLine();
       Console.WriteLine("List of students:" + "\n");
       foreach (var student in register.Users.OfType<Student>())
       {
-        Console.WriteLine(student.Name + " " + student.Email);
+        Console.WriteLine(student.Name + " " + student.Email);                  
       }
       Console.WriteLine();
 
@@ -1390,6 +1391,10 @@ namespace Grupp5Projekt
         if (coursePos < 0)
         {
           Console.WriteLine("Course not found, try again.");
+        }
+        else if (register.Courses[coursePos].Students.Contains((Student) register.Users[studentPos]))
+        {
+          Console.WriteLine("Student already exists in that course.");
         }
         else
         {
@@ -1434,6 +1439,10 @@ namespace Grupp5Projekt
         if (coursePos < 0)
         {
           Console.WriteLine("Course not found, try again.");
+        }
+        else if (!register.Courses[coursePos].Students.Contains((Student)register.Users[studentPos]))
+        {
+          Console.WriteLine("Student doesn't exists in that course.");
         }
         else
         {
@@ -1539,9 +1548,9 @@ namespace Grupp5Projekt
     {
       foreach (var course in register.ShowTeacherCourses((Teacher) register.LoggedUser))
       {
-        foreach (var grade in course.Grades)
+        foreach (var grade in course.Grades.OrderByDescending(x => x.StudentGrade))
         {
-          Console.WriteLine(course.Name + " - " + grade.StudentEmail);
+          Console.WriteLine(course.Name + " - " + grade.StudentEmail + " Grade: " + grade.StudentGrade);
         }
       }
       Console.ReadLine();

@@ -164,9 +164,9 @@ namespace Grupp5Projekt
     }
 
     //Add Teacher to list
-    public void AddTeacherUser(string rName, string rPassword, string rEmail)
+    public void AddTeacherUser(string rName, string rEmail, string rPassword)
     {
-      Users.Add(new Teacher(rName, rPassword, rEmail, User.Privilege.teacher));
+      Users.Add(new Teacher(rName, rEmail, rPassword, User.Privilege.teacher));
       SaveUsers();
     }
 
@@ -186,7 +186,7 @@ namespace Grupp5Projekt
     //Add Student
     public void AddStudentUser(string rName, string rEmail, string rPassword)
     {
-      Users.Add(new Student(rName, rPassword, rEmail, User.Privilege.student));
+      Users.Add(new Student(rName, rEmail, rPassword, User.Privilege.student));
       SaveUsers();
     }
 

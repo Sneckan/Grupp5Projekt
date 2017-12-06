@@ -539,6 +539,12 @@ namespace Grupp5Projekt
         SaveCourse();
      }
 
+    public void RemoveStudentFromCourse(Course course, Student student)
+    {
+        course.RemoveStudent(student);
+        SaveCourse();
+    }
+
   }
 }
 

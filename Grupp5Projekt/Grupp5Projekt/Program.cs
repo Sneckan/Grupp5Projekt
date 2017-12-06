@@ -399,21 +399,20 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- Admin User Created --");
             Console.WriteLine("");
-            Admin admin = new Admin(rName, rEmail, rPassword);
-            register.AddAdminUser(admin);
             Console.WriteLine("   Press Any Key To Go Back.");
             Console.WriteLine("");
             Console.ReadKey();
-          break;
+            Admin admin = new Admin(rName, rEmail, rPassword);
+            register.AddAdminUser(admin);
+            break;
           }
           else
           {
             Console.WriteLine("");
             Console.WriteLine("   -- Email already in use, try again! --");
             Console.WriteLine("");
-        }
-          Admin admin = new Admin(rName, rEmail, rPassword);
-          register.AddAdminUser(admin);
+          }
+        } 
       }
     }
 
@@ -478,6 +477,8 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   Press Any Key To Go Back.");
             Console.WriteLine("");
+            Teacher teacher = new Teacher(rName, rEmail, rPassword);
+            register.AddTeacherUser(teacher);
             Console.ReadKey();
             break;
           }
@@ -488,8 +489,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
           }
         }
-        Teacher teacher = new Teacher(rName, rEmail, rPassword);
-        register.AddTeacherUser(teacher);
+
       }
     }
 
@@ -554,6 +554,8 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   Press Any Key To Go Back.");
             Console.WriteLine("");
+            Student student = new Student(rName, rEmail, rPassword);
+            register.AddStudentUser(student);
             Console.ReadKey();
             break;
           }
@@ -564,8 +566,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
           }
         }
-        Student student = new Student(rName, rEmail, rPassword);
-        register.AddStudentUser(student);
+
       }
     }
 

@@ -508,6 +508,12 @@ namespace Grupp5Projekt
       }
       return tempList;
     }
+
+     public void AddStudentToCourse(Course course, Student student)
+     {
+        course.AddStudent(student);
+        SaveCourse();
+     }
   }
 }
 

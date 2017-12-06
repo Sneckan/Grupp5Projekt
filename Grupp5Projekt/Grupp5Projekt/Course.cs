@@ -128,12 +128,6 @@ namespace Grupp5Projekt
     {
       Students = students;
     }
-
-    public void AddTeacher(Teacher teacher)
-    {
-      Teacher = teacher;
-      TeacherEmail = teacher.Email;
-    }
   }
 }
 

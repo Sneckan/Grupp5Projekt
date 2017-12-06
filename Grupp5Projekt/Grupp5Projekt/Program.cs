@@ -261,7 +261,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- 0. Exit");
             Console.WriteLine("");
-            Console.Write("   Your choice: ");
+            Console.Write("   Make a choice and press [ENTER]: ");
 
         string userChoice = Console.ReadLine();
 
@@ -307,7 +307,7 @@ namespace Grupp5Projekt
           {
             Console.Clear();
             Console.WriteLine("");
-            Console.WriteLine("   *Create & Remove User Menu*");
+            Console.WriteLine("   *Create & Remove User*");
             Console.WriteLine("");
             Console.WriteLine("   Select an option:");
             Console.WriteLine("");
@@ -320,7 +320,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- 0. Return to Main Menu");
             Console.WriteLine("");
-            Console.Write("   Your choice: ");
+            Console.Write("   Make a choice and press [ENTER]: ");
         string userChoice = Console.ReadLine();
 
             switch (userChoice)
@@ -361,64 +361,208 @@ namespace Grupp5Projekt
     //Add Admin User
     static void AddAdminUser(Register register)
     {
-      Console.WriteLine("");
+        Console.WriteLine("");
         Console.WriteLine("   *Add Admin User*");
         Console.WriteLine("");
-        Console.Write("   Enter Admin name: ");
+        Console.Write("   Enter Admin Name: ");
         string rName = Console.ReadLine();
-        Console.Write("   Enter Admin password: ");
+        Console.Write("   Enter Admin Password: ");
         string rPassword = Console.ReadLine();
-        Console.Write("   Enter Admin email: ");
-        string rEmail = Console.ReadLine();
-        register.AddAdminUser(rName, rEmail, rPassword);
+        string rEmail = "";
+        while (true)
+        {
+          Console.Write("   Enter Admin Email: ");
+          rEmail = Console.ReadLine();
+          if (register.GetUser(rEmail) == -1)
+          {
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("   -- Admin User Created --");
+            Console.WriteLine("");
+            Console.WriteLine("   Press Any Key To Go Back.");
+            Console.WriteLine("");
+            Console.ReadKey();
+            break;
+          }
+          else
+          {
+            Console.WriteLine("");
+            Console.WriteLine("   -- Email already in use, try again! --");
+            Console.WriteLine("");
+        }
+          Admin admin = new Admin(rName, rEmail, rPassword);
+          register.AddAdminUser(admin);
+      }
     }
 
     //Remove Admin User
     static void RemoveAdminUser(Register register)
     {
-
+      int pos = -1;
+      while (true)
+      {
+        Console.WriteLine("");
+        Console.WriteLine("   *Remove Admin User*");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.Write("   Enter Admin User Email: ");
+        pos = register.GetUser(Console.ReadLine());
+        if (pos < 0)
+        {
+          Console.WriteLine("");
+          Console.WriteLine("   User Not Found, Try Again.");
+          Console.WriteLine("");
+        }
+        else
+        {
+          Console.WriteLine("");
+          Console.WriteLine("");
+          Console.WriteLine("   -- Admin User Removed --");
+          Console.WriteLine("");
+          Console.WriteLine("   Press Any Key To Go Back.");
+          Console.WriteLine("");
+          Console.ReadKey();
+          break;
+        }
+      }
     }
 
     //Add Teacher User
     static void AddTeacherUser(Register register)
     {
-            Console.WriteLine("");
-            Console.WriteLine("   *Add Teacher User*");
-            Console.WriteLine("");
-            Console.Write("   Enter Teacher name: ");
-            string rName = Console.ReadLine();
-            Console.Write("   Enter Teacher password: ");
-            string rPassword = Console.ReadLine();
-            Console.Write("   Enter Teacher email: ");
-            string rEmail = Console.ReadLine();
-            register.AddTeacherUser(rName, rEmail, rPassword);
+      Console.WriteLine("");
+      Console.WriteLine("   *Add Teacher User*");
+      Console.WriteLine("");
+      Console.Write("   Enter Teacher Name: ");
+      string rName = Console.ReadLine();
+      Console.Write("   Enter Teacher Password: ");
+      string rPassword = Console.ReadLine();
+      string rEmail = "";
+      while (true)
+      {
+        Console.Write("   Enter Teacher Email: ");
+        rEmail = Console.ReadLine();
+        if (register.GetUser(rEmail) == -1)
+        {
+          Console.WriteLine("");
+          Console.WriteLine("");
+          Console.WriteLine("   -- Teacher User Created --");
+          Console.WriteLine("");
+          Console.WriteLine("   Press Any Key To Go Back.");
+          Console.WriteLine("");
+          Console.ReadKey();
+          break;
         }
+        else
+        {
+          Console.WriteLine("");
+          Console.WriteLine("   -- Email already in use, try again! --");
+          Console.WriteLine("");
+        }
+        Teacher teacher = new Teacher(rName, rEmail, rPassword);
+        register.AddTeacherUser(teacher);
+      }
+    }
 
     //Remove Teacher User
     static void RemoveTeacherUser(Register register)
     {
-
+      int pos = -1;
+      while (true)
+      {
+        Console.WriteLine("");
+        Console.WriteLine("   *Remove Teacher User*");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.Write("   Enter Teacher User Email: ");
+        pos = register.GetUser(Console.ReadLine());
+        if (pos < 0)
+        {
+          Console.WriteLine("");
+          Console.WriteLine("   User Not Found, Try Again.");
+          Console.WriteLine("");
+        }
+        else
+        {
+          Console.WriteLine("");
+          Console.WriteLine("");
+          Console.WriteLine("   -- Teacher User Removed --");
+          Console.WriteLine("");
+          Console.WriteLine("   Press Any Key To Go Back.");
+          Console.WriteLine("");
+          Console.ReadKey();
+          break;
+        }
+      }
     }
 
     //Add Student User
     static void AddStudentUser(Register register)
         {
-            Console.WriteLine("");
-            Console.WriteLine("   *Add Student User*");
-            Console.WriteLine("");
-            Console.Write("   Enter Student name: ");
-            string rName = Console.ReadLine();
-            Console.Write("   Enter Student password: ");
-            string rPassword = Console.ReadLine();
-            Console.Write("   Enter Student email: ");
-            string rEmail = Console.ReadLine();
-            register.AddTeacherUser(rName, rEmail, rPassword);
-        }
+      Console.WriteLine("");
+          Console.WriteLine("   *Add Student User*");
+          Console.WriteLine("");
+          Console.Write("   Enter Student Name: ");
+          string rName = Console.ReadLine();
+          Console.Write("   Enter Student Password: ");
+          string rPassword = Console.ReadLine();
+          string rEmail = "";
+          while (true)
+          {
+            Console.Write("   Enter Student Email: ");
+            rEmail = Console.ReadLine();
+            if (register.GetUser(rEmail) == -1)
+            {
+              Console.WriteLine("");
+              Console.WriteLine("");
+              Console.WriteLine("   -- Student User Created --");
+              Console.WriteLine("");
+              Console.WriteLine("   Press Any Key To Go Back.");
+              Console.WriteLine("");
+              Console.ReadKey();
+              break;
+            }
+            else
+            {
+              Console.WriteLine("");
+              Console.WriteLine("   -- Email already in use, try again! --");
+              Console.WriteLine("");
+            }
+            Student student = new Student(rName, rEmail, rPassword);
+            register.AddStudentUser(student);
+          }
+    }
 
     //Remove Student User
     static void RemoveStudentUser(Register register)
     {
-
+      int pos = -1;
+      while (true)
+      {
+        Console.WriteLine("");
+        Console.WriteLine("   *Remove Student User*");
+        Console.WriteLine("");
+        Console.WriteLine("");
+        Console.Write("   Enter Student User Email: ");
+        pos = register.GetUser(Console.ReadLine());
+        if (pos < 0)
+        {
+          Console.WriteLine("");
+          Console.WriteLine("   User Not Found, Try Again.");
+          Console.WriteLine("");
+        }
+        else
+        {
+          Console.WriteLine("");
+          Console.WriteLine("");
+          Console.WriteLine("   -- Student User Removed --");
+          Console.WriteLine("");
+          Console.WriteLine("   Press Any Key To Go Back.");
+          Console.WriteLine("");
+          Console.ReadKey();
+          break;
+        }
+      }
     }
 
     static void CreateRemoveCourse(Register register)

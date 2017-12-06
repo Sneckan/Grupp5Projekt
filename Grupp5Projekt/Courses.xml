@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCourse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Course>
+    <Name>Name</Name>
+    <Teacher>
+      <Name>Name</Name>
+      <Email>Email</Email>
+      <Password>Password</Password>
+      <MyPrivilege>teacher</MyPrivilege>
+      <Courses />
+      <lessons />
+    </Teacher>
+    <Students>
+      <Student>
+        <Name>student</Name>
+        <Email>email</Email>
+        <Password>password</Password>
+        <MyPrivilege>student</MyPrivilege>
+      </Student>
+    </Students>
+    <StartDate>2017-12-06T14:15:17.3057431+01:00</StartDate>
+    <EndDate>2017-12-06T14:15:17.3057431+01:00</EndDate>
+    <Hours>5</Hours>
+    <lessons />
+    <TeacherEmail>Email</TeacherEmail>
+    <Grades>
+      <Grade>
+        <StudentEmail>email</StudentEmail>
+        <StudentGrade />
+      </Grade>
+    </Grades>
+  </Course>
+</ArrayOfCourse>

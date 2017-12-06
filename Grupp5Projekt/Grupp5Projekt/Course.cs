@@ -121,12 +121,40 @@ namespace Grupp5Projekt
     {
       Students.Add(student);
       Grades.Add(new Grade(student.Email, ""));
-
     }
 
     public void AddStudents(List<Student> students)
     {
       Students = students;
+    }
+
+    public void RemoveStudent(Student student)
+    {
+      int i = 0;
+      bool found = false;
+
+      while (i < Students.Count && !found)
+      {
+        if (Grades[i].StudentEmail == student.Email)
+        {
+          Students.Remove(student);
+          Grades.Remove(Grades[i]);
+          found = true;
+        }
+        i++;
+      }
+    }
+
+    public void AddTeacher(Teacher teacher)
+    {
+      Teacher = teacher;
+      TeacherEmail = teacher.Email;
+    }
+
+    public void RemoveTeacher()
+    {
+      Teacher = new Teacher();
+      TeacherEmail = "";
     }
   }
 }

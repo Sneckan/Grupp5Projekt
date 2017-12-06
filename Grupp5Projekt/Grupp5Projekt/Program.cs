@@ -1028,7 +1028,6 @@ namespace Grupp5Projekt
             smallMenuLoop = false;
           }
         }
-
         
         List<Lesson> lessonList = register.ShowLessonsRoom(room);
 

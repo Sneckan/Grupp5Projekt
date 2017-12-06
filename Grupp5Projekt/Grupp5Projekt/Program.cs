@@ -1125,7 +1125,8 @@ namespace Grupp5Projekt
         Console.WriteLine("1. Show all courses");
         Console.WriteLine("2. Show unfinished courses");
         Console.WriteLine("3. Show finished courses");
-        Console.WriteLine("4. Back to main menu");
+        Console.WriteLine("4. Show all students from courses");
+        Console.WriteLine("5. Back to main menu");
 
         switch (Console.ReadLine())
         {
@@ -1147,8 +1148,14 @@ namespace Grupp5Projekt
             TeacherShowFinishedCourses(register);
             break;
 
-          //Go back
+          //Show all students in courses
           case "4":
+            Console.Clear();
+            ShowAllStudentsInCourses(register);
+            break;
+
+          //Go back
+          case "5":
             Console.Clear();
             menuLoop = false;
             Console.Clear();
@@ -1187,7 +1194,6 @@ namespace Grupp5Projekt
     //Show all lessons method
     static void TeacherShowAllLessons(Register register)
     {
-      Console.Clear();
       Console.WriteLine("All lessons for " + register.LoggedUser.Name + ":" + "\n");
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
       {
@@ -1209,7 +1215,7 @@ namespace Grupp5Projekt
       {
         Console.WriteLine(course.Name);
       }
-      Console.WriteLine();
+      Console.ReadLine();
     }
 
     //Show unfinished courses method
@@ -1261,8 +1267,8 @@ namespace Grupp5Projekt
         {
           Console.WriteLine(course.Name);
         }
-        Console.WriteLine();
       }
+      Console.WriteLine();
 
       bool menuLoop = true;
       while (menuLoop)
@@ -1288,7 +1294,6 @@ namespace Grupp5Projekt
     //Add student to course method
     static void AddStudentToCourse(Register register)
     {
-      Console.Clear();
       Console.WriteLine("List of students:" + "\n");
       foreach (var student in register.Users.OfType<Student>())
       {
@@ -1328,12 +1333,51 @@ namespace Grupp5Projekt
         }
       }
       register.AddStudentToCourse(register.Courses[coursePos],(Student)register.Users[studentPos]);
-      Console.WriteLine("Student added to course");
+      Console.WriteLine("Student added to course" + "\n");
     }
 
-    //Remove student from course
     static void RemoveStudentFromCourse(Register register)
-    {
+    { 
+      Console.WriteLine("List of students:" + "\n");
+      foreach (var student in register.Users.OfType<Student>())
+      {
+        Console.WriteLine(student.Name + " " + student.Email);
+      }
+      Console.WriteLine();
+
+      int studentPos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a student: ");
+        studentPos = register.SearchUserWithEmail(Console.ReadLine());
+
+        if (studentPos < 0)
+        {
+          Console.WriteLine("User not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+
+      int coursePos = -1;
+      while (true)
+      {
+        Console.WriteLine("Choose a course: ");
+        coursePos = register.SearchCourseWithName(Console.ReadLine());
+
+        if (coursePos < 0)
+        {
+          Console.WriteLine("Course not found, try again.");
+        }
+        else
+        {
+          break;
+        }
+      }
+      register.RemoveStudentFromCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
+      Console.WriteLine("Student removed from course" + "\n");
 
     }
 
@@ -1382,7 +1426,6 @@ namespace Grupp5Projekt
     //Add a grade to a student
     static void GradeStudent(Register register)
     {
-      Console.Clear();
       int coursePos = -1;
       while (true)
       {
@@ -1426,6 +1469,18 @@ namespace Grupp5Projekt
       register.SaveCourse();
 
       Console.WriteLine("Grade successfully added to student!" + "\n");
+    }
+
+    static void ShowAllStudentsInCourses(Register register)
+    {
+      foreach (var course in register.ShowTeacherCourses((Teacher) register.LoggedUser))
+      {
+        foreach (var grade in course.Grades)
+        {
+          Console.WriteLine(grade.StudentEmail);
+        }
+      }
+      Console.ReadLine();
     }
 
     static void ShowAllStudents(Register register)

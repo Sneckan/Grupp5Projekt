@@ -462,6 +462,8 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          Teacher teacher = new Teacher(rName, rEmail, rPassword);
+          register.AddTeacherUser(teacher);
           Console.ReadKey();
           break;
         }
@@ -471,8 +473,7 @@ namespace Grupp5Projekt
           Console.WriteLine("   -- Email already in use, try again! --");
           Console.WriteLine("");
         }
-        Teacher teacher = new Teacher(rName, rEmail, rPassword);
-        register.AddTeacherUser(teacher);
+        
       }
     }
 
@@ -531,7 +532,9 @@ namespace Grupp5Projekt
               Console.WriteLine("");
               Console.WriteLine("   Press Any Key To Go Back.");
               Console.WriteLine("");
-              Console.ReadKey();
+          Student student = new Student(rName, rEmail, rPassword);
+          register.AddStudentUser(student);
+          Console.ReadKey();
               break;
             }
             else
@@ -540,8 +543,7 @@ namespace Grupp5Projekt
               Console.WriteLine("   -- Email already in use, try again! --");
               Console.WriteLine("");
             }
-            Student student = new Student(rName, rEmail, rPassword);
-            register.AddStudentUser(student);
+
           }
     }
 

@@ -1046,7 +1046,7 @@ namespace Grupp5Projekt
             room = register.Rooms[roomPos];
             smallMenuLoop = false;
           }
-        }
+        } 
         
         List<Lesson> lessonList = register.ShowLessonsRoom(room);
 

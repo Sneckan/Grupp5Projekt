@@ -1268,7 +1268,7 @@ namespace Grupp5Projekt
           Console.WriteLine("Course: {0}, Room: {1}, Start date: {2}, End date: {3}", lesson.Course.Name, lesson.RoomName, lesson.Start, lesson.End);
         }
       }
-      Console.WriteLine();
+      Console.ReadLine();
     }
 
     //Show all courses method
@@ -1543,7 +1543,7 @@ namespace Grupp5Projekt
       {
         foreach (var grade in course.Grades)
         {
-          Console.WriteLine(grade.StudentEmail);
+          Console.WriteLine(course.Name + " - " + grade.StudentEmail);
         }
       }
       Console.ReadLine();

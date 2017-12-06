@@ -399,20 +399,21 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- Admin User Created --");
             Console.WriteLine("");
+            Admin admin = new Admin(rName, rEmail, rPassword);
+            register.AddAdminUser(admin);
             Console.WriteLine("   Press Any Key To Go Back.");
             Console.WriteLine("");
             Console.ReadKey();
-            break;
+          break;
           }
           else
           {
             Console.WriteLine("");
             Console.WriteLine("   -- Email already in use, try again! --");
             Console.WriteLine("");
-          }
         }
-        Admin admin = new Admin(rName, rEmail, rPassword);
-        register.AddAdminUser(admin);
+          Admin admin = new Admin(rName, rEmail, rPassword);
+          register.AddAdminUser(admin);
       }
     }
 
@@ -422,6 +423,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Admin User*");
         Console.WriteLine("");
@@ -442,6 +444,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveAdminUser((Admin)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -496,6 +499,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Teacher User*");
         Console.WriteLine("");
@@ -516,6 +520,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveTeacherUser((Teacher)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -570,6 +575,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Student User*");
         Console.WriteLine("");
@@ -590,6 +596,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveStudentUser((Student)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -717,12 +724,15 @@ namespace Grupp5Projekt
         switch (userChoice)
         {
           case "1":
+            Console.Clear();
             AddRoom(register);
             break;
           case "2":
+            Console.Clear();
             RemoveRoom(register);
             break;
           case "0":
+            Console.Clear();
             menuLoop = false;
             break;
 
@@ -741,8 +751,8 @@ namespace Grupp5Projekt
             string Name = Console.ReadLine();
             Console.Write("   Set Room capacity: ");
             string MaxCapacity = Console.ReadLine();
-            Console.Write("   Add Lesson to room: ");
-            string lessons = Console.ReadLine();
+
+      Room room = new Room(Name, int.Parse(MaxCapacity));
         }
 
     //Remove Room
@@ -1376,7 +1386,6 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
-        Console.Clear();
         Console.WriteLine("1. Grade students");
         Console.WriteLine("2. Back");
 
@@ -1387,6 +1396,7 @@ namespace Grupp5Projekt
             break;
 
           case "2":
+            Console.Clear();
             menuLoop = false;
             break;
         }
@@ -1454,6 +1464,16 @@ namespace Grupp5Projekt
         Console.WriteLine("   -- Invalid email adress format. --");
         return false;
       }
+    }
+
+    static void ShowAllStudents(Register register)
+    {
+      Console.WriteLine("List of students:" + "\n");
+      foreach (var student in register.Users.OfType<Student>())
+      {
+        Console.WriteLine(student.Name + " " + student.Email);
+      }
+      Console.WriteLine();
     }
   }
 }

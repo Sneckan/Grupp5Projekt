@@ -399,8 +399,6 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   -- Admin User Created --");
             Console.WriteLine("");
-            Admin admin = new Admin(rName, rEmail, rPassword);
-            register.AddAdminUser(admin);
             Console.Write("   Press Any Key To Go Back.");
             Console.WriteLine("");
             Console.ReadKey();
@@ -487,7 +485,7 @@ namespace Grupp5Projekt
           else
           {
             Console.WriteLine("");
-            Console.WriteLine("   -- Email already in use, try again! --");
+            Console.WriteLine("   -- Email Already In Use, Try Again! --");
             Console.WriteLine("");
           }
         }
@@ -564,7 +562,7 @@ namespace Grupp5Projekt
           else
           {
             Console.WriteLine("");
-            Console.WriteLine("   -- Email already in use, try again! --");
+            Console.WriteLine("   -- Email Already In Use, Try Again! --");
             Console.WriteLine("");
           }
         }
@@ -615,14 +613,14 @@ namespace Grupp5Projekt
         Console.WriteLine("");
         Console.WriteLine("   *Create & Remove Course Menu*");
         Console.WriteLine("");
-        Console.WriteLine("   Select an option:");
+        Console.WriteLine("   Select An Option:");
         Console.WriteLine("");
         Console.WriteLine("   -- 1. Add Course");
         Console.WriteLine("   -- 2. Remove Course");
         Console.WriteLine("");
         Console.WriteLine("   -- 0. Return to Main Menu");
         Console.WriteLine("");
-        Console.Write("   Make a choice and press [ENTER]: ");
+        Console.Write("   Make A Choice And Press [ENTER]: ");
         string userChoice = Console.ReadLine();
 
         switch (userChoice)
@@ -709,7 +707,7 @@ namespace Grupp5Projekt
         else
         {
           Console.WriteLine("");
-          Console.Write("   Are you sure (Y/N)? : ");
+          Console.Write("   Are You Sure? (Y/N) : ");
           Console.WriteLine("");
           if (Console.ReadLine() == "y" || Console.ReadLine() == "Y")
           {
@@ -738,14 +736,14 @@ namespace Grupp5Projekt
         Console.WriteLine("");
         Console.WriteLine("   *Create & Remove Room Menu*");
         Console.WriteLine("");
-        Console.WriteLine("   Select an option:");
+        Console.WriteLine("   Select An Option:");
         Console.WriteLine("");
         Console.WriteLine("   -- 1. Add Room");
         Console.WriteLine("   -- 2. Remove Room");
         Console.WriteLine("");
-        Console.WriteLine("   -- 0. Return to Main Menu");
+        Console.WriteLine("   -- 0. Return To Main Menu");
         Console.WriteLine("");
-        Console.Write("   Your choice: ");
+        Console.Write("   Make A Choice And Press [ENTER]: ");
         string userChoice = Console.ReadLine();
 
         switch (userChoice)
@@ -774,7 +772,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Console.WriteLine("   *Add Room*");
             Console.WriteLine("");
-            Console.Write("   Enter Room name: ");
+            Console.Write("   Enter Room Name: ");
             string Name = Console.ReadLine();
             Console.Write("   Set Room capacity: ");
             string MaxCapacity = Console.ReadLine();
@@ -790,16 +788,24 @@ namespace Grupp5Projekt
       while(menuLoop)
       {
         Console.Clear();
-        Console.WriteLine("Room name:");
+        Console.WriteLine("");
+        Console.WriteLine("   *Remove Room*");
+        Console.WriteLine("");
+        Console.WriteLine("   Room Name:");
+        Console.WriteLine("");
         string name = Console.ReadLine();
         int roomPos = register.SearchRoomWithName(name);
         if(roomPos==-1)
         {
-          Console.WriteLine("Room not found, try again");
+          Console.WriteLine("");
+          Console.WriteLine("   -- Room Not Found, Try Again --");
+          Console.WriteLine("");
         }
         else
         {
-          Console.WriteLine("Room removed");
+          Console.WriteLine("");
+          Console.WriteLine("   -- Room Removed --");
+          Console.WriteLine("");
           register.RemoveRoom(register.Rooms[roomPos]);
           menuLoop = false;
         }
@@ -818,14 +824,14 @@ namespace Grupp5Projekt
         Console.WriteLine("");
         Console.WriteLine("   *Create & Remove Lesson Menu*");
         Console.WriteLine("");
-        Console.WriteLine("   Select an option:");
+        Console.WriteLine("   Select An Option:");
         Console.WriteLine("");
         Console.WriteLine("   -- 1. Add Lesson");
         Console.WriteLine("   -- 2. Remove Lesson");
         Console.WriteLine("");
-        Console.WriteLine("   -- 0. Return to Main Menu");
+        Console.WriteLine("   -- 0. Return To Main Menu");
         Console.WriteLine("");
-        Console.Write("   Your choice: ");
+        Console.Write("   Make A Choice And Press [ENTER]: ");
         string userChoice = Console.ReadLine();
 
         switch (userChoice)
@@ -864,11 +870,11 @@ namespace Grupp5Projekt
         Course course = new Course();
         while (menuLoop)
         {
-          Console.Write("   Enter course name: ");
+          Console.Write("   Enter Course Name: ");
           string courseName = Console.ReadLine();
           if (register.SearchCourseWithName(courseName) == -1)
           {
-            Console.WriteLine("Course doesnt exist, try again");
+            Console.WriteLine("   -- Course Doesn't Exist, Try Again --");
           }
           else
           {
@@ -878,15 +884,15 @@ namespace Grupp5Projekt
         }
 
 
-        Console.Write("Enter date: YYYY-MM-DD");
+        Console.Write("   Set Date 'YYYY-MM-DD': ");
         string temp = Console.ReadLine();
         string[] date = temp.Split('-');
 
-        Console.WriteLine("Enter start time: HH-MM");
+        Console.Write("   Enter start time 'HH-MM': ");
         temp = Console.ReadLine();
         string[] startTime = temp.Split('-');
 
-        Console.WriteLine("Enter end time: HH-MM");
+        Console.WriteLine("   Enter end time 'HH-MM': ");
         temp = Console.ReadLine();
         string[] endTime = temp.Split('-');
 
@@ -894,11 +900,11 @@ namespace Grupp5Projekt
         Room room = new Room();
         while (menuLoop)
         {
-          Console.Write("   Enter room: ");
+          Console.Write("   Enter Room: ");
           temp = Console.ReadLine();
           if (register.SearchRoomWithName(temp) == -1)
           {
-            Console.WriteLine("Room not found, try again");
+            Console.WriteLine("   -- Room Not Found, Try Again --");
           }
           else
           {
@@ -912,17 +918,22 @@ namespace Grupp5Projekt
 
         if (!register.AddLesson(new Lesson(course, startDate, endDate, room)))
         {
-          Console.WriteLine("Lesson room/time already occupied.");
-          Console.WriteLine("1. Try again");
-          Console.WriteLine("2. Go back");
-          if(Console.ReadLine()=="2")
+          Console.Clear();
+          Console.WriteLine("");
+          Console.WriteLine("   -- Lesson Room/Time Already Occupied.");
+          Console.WriteLine("");
+          Console.WriteLine("   Press Any Key To Try Again");
+          Console.WriteLine("");
+          Console.WriteLine("   -- 0. Go back");
+          Console.WriteLine("");
+          if (Console.ReadLine()=="0")
           {
             bigMenuLoop = false;
           }
         }
         else
         {
-          Console.WriteLine("Lesson created!");
+          Console.WriteLine("   -- Lesson created! --");
           bigMenuLoop = false;
         }
       }
@@ -936,25 +947,29 @@ namespace Grupp5Projekt
       while (menuLoop)
       {
         Console.Clear();
-        Console.WriteLine("Room name:");
+        Console.WriteLine("");
+        Console.WriteLine("   *Remove Lesson*");
+        Console.WriteLine("");
+        Console.WriteLine("   Enter Room Name:");
+        Console.WriteLine("");
         string roomName = Console.ReadLine();
-        Console.WriteLine("Date: YYYY-MM-DD");
+        Console.WriteLine("   Lesson Date 'YYYY-MM-DD': ");
         string[] date= Console.ReadLine().Split('-');
-        Console.WriteLine("Time: HH-MM");
+        Console.WriteLine("   Lesson Time 'HH-MM': ");
         string[] time = Console.ReadLine().Split('-');
 
         lessonPos = register.SearchLessonWithRoomNameTimes(roomName, new DateTime(Int32.Parse(date[0]), Int32.Parse(date[1]), Int32.Parse(date[2]), Int32.Parse(time[0]), Int32.Parse(time[1]), 0));
 
         if (lessonPos==-1)
         {
-          Console.WriteLine("Lesson not found, try again");
+          Console.WriteLine("   -- Lesson Not found, Try Again --");
         }
         else
         {
           menuLoop = false;
         }
       }
-      Console.WriteLine("Lesson is removed");
+      Console.WriteLine("   -- Lesson Is Removed --");
       register.RemoveLesson(register.Lessons[lessonPos]);
 
     }
@@ -1044,12 +1059,12 @@ namespace Grupp5Projekt
         int coursePos = 0;
         while(smallMenuLoop)
         {
-          Console.WriteLine("Enter Course:");
+          Console.WriteLine("   Enter Course Name:");
           string courseName = Console.ReadLine();
           coursePos=register.SearchCourseWithName(courseName);
           if (coursePos==-1)
           {
-            Console.WriteLine("Course not found, try again");
+            Console.WriteLine("   -- Course Not Found, Try again --");
           }
           else
           {
@@ -1085,18 +1100,18 @@ namespace Grupp5Projekt
       {
         Console.Clear();
         Console.WriteLine("");
-        Console.WriteLine("   *Show for one room*");
+        Console.WriteLine("   *Show For One Room*");
         Console.WriteLine("");
         Room room = new Room();
         bool smallMenuLoop = true;
         while(smallMenuLoop)
         {
-          Console.WriteLine("Enter room:");
+          Console.WriteLine("   Enter Room Name:");
           string temp = Console.ReadLine();
           int roomPos = register.SearchRoomWithName(temp);
           if (roomPos==-1)
           {
-            Console.WriteLine("Room not found, try again");
+            Console.WriteLine("   -- Room Not Found, Try Again --");
           }
           else
           {

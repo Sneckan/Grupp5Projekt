@@ -404,8 +404,6 @@ namespace Grupp5Projekt
             Console.Write("   Press Any Key To Go Back.");
             Console.WriteLine("");
             Console.ReadKey();
-            Admin admin = new Admin(rName, rEmail, rPassword);
-            register.AddAdminUser(admin);
             break;
           }
           else

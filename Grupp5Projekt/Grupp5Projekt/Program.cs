@@ -24,6 +24,13 @@ namespace Grupp5Projekt
         register.AddCourse("Matematik", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 01), 60);
         register.AddCourse("Svenska", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 31), 60);
         register.AddStudentUser("erik", "erik", "erik");
+        register.AddStudentUser("ove", "ove", "ove");
+        Room room = new Room("Sal 1", 35);
+        Course course = new Course("Engelska", teacher, new DateTime(2017, 10, 30), new DateTime(2017, 12, 01), 60);
+        Lesson lesson = new Lesson(course, DateTime.Now, DateTime.Now, room);
+        register.AddRoom(room);
+        register.AddCourse(course);
+        register.AddLesson(lesson);
       }
 
       //Ask user to sign in with email and password
@@ -46,7 +53,7 @@ namespace Grupp5Projekt
         if (register.Users[i].Password == password)
         {
           register.LogIn(register.Users[i]);
-          Console.WriteLine("Logged in");
+          Console.WriteLine("Logged in successfully" + "\n");
           break;
         }
         else
@@ -734,6 +741,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.WriteLine("Main menu:");
         Console.WriteLine("1. Show courses");
         Console.WriteLine("2. Show lessons");
 
@@ -762,7 +770,7 @@ namespace Grupp5Projekt
         Console.WriteLine("1. Show all courses");
         Console.WriteLine("2. Show unfinished courses");
         Console.WriteLine("3. Show finished courses");
-        Console.WriteLine("4. Go back");
+        Console.WriteLine("4. Back to main menu");
 
         switch (Console.ReadLine())
         {
@@ -788,6 +796,7 @@ namespace Grupp5Projekt
           case "4":
             Console.Clear();
             menuLoop = false;
+            Console.Clear();
             break;
         }
       }
@@ -813,6 +822,7 @@ namespace Grupp5Projekt
           //Go back
           case "2":
             menuLoop = false;
+            Console.Clear();
             break;
         }
       }
@@ -826,15 +836,16 @@ namespace Grupp5Projekt
       {
         foreach (var lesson in register.GetLessonsCourse(course))
         {
-          Console.WriteLine("Name: {0}, Start date: {1}, End date: {2}", lesson.Course.Name, lesson.Start, lesson.End);
+          Console.WriteLine("Course: {0}, Start date: {1}, End date: {2}", lesson.Course.Name, lesson.Start, lesson.End);
         }
       }
+      Console.WriteLine();
     }
 
     //Show all courses method
     static void TeacherShowAllCourses(Register register)
     {
-      Console.WriteLine("All courses for " + register.LoggedUser.Name + ":" + "\n");
+      Console.WriteLine("All courses " + register.LoggedUser.Name + " is responsible for:" + "\n");
 
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
       {
@@ -846,7 +857,7 @@ namespace Grupp5Projekt
     //Show unfinished courses method
     static void TeacherShowUnfinishedCourses(Register register)
     {
-      Console.WriteLine("Unfinished courses for " + register.LoggedUser.Name + ":" + "\n");
+      Console.WriteLine("Unfinished courses:" + "\n");
       // LINQ-uttryck. Funkar också med en if-sats som i metoden över
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser)
         .Where(x => x.EndDate > DateTime.Now))
@@ -874,6 +885,7 @@ namespace Grupp5Projekt
 
           case "3":
             menuLoop = false;
+            Console.Clear();
             break;
         }
       }
@@ -882,13 +894,14 @@ namespace Grupp5Projekt
     //Show finished courses method
     static void TeacherShowFinishedCourses(Register register)
     {
-      Console.WriteLine("Finished courses for " + register.LoggedUser.Name + ":" + "\n");
+      Console.WriteLine("Finished courses:" + "\n");
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
       {
         if (course.EndDate < DateTime.Now)
         {
           Console.WriteLine(course.Name);
         }
+        Console.WriteLine();
       }
 
       bool menuLoop = true;
@@ -900,11 +913,13 @@ namespace Grupp5Projekt
         switch (Console.ReadLine())
         {
           case "1":
+            Console.Clear();
             ShowUngradedStudents(register);
             break;
 
           case "2":
-            menuLoop = false;
+            Console.Clear();
+            menuLoop = false;            
             break;
         }
       }
@@ -913,6 +928,13 @@ namespace Grupp5Projekt
     //Add student to course method
     static void AddStudentToCourse(Register register)
     {
+      Console.WriteLine("List of students:" + "\n");
+      foreach (var student in register.Users.OfType<Student>())
+      {
+        Console.WriteLine(student.Name + " " + student.Email);
+      }
+      Console.WriteLine();
+
       int studentPos = -1;
       while (true)
       {
@@ -944,8 +966,8 @@ namespace Grupp5Projekt
           break;
         }
       }
-      register.Courses[coursePos].AddStudent((Student)register.Users[studentPos]);
-      Console.WriteLine("Student added to course");
+      register.AddStudentToCourse(register.Courses[coursePos], (Student)register.Users[studentPos]);
+      Console.WriteLine("Student added to course" + "\n");
     }
 
     //Remove student from course
@@ -957,9 +979,24 @@ namespace Grupp5Projekt
     //Show ungraded students method
     static void ShowUngradedStudents(Register register)
     {
-      //Method for ShowUngradesStudent
-      //Code here...
+      //Method for ShowUngradedStudent
+      Console.WriteLine("List of ungraded students: ");
 
+      foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
+      {
+        if (course.EndDate < DateTime.Now)
+        {
+          foreach (var grade in course.Grades)
+          {
+            if (grade.StudentGrade == "")
+            {
+              Console.WriteLine(course.Name + " - " + grade.StudentEmail);
+            }
+          }         
+        }
+      }
+      Console.WriteLine();
+    
       bool menuLoop = true;
       while (menuLoop)
       {
@@ -973,6 +1010,7 @@ namespace Grupp5Projekt
             break;
 
           case "2":
+            Console.Clear();
             menuLoop = false;
             break;
         }
@@ -1022,10 +1060,9 @@ namespace Grupp5Projekt
       string grade = Console.ReadLine();
 
       register.Courses[coursePos].GradeStudent(register.Users[studentPos].Email, grade);
+      register.SaveCourse();
 
-      Console.WriteLine("Grade successfully added to student.");
+      Console.WriteLine("Grade successfully added to student!" + "\n");
     }
-
- 
   }
 }

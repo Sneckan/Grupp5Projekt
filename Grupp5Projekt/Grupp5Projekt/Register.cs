@@ -63,7 +63,7 @@ namespace Grupp5Projekt
 
       try
       {
-        //Lessons = LoadLessons();
+        Lessons = LoadLessons();
       }
       catch
       {

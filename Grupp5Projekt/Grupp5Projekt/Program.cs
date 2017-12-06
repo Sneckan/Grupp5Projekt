@@ -728,7 +728,26 @@ namespace Grupp5Projekt
     //Remove Room
     static void RemoveRoom(Register register)
     {
-
+     
+      bool menuLoop = true;
+      while(menuLoop)
+      {
+        Console.Clear();
+        Console.WriteLine("Room name:");
+        string name = Console.ReadLine();
+        int roomPos = register.SearchRoomWithName(name);
+        if(roomPos==-1)
+        {
+          Console.WriteLine("Room not found, try again");
+        }
+        else
+        {
+          Console.WriteLine("Room removed");
+          register.RemoveRoom(register.Rooms[roomPos]);
+          menuLoop = false;
+        }
+      }
+      
     }
 
     //Create Lesson

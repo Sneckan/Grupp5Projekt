@@ -1008,7 +1008,7 @@ namespace Grupp5Projekt
       {
         foreach (var lesson in register.GetLessonsCourse(course))
         {
-          Console.WriteLine("Course: {0}, Start date: {1}, End date: {2}", lesson.Course.Name, lesson.Start, lesson.End);
+          Console.WriteLine("Course: {0}, Room: {1}, Start date: {2}, End date: {3}", lesson.Course.Name, lesson.RoomName, lesson.Start, lesson.End);
         }
       }
       Console.WriteLine();

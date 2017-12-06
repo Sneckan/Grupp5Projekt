@@ -488,14 +488,35 @@ namespace Grupp5Projekt
     //Remove Course
     static void RemoveCourse(Register register)
     {
-      Console.WriteLine("Select course");
-      string courseName = Console.ReadLine();
-
-      Console.WriteLine("Are you sure? y/n");
-      if (Console.ReadLine() == "y" || Console.ReadLine() == "Y")
+      bool menuLoop = true;
+      while(menuLoop)
       {
-        register.RemoveCourse(register.Courses[register.SearchCourseWithName(courseName)]);
+        Console.WriteLine("Select course");
+        string courseName = Console.ReadLine();
+
+        if(register.SearchCourseWithName(courseName)==-1)
+        {
+          Console.WriteLine("Course with that name doesnt exist");
+          Console.WriteLine("1. Try again");
+          Console.WriteLine("2. Go back");
+          if(Console.ReadLine()=="2")
+          {
+            menuLoop = false;
+          }
+          
+        }
+        else
+        {
+          Console.WriteLine("Are you sure? y/n");
+          if (Console.ReadLine() == "y" || Console.ReadLine() == "Y")
+          {
+            register.RemoveCourse(register.Courses[register.SearchCourseWithName(courseName)]);
+            menuLoop = false;
+          }
+
+        }
       }
+
     }
 
     static void CreateRemoveRoom(Register register)

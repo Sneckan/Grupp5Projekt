@@ -433,6 +433,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveAdminUser((Admin)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -503,6 +504,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveTeacherUser((Teacher)register.Users[pos]);
           Console.ReadKey();
           break;
         }
@@ -573,6 +575,7 @@ namespace Grupp5Projekt
           Console.WriteLine("");
           Console.WriteLine("   Press Any Key To Go Back.");
           Console.WriteLine("");
+          register.RemoveStudentUser((Student)register.Users[pos]);
           Console.ReadKey();
           break;
         }

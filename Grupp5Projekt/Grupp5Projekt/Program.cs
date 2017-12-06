@@ -413,6 +413,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Admin User*");
         Console.WriteLine("");
@@ -484,6 +485,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Teacher User*");
         Console.WriteLine("");
@@ -555,6 +557,7 @@ namespace Grupp5Projekt
       int pos = -1;
       while (true)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Remove Student User*");
         Console.WriteLine("");

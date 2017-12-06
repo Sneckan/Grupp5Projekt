@@ -155,6 +155,7 @@ namespace Grupp5Projekt
 
     static void StudentShowAllLessons(Register register)
     {
+      Console.Clear();
       List<Lesson> lessonList = register.ShowLessonsStudent((Student)register.LoggedUser);
       foreach (Lesson Lesson in lessonList)
       {
@@ -176,6 +177,7 @@ namespace Grupp5Projekt
 
     static void StudentShowSelectedCourseLessons(Register register)
     {
+
       StudentShowCoursesMenu(register);
       Console.WriteLine("Choose course: Name ");
       string choice = Console.ReadLine();
@@ -208,6 +210,7 @@ namespace Grupp5Projekt
 
     static void StudentShowGradesMenu(Register register)
     {
+      Console.Clear();
       foreach (var Course in register.ShowStudentCourses((Student)register.LoggedUser))
       {
         Console.WriteLine(Course.Name + ":\t" + Course.ShowGradeForStudent((Student)register.LoggedUser));
@@ -227,6 +230,7 @@ namespace Grupp5Projekt
 
     static void StudentChangeEmailMenu(Register register)
     {
+      Console.Clear();
       int i = 0;
       while (i > -1)
       {
@@ -307,77 +311,78 @@ namespace Grupp5Projekt
     }
 
     //Add User
-        static void CreateRemoveUser(Register register)
-        {
-          bool menuLoop = true;
-          while (menuLoop)
-          {
-            Console.Clear();
-            Console.WriteLine("");
-            Console.WriteLine("   *Create & Remove User Menu*");
-            Console.WriteLine("");
-            Console.WriteLine("   Select an option:");
-            Console.WriteLine("");
-            Console.WriteLine("   -- 1. Create Admin");
-            Console.WriteLine("   -- 2. Remove Admin");
-            Console.WriteLine("   -- 3. Create Teacher");
-            Console.WriteLine("   -- 4. Remove Teacher");
-            Console.WriteLine("   -- 5. Create Student");
-            Console.WriteLine("   -- 6. Remove Student");
-            Console.WriteLine("");
-            Console.WriteLine("   -- 0. Return to Main Menu");
-            Console.WriteLine("");
-            Console.Write("   Your choice: ");
-        string userChoice = Console.ReadLine();
+  static void CreateRemoveUser(Register register)
+  {
+    bool menuLoop = true;
+    while (menuLoop)
+    {
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("   *Create & Remove User Menu*");
+      Console.WriteLine("");
+      Console.WriteLine("   Select an option:");
+      Console.WriteLine("");
+      Console.WriteLine("   -- 1. Create Admin");
+      Console.WriteLine("   -- 2. Remove Admin");
+      Console.WriteLine("   -- 3. Create Teacher");
+      Console.WriteLine("   -- 4. Remove Teacher");
+      Console.WriteLine("   -- 5. Create Student");
+      Console.WriteLine("   -- 6. Remove Student");
+      Console.WriteLine("");
+      Console.WriteLine("   -- 0. Return to Main Menu");
+      Console.WriteLine("");
+      Console.Write("   Your choice: ");
+      string userChoice = Console.ReadLine();
 
-            switch (userChoice)
-            {
-              case "1":
-                Console.Clear();
-                AddAdminUser(register);
-                break;
-              case "2":
-                Console.Clear();
-                RemoveAdminUser(register);
-                break;
-              case "3":
-                Console.Clear();
-                AddTeacherUser(register);
-                break;
-              case "4":
-                Console.Clear();
-                RemoveTeacherUser(register);
-                break;
-              case "5":
-                Console.Clear();
-                AddStudentUser(register);
-                break;
-              case "6":
-                Console.Clear();
-                RemoveStudentUser(register);
-                break;
-              case "0":
-                Console.Clear();
-                menuLoop = false;
-                break;
+      switch (userChoice)
+      {
+        case "1":
+          Console.Clear();
+          AddAdminUser(register);
+          break;
+        case "2":
+          Console.Clear();
+          RemoveAdminUser(register);
+          break;
+        case "3":
+          Console.Clear();
+          AddTeacherUser(register);
+          break;
+        case "4":
+          Console.Clear();
+          RemoveTeacherUser(register);
+          break;
+        case "5":
+          Console.Clear();
+          AddStudentUser(register);
+          break;
+        case "6":
+          Console.Clear();
+          RemoveStudentUser(register);
+          break;
+        case "0":
+          Console.Clear();
+          menuLoop = false;
+          break;
 
-            }
-          }
-        }
+      }
+    }
+  }
 
     //Add Admin User
     static void AddAdminUser(Register register)
     {
+      Console.Clear();
       Console.WriteLine("");
-        Console.WriteLine("   *Add Admin User*");
-        Console.WriteLine("");
-        Console.Write("   Enter Admin name: ");
-        string rName = Console.ReadLine();
-        Console.Write("   Enter Admin password: ");
-        string rPassword = Console.ReadLine();
-        Console.Write("   Enter Admin email: ");
-        string rEmail = Console.ReadLine();
-        register.AddAdminUser(rName, rEmail, rPassword);
+      Console.WriteLine("   *Add Admin User*");
+      Console.WriteLine("");
+      Console.Write("   Enter Admin name: ");
+      string rName = Console.ReadLine();
+      Console.Write("   Enter Admin password: ");
+      string rPassword = Console.ReadLine();
+      Console.Write("   Enter Admin email: ");
+      string rEmail = Console.ReadLine();
+      register.AddAdminUser(rName, rEmail, rPassword);
     }
 
     //Remove Admin User
@@ -389,17 +394,18 @@ namespace Grupp5Projekt
     //Add Teacher User
     static void AddTeacherUser(Register register)
     {
-            Console.WriteLine("");
-            Console.WriteLine("   *Add Teacher User*");
-            Console.WriteLine("");
-            Console.Write("   Enter Teacher name: ");
-            string rName = Console.ReadLine();
-            Console.Write("   Enter Teacher password: ");
-            string rPassword = Console.ReadLine();
-            Console.Write("   Enter Teacher email: ");
-            string rEmail = Console.ReadLine();
-            register.AddTeacherUser(rName, rEmail, rPassword);
-        }
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("   *Add Teacher User*");
+      Console.WriteLine("");
+      Console.Write("   Enter Teacher name: ");
+      string rName = Console.ReadLine();
+      Console.Write("   Enter Teacher password: ");
+      string rPassword = Console.ReadLine();
+      Console.Write("   Enter Teacher email: ");
+      string rEmail = Console.ReadLine();
+      register.AddTeacherUser(rName, rEmail, rPassword);
+    }
 
     //Remove Teacher User
     static void RemoveTeacherUser(Register register)
@@ -409,18 +415,19 @@ namespace Grupp5Projekt
 
     //Add Student User
     static void AddStudentUser(Register register)
-        {
-            Console.WriteLine("");
-            Console.WriteLine("   *Add Student User*");
-            Console.WriteLine("");
-            Console.Write("   Enter Student name: ");
-            string rName = Console.ReadLine();
-            Console.Write("   Enter Student password: ");
-            string rPassword = Console.ReadLine();
-            Console.Write("   Enter Student email: ");
-            string rEmail = Console.ReadLine();
-            register.AddTeacherUser(rName, rEmail, rPassword);
-        }
+    {
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("   *Add Student User*");
+      Console.WriteLine("");
+      Console.Write("   Enter Student name: ");
+      string rName = Console.ReadLine();
+      Console.Write("   Enter Student password: ");
+      string rPassword = Console.ReadLine();
+      Console.Write("   Enter Student email: ");
+      string rEmail = Console.ReadLine();
+      register.AddTeacherUser(rName, rEmail, rPassword);
+    }
 
     //Remove Student User
     static void RemoveStudentUser(Register register)
@@ -498,6 +505,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while(menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("Select course");
         string courseName = Console.ReadLine();
 
@@ -548,15 +556,12 @@ namespace Grupp5Projekt
         switch (userChoice)
         {
           case "1":
-            Console.Clear();
             AddRoom(register);
             break;
           case "2":
-            Console.Clear();
             RemoveRoom(register);
             break;
           case "0":
-            Console.Clear();
             menuLoop = false;
             break;
 
@@ -591,6 +596,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+
         Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Create & Remove Lesson Menu*");
@@ -631,7 +637,7 @@ namespace Grupp5Projekt
       while (bigMenuLoop)
       {
 
-
+        Console.Clear();
 
         Console.Clear();
         Console.WriteLine("");
@@ -712,6 +718,7 @@ namespace Grupp5Projekt
       int lessonPos = 0;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("Room name:");
         string roomName = Console.ReadLine();
         Console.WriteLine("Date: YYYY-MM-DD");
@@ -784,6 +791,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Show all lessons*");
         Console.WriteLine("");
@@ -810,6 +818,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Show for one course*");
         Console.WriteLine("");
@@ -857,6 +866,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("");
         Console.WriteLine("   *Show for one room*");
         Console.WriteLine("");
@@ -913,6 +923,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("Main menu:");
         Console.WriteLine("1. Show courses");
         Console.WriteLine("2. Show lessons");
@@ -941,9 +952,11 @@ namespace Grupp5Projekt
     //Teacher - Show courses menu
     static void TeacherShowCourses(Register register)
     {
+
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("1. Show all courses");
         Console.WriteLine("2. Show unfinished courses");
         Console.WriteLine("3. Show finished courses");
@@ -985,6 +998,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("1. Show all lessons");
         Console.WriteLine("2. Go back");
 
@@ -1008,6 +1022,7 @@ namespace Grupp5Projekt
     //Show all lessons method
     static void TeacherShowAllLessons(Register register)
     {
+      Console.Clear();
       Console.WriteLine("All lessons for " + register.LoggedUser.Name + ":" + "\n");
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
       {
@@ -1022,6 +1037,7 @@ namespace Grupp5Projekt
     //Show all courses method
     static void TeacherShowAllCourses(Register register)
     {
+      Console.Clear();
       Console.WriteLine("All courses " + register.LoggedUser.Name + " is responsible for:" + "\n");
 
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
@@ -1034,6 +1050,7 @@ namespace Grupp5Projekt
     //Show unfinished courses method
     static void TeacherShowUnfinishedCourses(Register register)
     {
+      Console.Clear();
       Console.WriteLine("Unfinished courses:" + "\n");
       // LINQ-uttryck. Funkar också med en if-sats som i metoden över
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser)
@@ -1071,6 +1088,7 @@ namespace Grupp5Projekt
     //Show finished courses method
     static void TeacherShowFinishedCourses(Register register)
     {
+      Console.Clear();
       Console.WriteLine("Finished courses:" + "\n");
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
       {
@@ -1105,6 +1123,7 @@ namespace Grupp5Projekt
     //Add student to course method
     static void AddStudentToCourse(Register register)
     {
+      Console.Clear();
       Console.WriteLine("List of students:" + "\n");
       foreach (var student in register.Users.OfType<Student>())
       {
@@ -1157,6 +1176,7 @@ namespace Grupp5Projekt
     static void ShowUngradedStudents(Register register)
     {
       //Method for ShowUngradedStudent
+      Console.Clear();
       Console.WriteLine("List of ungraded students: ");
 
       foreach (var course in register.ShowTeacherCourses((Teacher)register.LoggedUser))
@@ -1177,6 +1197,7 @@ namespace Grupp5Projekt
       bool menuLoop = true;
       while (menuLoop)
       {
+        Console.Clear();
         Console.WriteLine("1. Grade students");
         Console.WriteLine("2. Back");
 
@@ -1187,7 +1208,6 @@ namespace Grupp5Projekt
             break;
 
           case "2":
-            Console.Clear();
             menuLoop = false;
             break;
         }
@@ -1197,6 +1217,7 @@ namespace Grupp5Projekt
     //Add a grade to a student
     static void GradeStudent(Register register)
     {
+      Console.Clear();
       int coursePos = -1;
       while (true)
       {

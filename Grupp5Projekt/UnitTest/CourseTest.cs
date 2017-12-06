@@ -26,6 +26,51 @@ namespace UnitTest
     }
 
     [Test]
+    public void AddStudentToCourseTest()
+    {
+      Student student = new Student("name", "email", "password", User.Privilege.student);
+      Teacher teacher = new Teacher();
+      Course course = new Course("temp", teacher, DateTime.Now, DateTime.Now, 0);
+      Grade grade = new Grade("newEmail", "grade");
+
+      course.AddStudent(student);
+      Assert.AreEqual(course.Students.Count, 1);
+      Assert.AreEqual(course.Grades.Count, 1);
+    }
+
+    [Test]
+    public void RemoveStudentFromCourseTest()
+    {
+      Student student = new Student("name", "email", "password", User.Privilege.student);
+      Teacher teacher = new Teacher();
+      Course course = new Course("temp", teacher, DateTime.Now, DateTime.Now, 0);
+      Grade grade = new Grade("email", "grade");
+
+      course.AddStudent(student);
+      course.RemoveStudent(student);
+      Assert.AreEqual(course.Students.Count, 0);
+      Assert.AreEqual(course.Grades.Count, 0);
+    }
+
+    [Test]
+    public void AddTeacherToCourseTest()
+    {
+      Teacher teacher = new Teacher("temp", "temp", "temp", User.Privilege.teacher);
+
+      Assert.AreEqual(teacher.Email, "temp");
+    }
+
+    [Test]
+    public void RemoveTeacherFromCourseTest()
+    {
+      Teacher teacher = new Teacher("temp", "temp", "temp", User.Privilege.teacher);
+      Course course = new Course("temp", teacher, DateTime.Now, DateTime.Now, 0);
+
+      course.RemoveTeacher();
+      Assert.AreEqual(course.TeacherEmail, "");
+    }
+
+    [Test]
     public void GradeStudentTest()
     {
       Course course = new Course();

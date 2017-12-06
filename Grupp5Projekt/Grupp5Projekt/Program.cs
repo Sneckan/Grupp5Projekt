@@ -909,6 +909,7 @@ namespace Grupp5Projekt
       {
         Console.WriteLine("1. Show courses");
         Console.WriteLine("2. Show lessons");
+        Console.WriteLine("0. Quit");
 
       string input = Console.ReadLine();
 
@@ -921,6 +922,10 @@ namespace Grupp5Projekt
           case "2":
             Console.Clear();
             TeacherShowLessons(register);
+            break;
+
+          case "0":
+            menuLoop = false;
             break;
         }
       }
@@ -1117,7 +1122,7 @@ namespace Grupp5Projekt
           break;
         }
       }
-      register.Courses[coursePos].AddStudent((Student)register.Users[studentPos]);
+      register.AddStudentToCourse(register.Courses[coursePos],(Student)register.Users[studentPos]);
       Console.WriteLine("Student added to course");
     }
 

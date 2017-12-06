@@ -392,7 +392,7 @@ namespace Grupp5Projekt
             Console.WriteLine("");
             Admin admin = new Admin(rName, rEmail, rPassword);
             register.AddAdminUser(admin);
-            Console.WriteLine("   Press Any Key To Go Back.");
+            Console.Write("   Press Any Key To Go Back.");
             Console.WriteLine("");
             Console.ReadKey();
           break;
@@ -595,18 +595,18 @@ namespace Grupp5Projekt
         Console.WriteLine("");
         Console.WriteLine("   -- 0. Return to Main Menu");
         Console.WriteLine("");
-        Console.Write("   Your choice: ");
+        Console.Write("   Make a choice and press [ENTER]: ");
         string userChoice = Console.ReadLine();
 
         switch (userChoice)
         {
           case "1":
             Console.Clear();
-            AddAdminUser(register);
+            AddCourse(register);
             break;
           case "2":
             Console.Clear();
-            RemoveAdminUser(register);
+            RemoveCourse(register);
             break;
           case "0":
             Console.Clear();
@@ -624,23 +624,29 @@ namespace Grupp5Projekt
       Console.WriteLine("");
       Console.WriteLine("   *Add Course*");
       Console.WriteLine("");
-      Console.WriteLine("   Enter Course name: ");
+      Console.Write("   Enter Course Name: ");
       string rName = Console.ReadLine();
-      Console.WriteLine("   Set Start date for course 'YYYY-MM-DD': ");
+      Console.Write("   Set Start Date For Course 'YYYY-MM-DD': ");
       string cstartDate = Console.ReadLine();
       DateTime rStartDate = DateTime.Parse(cstartDate);
-      Console.WriteLine("   Set End date for course 'YYYY-MM-DD': ");
+      Console.Write("   Set End Date For Course 'YYYY-MM-DD': ");
       string cendDate = Console.ReadLine();
       DateTime rEndDate = DateTime.Parse(cendDate);
-      Console.WriteLine("   Set Course length in '00:00': ");
-      string cHours = Console.ReadLine();
-      int rHours = Int32.Parse(cHours);
-      Console.WriteLine("Select teacher");
+      Console.Write("   Set Course Length In Hours: ");
+      int rHours = Convert.ToInt32(Console.ReadLine());
+      Console.Write("   Select Teacher To Course: ");
       string teacherEmail = Console.ReadLine();
       Teacher teacher = (Teacher)register.Users[register.SearchUserWithEmail(teacherEmail)];
       Course course = new Course(rName, teacher, rStartDate, rEndDate, rHours);
       register.AddCourse(course);
-
+      Console.Clear();
+      Console.WriteLine("");
+      Console.WriteLine("");
+      Console.WriteLine("   -- Course Added --");
+      Console.WriteLine("");
+      Console.WriteLine("   Press Any Key To Go Back.");
+      Console.WriteLine("");
+      Console.ReadKey();
     }
 
     //Remove Course
@@ -650,15 +656,24 @@ namespace Grupp5Projekt
       while(menuLoop)
       {
         Console.Clear();
-        Console.WriteLine("Select course");
+        Console.WriteLine("");
+        Console.WriteLine("   *Remove Course*");
+        Console.WriteLine("");
+        Console.Write("   Select Course To Remove: ");
+        Console.WriteLine("");
         string courseName = Console.ReadLine();
 
         if(register.SearchCourseWithName(courseName)==-1)
         {
-          Console.WriteLine("Course with that name doesnt exist");
-          Console.WriteLine("1. Try again");
-          Console.WriteLine("2. Go back");
-          if(Console.ReadLine()=="2")
+          Console.Clear();
+          Console.WriteLine("");
+          Console.WriteLine("   -- Course With That Name Doesn't Exist. -- ");
+          Console.WriteLine("");
+          Console.WriteLine("   Press Any Key To Try Again.");
+          Console.WriteLine("");
+          Console.WriteLine("   -- 0. Go Back");
+          Console.WriteLine("");
+          if (Console.ReadLine()=="0")
           {
             menuLoop = false;
           }
@@ -666,9 +681,18 @@ namespace Grupp5Projekt
         }
         else
         {
-          Console.WriteLine("Are you sure? y/n");
+          Console.WriteLine("");
+          Console.Write("   Are you sure (Y/N)? : ");
+          Console.WriteLine("");
           if (Console.ReadLine() == "y" || Console.ReadLine() == "Y")
           {
+            Console.Clear();
+            Console.WriteLine("");
+            Console.WriteLine("   -- Course Removed -- ");
+            Console.WriteLine("");
+            Console.WriteLine("   Press Any Key To Go Back.");
+            Console.WriteLine("");
+            Console.ReadKey();
             register.RemoveCourse(register.Courses[register.SearchCourseWithName(courseName)]);
             menuLoop = false;
           }

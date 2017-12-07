@@ -2,20 +2,20 @@
 <ArrayOfLesson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Lesson>
     <CourseName>Name</CourseName>
-    <Start>2017-12-06T14:15:17.3057431+01:00</Start>
-    <End>2017-12-06T14:15:17.3057431+01:00</End>
+    <Start>2017-12-06T15:45:48.286623+01:00</Start>
+    <End>2017-12-06T15:45:48.286623+01:00</End>
     <RoomName>Room1</RoomName>
   </Lesson>
   <Lesson>
     <CourseName>Name</CourseName>
-    <Start>2017-12-06T14:15:17.3057431+01:00</Start>
-    <End>2017-12-06T14:15:17.3057431+01:00</End>
+    <Start>2017-12-06T15:45:48.286623+01:00</Start>
+    <End>2017-12-06T15:45:48.286623+01:00</End>
     <RoomName>Room2</RoomName>
   </Lesson>
   <Lesson>
     <CourseName>Name</CourseName>
-    <Start>2017-12-06T14:15:17.3057431+01:00</Start>
-    <End>2017-12-06T14:15:17.3057431+01:00</End>
+    <Start>2017-12-06T15:45:48.286623+01:00</Start>
+    <End>2017-12-06T15:45:48.286623+01:00</End>
     <RoomName>Room3</RoomName>
   </Lesson>
 </ArrayOfLesson>

@@ -24,22 +24,21 @@ namespace Grupp5Projekt
       Password = "";
       MyPrivilege = Privilege.admin;
     }
- 
-    public User(string name, string email, string password, Privilege myPrivilege)
+
+    public User(string Name,string Email,string Password,Privilege MyPrivilege)
     {
-      Name = name;
-      Email = email;
-      Password = password;
-      MyPrivilege = myPrivilege;
+      this.Name = Name;
+      this.Email = Email;
+      this.Password = Password;
+      this.MyPrivilege = MyPrivilege;
     }
 
-    public User(string name, string email, string password)
+    public User(string Name, string Email, string Password)
     {
-      Name = name;
-      Email = email;
-      Password = password;
-      MyPrivilege = Privilege.admin;
+      this.Name = Name;
+      this.Email = Email;
+      this.Password = Password;
+      this.MyPrivilege = Privilege.admin;
     }
-
   }
 }

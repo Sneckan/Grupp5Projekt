@@ -21,7 +21,7 @@ namespace UnitTest
       Lesson lesson = new Lesson(course, time, time, room);
       room.AddLesson(lesson);
 
-      Assert.AreEqual(room.lessons.Count, 1);
+      Assert.AreEqual(room.Lessons.Count, 1);
     }
   }
 }

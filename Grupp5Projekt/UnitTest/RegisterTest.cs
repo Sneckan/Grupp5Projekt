@@ -359,9 +359,9 @@ namespace UnitTest
       register.AddLesson(lesson2);
       register.AddLesson(lesson3);
 
-      Assert.AreEqual(register.ShowLessonsRoom(room).Contains(lesson1), true);
-      Assert.AreEqual(register.ShowLessonsRoom(room).Contains(lesson2), true);
-      Assert.AreEqual(register.ShowLessonsRoom(room).Contains(lesson3), true);
+      Assert.AreEqual(register.GetLessonsRoom(room).Contains(lesson1), true);
+      Assert.AreEqual(register.GetLessonsRoom(room).Contains(lesson2), true);
+      Assert.AreEqual(register.GetLessonsRoom(room).Contains(lesson3), true);
     }
     [Test]
     public void ShowLessonsForStudentTest()
@@ -385,9 +385,9 @@ namespace UnitTest
       register.AddLesson(lesson2);
       register.AddLesson(lesson3);
 
-      Assert.AreEqual(register.ShowLessonsStudent(student).Contains(lesson1), true);
-      Assert.AreEqual(register.ShowLessonsStudent(student).Contains(lesson2), true);
-      Assert.AreEqual(register.ShowLessonsStudent(student).Contains(lesson3), true);
+      Assert.AreEqual(register.GetLessonsStudent(student).Contains(lesson1), true);
+      Assert.AreEqual(register.GetLessonsStudent(student).Contains(lesson2), true);
+      Assert.AreEqual(register.GetLessonsStudent(student).Contains(lesson3), true);
     }
 
   }

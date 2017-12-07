@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Grupp5Projekt
 {
   public class Course
   {
-    public string Name { get; set; }
-    // public Timetable TimeTable { get; set; }
-    public Teacher Teacher { get; set; }
-    
+    [XmlIgnore]
     public List<Student> Students { get; set; }
+    [XmlIgnore]
+    public Teacher Teacher { get; set; }
+
+    public string Name { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public int Hours { get; set; }
@@ -33,7 +35,7 @@ namespace Grupp5Projekt
       TeacherEmail = Teacher.Email;
     }
 
-
+    //constructor for tests
     public Course(string v)
     {
       Name = v;

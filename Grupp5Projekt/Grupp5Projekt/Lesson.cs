@@ -10,7 +10,7 @@ namespace Grupp5Projekt
 {
   public class Lesson
   {
-    
+    //parameters for a lesson
     [XmlIgnore]
     public Room Room { get; set; }
     [XmlIgnore]
@@ -23,27 +23,29 @@ namespace Grupp5Projekt
     public DateTime End { get; set; }
     public string RoomName { get; set; }
 
+    // lesson constructor for the xml serializer
     public Lesson()
     {
-      this.Course = new Course();
-      this.Start = new DateTime();
-      this.End = new DateTime();
-      this.Room = new Room();
-      this.CourseName = "";
-      this.RoomName = "";
+      Course = new Course();
+      Start = new DateTime();
+      End = new DateTime();
+      Room = new Room();
+      CourseName = "";
+      RoomName = "";
 
     }
-
+    //lesson constructor
     public Lesson(Course Course, DateTime Start, DateTime End, Room Room)
     {
       this.Course = Course;
       this.Start = Start;
       this.End = End;
       this.Room = Room;
-      this.CourseName = Course.Name;
-      this.RoomName = Room.Name;
+      CourseName = Course.Name;
+      RoomName = Room.Name;
     }
 
+     //writes the lessons to strings
     public override string ToString()
     {
       return "Course: " + CourseName + "\tRoom: " + RoomName + "\tTeacher: " + Course.Teacher.Name + "\tStarts: " + Start + "\tEnds: " + End;

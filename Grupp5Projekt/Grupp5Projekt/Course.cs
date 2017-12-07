@@ -87,6 +87,7 @@ namespace Grupp5Projekt
 
     }
 
+    //Show Grades
     public string ShowGrade()
     {
       string temp = "";
@@ -97,6 +98,7 @@ namespace Grupp5Projekt
       return temp;
     }
 
+    //Show grades for a student
     public string ShowGradeForStudent(Student student)
     {
       int pos = -1;
@@ -119,6 +121,7 @@ namespace Grupp5Projekt
       }
     }
 
+    //add student to a course
     public void AddStudent(Student student)
     {
       Students.Add(student);
@@ -130,6 +133,7 @@ namespace Grupp5Projekt
       Students = students;
     }
 
+    //remove a student from course
     public void RemoveStudent(Student student)
     {
       int i = 0;
@@ -147,6 +151,7 @@ namespace Grupp5Projekt
       }
     }
 
+    //adds a teacher to course
     public void AddTeacher(Teacher teacher)
     {
       Teacher = teacher;

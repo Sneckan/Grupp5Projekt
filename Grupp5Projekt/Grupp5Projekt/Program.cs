@@ -23,7 +23,7 @@ namespace Grupp5Projekt
         register.AddAdminUser(admin);
       }
 
-      //Ask user to sign in with email and password
+      //Ask user for email
       int i = -1;
       while (i == -1)
       {
@@ -36,6 +36,7 @@ namespace Grupp5Projekt
         }
       }
 
+      // Ask user for password
       while (true)
       {
         Console.WriteLine("Password: ");
@@ -112,6 +113,7 @@ namespace Grupp5Projekt
       }
     }
 
+    //Show the students lesson menu
     static void StudentShowLessonsMenu(Register register)
     {
       bool menuLoop = true;
@@ -143,6 +145,7 @@ namespace Grupp5Projekt
       }
     }
 
+    // Shows All lessons for the student
     static void StudentShowAllLessons(Register register)
     {
       Console.Clear();
@@ -165,6 +168,7 @@ namespace Grupp5Projekt
       }
     }
 
+    //shows the lessons of a selected course
     static void StudentShowSelectedCourseLessons(Register register)
     {
 
@@ -189,6 +193,7 @@ namespace Grupp5Projekt
       
     }
 
+    //shows all the students courses
     static void StudentShowCoursesMenu(Register register)
     {
       foreach (var Course in register.GetStudentCourses((Student)register.LoggedUser))
@@ -198,6 +203,7 @@ namespace Grupp5Projekt
       
     }
 
+    //shows the gades of the student
     static void StudentShowGradesMenu(Register register)
     {
       Console.Clear();
@@ -218,6 +224,7 @@ namespace Grupp5Projekt
       }
     }
 
+    //the student can change its own email
     static void StudentChangeEmailMenu(Register register)
     {
       Console.Clear();
@@ -263,7 +270,6 @@ namespace Grupp5Projekt
         Console.WriteLine("   -- 3. Create & Remove Room");
         Console.WriteLine("   -- 4. Create & Remove Lesson");
         Console.WriteLine("   -- 5. Show Lessons");
-        Console.WriteLine("   -- 6. Show Notices");
         Console.WriteLine("");
         Console.WriteLine("   -- 0. Exit");
         Console.WriteLine("");
@@ -292,10 +298,6 @@ namespace Grupp5Projekt
           case "5":
             Console.Clear();
             ShowLessons(register);
-            break;
-          case "6":
-            Console.Clear();
-            ShowNotices(register);
             break;
           case "0":
             Console.Clear();
@@ -592,6 +594,7 @@ namespace Grupp5Projekt
       }
     }
 
+    // the menu where you can add and remove a course
     static void CreateRemoveCourse(Register register)
     {
       bool menuLoop = true;
@@ -715,6 +718,7 @@ namespace Grupp5Projekt
 
     }
 
+    //create and remove a room
     static void CreateRemoveRoom(Register register)
     {
       bool menuLoop = true;
@@ -1032,7 +1036,7 @@ namespace Grupp5Projekt
       }
     }
 
-    //Show For One Course
+    //Show lessons For One Course
     static void ShowForOneCourse(Register register)
     {
       bool menuLoop = true;
@@ -1080,7 +1084,7 @@ namespace Grupp5Projekt
       }
     }
 
-    //Show For One Course
+    //Show lessons For one room
     static void ShowForOneRoom(Register register)
     {
       bool menuLoop = true;
@@ -1127,16 +1131,8 @@ namespace Grupp5Projekt
         }
       }
     }
-
-    //Show Notices
-    static void ShowNotices(Register register)
-    {
-      Console.Clear();
-      Console.WriteLine("");
-      Console.WriteLine("Show Notices");
-    }
-
-    //TeacherMainMenu
+    
+    //Teacher Main Menu
     static void TeacherMenu(Register register)
     {
       bool menuLoop = true;
@@ -1276,7 +1272,7 @@ namespace Grupp5Projekt
     {
       Console.Clear();
       Console.WriteLine("Unfinished courses:" + "\n");
-      // LINQ-uttryck. Funkar också med en if-sats som i metoden över
+
       foreach (var course in register.GetTeacherCourses((Teacher)register.LoggedUser)
         .Where(x => x.EndDate > DateTime.Now))
       {
@@ -1371,6 +1367,7 @@ namespace Grupp5Projekt
         }
       }
 
+      //search course for student
       int coursePos = -1;
       while (true)
       {
@@ -1394,6 +1391,7 @@ namespace Grupp5Projekt
       Console.WriteLine("Student added to course" + "\n");
     }
 
+    //removes student from course
     static void RemoveStudentFromCourse(Register register)
     { 
       Console.WriteLine("List of students:" + "\n");
@@ -1418,7 +1416,8 @@ namespace Grupp5Projekt
           break;
         }
       }
-
+      
+      //searches course for student
       int coursePos = -1;
       while (true)
       {
@@ -1465,6 +1464,7 @@ namespace Grupp5Projekt
       }
       Console.WriteLine();
     
+      //grade sudent
       bool menuLoop = true;
       while (menuLoop)
       {
@@ -1504,6 +1504,7 @@ namespace Grupp5Projekt
         }
       }
 
+      //search student for grade
       int studentPos = -1;
       while (true)
       {

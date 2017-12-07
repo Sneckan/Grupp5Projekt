@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Grupp5Projekt
 {
+
+  //put a grade to a student
   public class Grade
   {
 

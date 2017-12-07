@@ -8,9 +8,6 @@ namespace Grupp5Projekt
 {
   public class Admin : User
   {
-    //Propertys
-
-
     //Constructor
     public Admin() 
       : base("name", "email", "password", Privilege.admin)

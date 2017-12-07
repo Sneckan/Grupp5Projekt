@@ -881,11 +881,24 @@ namespace Grupp5Projekt
             menuLoop = false;
           }
         }
+        string temp = "";
+        string[] date = { };
+        bool dateLoop = true;
+        while (dateLoop)
+        {
+          Console.Write("   Set Date 'YYYY-MM-DD': ");
+          temp = Console.ReadLine();
+          date = temp.Split('-');
 
-
-        Console.Write("   Set Date 'YYYY-MM-DD': ");
-        string temp = Console.ReadLine();
-        string[] date = temp.Split('-');
+          if (DateTime.Parse(temp) < course.StartDate || DateTime.Parse(temp) > course.EndDate)
+          {
+            Console.WriteLine("   Lesson dates is outside of the course dates. ");
+          }
+          else
+          {
+            dateLoop = false;
+          }
+        }
 
         Console.Write("   Enter start time 'HH-MM': ");
         temp = Console.ReadLine();

@@ -10,20 +10,20 @@ namespace Grupp5Projekt
   {
     public string Name { get; set; }
     public int MaxCapacity { get; set; }
-    public List<Lesson> lessons { get; set; }
+    public List<Lesson> Lessons { get; set; }
 
     public Room()
     {
-      this.Name = "";
+      Name = "";
       MaxCapacity = 35;
-      lessons = new List<Lesson>();
+      Lessons = new List<Lesson>();
     }
 
     public Room(string Name)
     {
       this.Name = Name;
       MaxCapacity = 35;
-      lessons = new List<Lesson>();
+      Lessons = new List<Lesson>();
 
     }
 
@@ -31,13 +31,13 @@ namespace Grupp5Projekt
     {
       this.Name = Name;
       this.MaxCapacity = MaxCapacity;
-      lessons = new List<Lesson>();
+      Lessons = new List<Lesson>();
 
     }
 
     public void AddLesson(Lesson lesson)
     {
-      lessons.Add(lesson);
+      Lessons.Add(lesson);
     }
 
     

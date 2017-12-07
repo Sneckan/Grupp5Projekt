@@ -22,10 +22,6 @@ namespace Grupp5Projekt
     public Student(string name, string email, string password) : base(name, email, password)
     {
       MyPrivilege = Privilege.student;
-    }
-
-
-
-    
+    }    
   }
 }

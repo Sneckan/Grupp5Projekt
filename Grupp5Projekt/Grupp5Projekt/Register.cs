@@ -462,7 +462,7 @@ namespace Grupp5Projekt
 
     
 
-    public List<Course> ShowStudentCourses(Student student)
+    public List<Course> GetStudentCourses(Student student)
     {
       List<Course> tempList=new List<Course>();
       foreach (var Course in Courses)
@@ -475,7 +475,7 @@ namespace Grupp5Projekt
       return tempList;
     }
 
-    public List<Course> ShowTeacherCourses(Teacher teacher)
+    public List<Course> GetTeacherCourses(Teacher teacher)
     {
       List<Course> tempList = new List<Course>();
       foreach (var course in Courses)
@@ -502,7 +502,7 @@ namespace Grupp5Projekt
       return tempList;
     }
 
-    public List<Lesson> ShowLessonsRoom(Room Room)
+    public List<Lesson> GetLessonsRoom(Room Room)
     {
       List<Lesson> tempList = new List<Lesson>();
       foreach (var Lesson in Lessons)
@@ -515,10 +515,10 @@ namespace Grupp5Projekt
       return tempList;
     }
 
-    public List<Lesson> ShowLessonsStudent(Student student)
+    public List<Lesson> GetLessonsStudent(Student student)
     {
       List<Lesson> tempList = new List<Lesson>();
-      List<Course> tempCourseList = ShowStudentCourses(student);
+      List<Course> tempCourseList = GetStudentCourses(student);
 
       foreach(var Course in tempCourseList)
       {
